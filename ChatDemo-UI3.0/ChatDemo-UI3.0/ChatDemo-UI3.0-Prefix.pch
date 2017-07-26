@@ -1,0 +1,324 @@
+//
+//  Prefix header
+//
+//  The contents of this file are implicitly included at the beginning of every source file.
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_3_0
+#warning "This project uses features only available in iOS SDK 3.0 and later."
+#endif
+
+/**
+ *  红包功能是否启用
+ *  关闭红包功能只需注释掉下边的宏定义
+ */
+#define REDPACKET_AVALABLE
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+    #import "ChatDemoUIDefine.h"
+    #import "EMAlertView.h"
+    #import "TTGlobalUICommon.h"
+    #import <Hyphenate/Hyphenate.h>//动态库版本 包含实时语音
+    #import "EaseUI.h"
+    #import "NSObject+Category.h"
+    #import "UIView+Extension.h"
+    #import "MBProgressHUD+Add.h"
+    #import "SDAutoLayout.h"
+    #import <AFNetworking/AFNetworking.h>
+    #import <SDWebImage/UIImageView+webCache.h>
+    #import <SDWebImage/UIImage+GIF.h>
+    #import <SDWebImage/SDWebImageDecoder.h>
+    #import "MJRefresh.h"
+    #import <SDCycleScrollView/SDCycleScrollView.h>
+    #import <SVWebViewController/SVWebViewController.h>
+    #import <SVPullToRefresh/SVPullToRefresh.h>
+    #import <Masonry.h>
+    #import <SDWebImageManager.h>
+    #import "NetworkManager.h"
+    #import "BaseTool.h"
+
+#define DEMO_CALL 1
+
+#define IWPAGESIZE 10
+#define IWTIMECOUNT 59
+
+#define DEFUALT_MARGIN_SIDES 12
+
+#define ColorTableViewBg [UIColor colorWithRed:0.88 green:0.88 blue:0.88 alpha:1.0]
+//#define ColorTableViewBg Color(238, 240, 246)
+#define GlobalColor ColorFromRGB(@"d9343c")
+#define ColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+#define IWGlobalColor IWColor(4, 186, 164)
+#define IWColor(r, g, b) IWColorWithAlpha(r, g, b, 1)
+#define IWColorWithAlpha(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
+
+#define Color(r, g, b) ColorWithAlpha(r, g, b, 1)
+#define ColorWithAlpha(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
+
+// 1.判断是否为iOS7
+#define iOS7 ([[UIDevice currentDevice].systemVersion doubleValue] >= 7.0)
+// 图片删除通知
+#define IWImagesDeleteNotification @"IWImagesDeleteNotification"
+#define IWImagesDeleteNotificationPic @"IWImagesDeleteNotificationPic"
+
+// 图片点击的通知
+#define IWHomeClickNotification @"IWHomeClickNotification"
+
+// 图片点击的通知
+#define IWHomeClickNotification @"IWHomeClickNotification"
+#define IWHomeClickNotificationBanner @"IWHomeClickNotificationBanner"
+
+//该你发送红包的通知
+#define ItISYourTurnToSendRedBag @"ItIsYourTurnToSendRedBag"
+
+//会话和好友列表的cell高度
+#define EaseCellImageCornerRadius (EaseCellHeight - 20)/2
+
+
+
+//后台
+//#define www @"http://192.168.1.88/aiqiang/"
+
+//服务器地址
+//#define www @"http://47.93.114.245/aiqiang/"
+#define www @"http://www.iiqiang.com/"
+
+//设置字体和颜色
+#define DBNameLabelFont [UIFont systemFontOfSize:17]
+#define DBNameLabelColor [UIColor blackColor]
+#define DBContentLabelFont [UIFont systemFontOfSize:15]
+#define DBContentLabelColor [UIColor blackColor]
+//#define DBTimeLabelFont [UIFont systemFontOfSize:13]
+#define DBTimeLabelColor [UIColor grayColor]
+
+#define DBMaxFont [UIFont systemFontOfSize:17]
+#define DBMidFont [UIFont systemFontOfSize:15]
+#define DBMinFont [UIFont systemFontOfSize:13]
+
+#define DBBlackColor [UIColor blackColor]
+#define DBGrayColor [UIColor grayColor]
+
+
+
+//默认的cell高度
+#define DBCellHeight 50
+#define DBTitleLabelFont [UIFont systemFontOfSize:17]
+#define DBTitleLabelColor [UIColor blackColor]
+#define DBResultLabelFont [UIFont systemFontOfSize:17]
+#define DBResultLabelColor [UIColor grayColor]
+
+//屏幕尺寸
+#define SCREEN_WIDTH  [UIScreen mainScreen].bounds.size.width
+#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
+
+//用户ID
+
+#define User_ID [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"]
+#define User_Heading  [[NSUserDefaults standardUserDefaults] stringForKey:@"headimg"]
+#define User_NickName [[NSUserDefaults standardUserDefaults] stringForKey:@"nickname"]
+#define User_Address [[NSUserDefaults standardUserDefaults] objectForKey:@"address"]
+#define User_aq_id [[NSUserDefaults standardUserDefaults] objectForKey:@"aq_id"]
+#define User_balance [[NSUserDefaults standardUserDefaults] objectForKey:@"balance"]
+#define User_birthdy [[NSUserDefaults standardUserDefaults] objectForKey:@"birthdy"]
+#define User_hx_id [[NSUserDefaults standardUserDefaults] objectForKey:@"hx_id"]
+#define User_mobile [[NSUserDefaults standardUserDefaults] objectForKey:@"mobile"]
+#define User_pay_password [[NSUserDefaults standardUserDefaults] objectForKey:@"pay_password"]
+#define User_Sex [[NSUserDefaults standardUserDefaults] objectForKey:@"sex"]
+#define User_zuan [[NSUserDefaults standardUserDefaults] objectForKey:@"zuan"]
+#define User_is_recommend [[NSUserDefaults standardUserDefaults] objectForKey:@"is_recommend"]
+
+
+#define Client_ID [[NSUserDefaults standardUserDefaults] objectForKey:@"client_id"]
+#define DeviceToken [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"]
+
+#define ZhiFuBao_APPID @"2017060607429952"
+#define ZhiFuBao_SELLER_ID @"2088021055415717"
+
+//红包类型
+#define AllMan_RedBagType @"allManRedBag"
+#define Seller_RedBagType @"sellerRedBag"
+
+#define GroupChatRedBagType @"groupChatRedBagType"
+#define SingleChatRedBagType @"singleChatRedBagType"
+
+
+//公开群组ID
+#define OneGroupId    @"15711408816129"
+#define TwoGroupId    @"15710997774339"
+#define ThreeGroupId  @"15711465439233"
+#define FourGroupId   @"15711490605057"
+
+//聊天头像
+#define FromHeading   @"aq_headimg"
+#define ToHeading     @"toheading"
+
+//聊天昵称
+#define FromNickName  @"aq_nickname"
+#define ToNickName    @"toNickName"
+
+//RGB颜色
+#define UIColorFromRGB(rgbValue) [BaseTool colorFromHexRGB:rgbValue]
+#define Login_Success [[NSUserDefaults standardUserDefaults] boolForKey:@"loginSuccess"]
+
+
+//  ===========工程URL===========
+//  ===========圈子列表===========
+#define CircleListURL  [NSString stringWithFormat:@"%@api.php/Circle/getCircle", www]
+//圈子详情
+#define CircleDetailURL  [NSString stringWithFormat:@"%@api.php/Circle/getComment", www]
+//回复评论
+#define CircleReplyURL [NSString stringWithFormat:@"%@api.php/Circle/replyCircle", www]
+//发表圈子
+#define PublishDiscoverURL [NSString stringWithFormat:@"%@api.php/Circle/sendCircle", www]
+//圈子点赞
+#define CircleSetLikedURL [NSString stringWithFormat:@"%@api.php/Circle/setLiked", www]
+//删除个人动态
+#define DeleteDiscoverURL [NSString stringWithFormat:@"%@api.php/Circle/delCircle", www]
+//与我相关
+#define RelateMeURL [NSString stringWithFormat:@"%@api.php/Circle/relateMe", www]
+//获取圈子单个信息
+#define OneCircleURL [NSString stringWithFormat:@"%@api.php/Circle/oneCircle", www]
+
+
+
+//  ===========全民红包===========
+//获取全民红包
+#define AllManRedPacketListURL [NSString stringWithFormat:@"%@api.php/UserRedBag/getuserRedbagList", www]
+//获取全民红包的详情
+#define AllManRedPacketDetailURL [NSString stringWithFormat:@"%@api.php/UserRedBag/userRedbagInfo", www]
+//获取红包详情的评论
+#define AllManRedPacketPinglunListURL [NSString stringWithFormat:@"%@api.php/UserRedBag/getComment", www]
+//点赞
+#define AllManRedPacketDianZanURL [NSString stringWithFormat:@"%@api.php/UserRedBag/setLiked", www]
+//收藏
+#define AllManRedPacketShoucangURL [NSString stringWithFormat:@"%@api.php/UserRedBag/setFollowed", www]
+//发布红包
+#define AllManRedBagPublishRedBagURL [NSString stringWithFormat:@"%@api.php/UserRedBag/sendUserRedbag", www]
+//更改用户性别
+#define ConfigUserSexURL [NSString stringWithFormat:@"%@api.php/User/changeSex", www]
+//偷全民红包
+#define StealAllManRedBagURL [NSString stringWithFormat:@"%@api.php/UserRedBag/doRedbag", www]
+//全民红包发表评论
+#define AllManRedBagSendComment [NSString stringWithFormat:@"%@api.php/UserRedBag/sendComment", www]
+//获取红包信息---重发红包
+#define GetAllManRedBagInfoURL [NSString stringWithFormat:@"%@api.php/UserRedBag/getUserRedbagInfo", www]
+//重发全民红包
+#define ReSendAllManRedbagERL  [NSString stringWithFormat:@"%@api.php/UserRedBag/reSendRedbag", www]
+
+//  ===========个人信息===========
+//获取用户信息
+#define UesrInfoUrl [NSString stringWithFormat:@"%@api.php/User/getUserinfo", www]
+//我的账单
+#define MyBillListURL [NSString stringWithFormat:@"%@/api.php/User/getBill", www]
+//获取账户余额
+#define UserMoneyURL [NSString stringWithFormat:@"%@api.php/User/getBalance", www]
+//我的动态
+#define MyDiscoverListURL [NSString stringWithFormat:@"%@api.php/Circle/selfCircle", www]
+//我的收藏
+#define MyCollectionListUrl [NSString stringWithFormat:@"%@api.php/User/getFollowed", www]
+//我的红包
+#define MyRedBagListURL [NSString stringWithFormat:@"%@api.php/User/myRedbag", www]
+//我的红包被抢记录
+#define MyRedBagOverListURL [NSString stringWithFormat:@"%@api.php/User/myRedbagGetlog", www]
+//设置支付密码
+#define SetPayPasswordURL [NSString stringWithFormat:@"%@api.php/User/setPayPassword", www]
+//验证支付密码
+#define CheckPayPasswordURL [NSString stringWithFormat:@"%@api.php/User/checkPayPassword", www]
+//修改密码
+#define ConfigPasswordURL [NSString stringWithFormat:@"%@api.php/User/setPassword", www]
+//找回密码
+#define GetPasswordURL [NSString stringWithFormat:@"%@api.php/Public/getPassword", www]
+//更改用户资料
+#define ConfigUserInfoURL [NSString stringWithFormat:@"%@api.php/User/changeUserinfo", www]
+//发送短信
+#define SendMessageURL [NSString stringWithFormat:@"%@api.php/Public/sendSms", www]
+//验证短信验证码
+#define ChectoutMessageCodeURL [NSString stringWithFormat:@"%@api.php/User/checkCode", www]
+//支付宝充值
+#define AliPayCHongZhiURL [NSString stringWithFormat:@"%@api.php/Recharge/alipay", www]
+//提现记录
+#define TiXianListURL [NSString stringWithFormat:@"%@api.php/Withdraw/withdrawList", www]
+//现金余额提现
+#define RMBWithDrawURL [NSString stringWithFormat:@"%@api.php/Withdraw/rmbWithdraw", www]
+//红包余额提现到现金余额
+#define RedbagToRmbURL [NSString stringWithFormat:@"%@api.php/Withdraw/redbagToRmb", www]
+//获取系统消息
+#define GetSystemMessageURL [NSString stringWithFormat:@"%@api.php/User/getSysMsg", www]
+//推荐的人
+#define GetRecommendListURL [NSString stringWithFormat:@"%@api.php/User/getRecommendList", www]
+
+
+
+//  ===========好友列表===========
+//获取好友列表信息
+#define FriendsListInfoURL [NSString stringWithFormat:@"%@api.php/Friend/getUserList", www]
+//偷好友红包
+#define StealRedbagURL [NSString stringWithFormat:@"%@api.php/Friend/stealRedbag", www]
+//查找用户信息
+#define SearchUserInfo [NSString stringWithFormat:@"%@api.php/Friend/serachUser", www]
+//好友验证列表
+#define FriendsCheckListURL [NSString stringWithFormat:@"%@api.php/Friend/checkList", www]
+//发送好友验证
+#define FriendSendCheck [NSString stringWithFormat:@"%@api.php/Friend/sendCheck", www]
+//查询保护期
+#define CheckProtectTimeURL [NSString stringWithFormat:@"%@api.php/Friend/checkProtect", www]
+//重置保护期
+#define ResetProtectTimeURL [NSString stringWithFormat:@"%@api.php/Friend/resetProtect", www]
+//同意好友验证
+#define AgreeFriendApplyURL [NSString stringWithFormat:@"%@api.php/Friend/changCheck", www]
+//推荐好友
+#define RecommendFriendURL [NSString stringWithFormat:@"%@api.php/Friend/recommend", www]
+//设置好友备注
+#define SetRemarkURL [NSString stringWithFormat:@"%@api.php/Friend/setRemark", www]
+//删除好友验证
+#define DeleteCheckURL [NSString stringWithFormat:@"%@api.php/Friend/delCheck", www]
+
+
+//  ===========商家红包===========
+//商家红包列表
+#define SellerRedBagListURL [NSString stringWithFormat:@"%@api.php/Public/getRedBags", www]
+//商家红包详情
+#define SellerRedBagDetailURL [NSString stringWithFormat:@"%@api.php/RedBags/redBagInfo", www]
+//偷取商家红包
+#define StealSellerRedBagURL [NSString stringWithFormat:@"%@api.php/RedBags/doRedbag", www]
+//商家红包收藏
+#define SellerRedBagSetFollowedURL [NSString stringWithFormat:@"%@api.php/RedBags/setFollowed", www]
+//商家红包点赞
+#define SellerRedBagSetLikedURL [NSString stringWithFormat:@"%@api.php/RedBags/setLiked", www]
+//商家红包发表评论
+#define SellerRedBagSendCommentURL [NSString stringWithFormat:@"%@api.php/RedBags/sendComment", www]
+//商家红包评论列表
+#define SellerRedBagCommnetListURL [NSString stringWithFormat:@"%@api.php/RedBags/getComment", www]
+
+
+
+
+//  =========== 首 页 ===========
+//首页轮播图
+#define MainImageURL [NSString stringWithFormat:@"%@api.php/Public/getAd", www]
+//首页红包信息
+#define MainRedBagList [NSString stringWithFormat:@"%@api.php/Public/redBagList", www]
+
+//  ===========红包接龙===========
+//进群交押金
+#define RedBagChainPaymentDeposit [NSString stringWithFormat:@"%@api.php/GroupRedBag/deposit", www]
+//发群聊红包
+#define  PublishGroupChatRedBag [NSString stringWithFormat:@"%@api.php/GroupRedBag/sendBaseRedbag", www]
+//抢群聊红包
+#define DoGroupChatURL [NSString stringWithFormat:@"%@api.php/GroupRedBag/doBaseRedbag", www]
+//发接龙红包
+#define PublishChainRedbagURL [NSString stringWithFormat:@"%@api.php/GroupRedBag/sendRedbag", www]
+//抢接龙红包
+#define DoChainRedBagURL [NSString stringWithFormat:@"%@api.php/GroupRedBag/doRedbag", www]
+//抢红包的记录
+#define RedBagGetlogURL  [NSString stringWithFormat:@"%@api.php/GroupRedBag/redBagGetlog", www]
+//定时查询抢红包最大的id
+#define CheckoutRedBagMaxID  [NSString stringWithFormat:@"%@api.php/GroupRedBag/queryRedbag", www]
+//退回红包接龙押金
+#define ReturnDepositURL  [NSString stringWithFormat:@"%@api.php/GroupRedBag/returnDeposit", www]
+
+#endif
