@@ -185,7 +185,7 @@
         tableView.tableFooterView = [[UIView alloc] init];
         self.headerview = [MineHeaderView viewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 180)];
         self.headerview.userModel = self.userModel;
-        
+        self.headerview.hiddenSettingButton = NO;
         typeof(self) weakself = self;
         [self.headerview setIconImageViewBlock:^{
             PersonalInfoViewController *vc = [[PersonalInfoViewController alloc] init];
@@ -194,39 +194,7 @@
         }];
         
         [self.headerview setSettingButtonBlock:^{
-        
-            int x = arc4random() % 5;
-            switch (x) {
-                case 0:
-                    weakself.headerview.backgroundColor = [UIColor whiteColor];
-
-                    break;
-                  
-                case 1:
-                    weakself.headerview.backgroundColor = [UIColor redColor];
-
-                    break;
-
-                case 2:
-                    weakself.headerview.backgroundColor = [UIColor orangeColor];
-
-                    break;
-
-                case 3:
-                    weakself.headerview.backgroundColor = [UIColor cyanColor];
-
-                    break;
-
-                case 4:
-                    weakself.headerview.backgroundColor = [UIColor greenColor];
-
-                    break;
-
-                default:
-                    break;
-            }
-
-            
+    
             
         }];
         

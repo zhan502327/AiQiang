@@ -24,7 +24,7 @@
     
     [view iconImageView];
     [view nameLabel];
-//    [view settingButton];
+    [view settingButton];
     return view;
 }
 
@@ -57,19 +57,20 @@
     return _nameLabel;
 }
 
-//- (UIButton *)settingButton{
-//    if (_settingButton == nil) {
-//        UIButton *button = [[UIButton alloc] init];;
-//        button.frame = CGRectMake(self.frame.size.width - 50, 10, 40, 30);
-//        [button setTitle:@"设置" forState:UIControlStateNormal];
-//        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//        [button addTarget:self action:@selector(settingButtonClicked) forControlEvents:UIControlEventTouchUpInside];
-//        button.titleLabel.font = [UIFont systemFontOfSize:14];
-//        [self addSubview:button];
-//        _settingButton = button;
-//    }
-//    return _settingButton;
-//}
+- (UIButton *)settingButton{
+    if (_settingButton == nil) {
+        UIButton *button = [[UIButton alloc] init];;
+        button.frame = CGRectMake(self.frame.size.width - 50, 10, 40, 30);
+        [button setTitle:@"签到" forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(settingButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+        button.titleLabel.font = [UIFont systemFontOfSize:14];
+        button.hidden = YES;
+        [self addSubview:button];
+        _settingButton = button;
+    }
+    return _settingButton;
+}
 
 - (void)settingButtonClicked{
     if (_settingButtonBlock) {
@@ -89,6 +90,16 @@
     [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",www,userModel.headimg]] placeholderImage:[UIImage imageNamed:@"head_placeholder"]];
     _nameLabel.text = userModel.nickname;
 
+}
+
+- (void)setHiddenSettingButton:(BOOL)hiddenSettingButton{
+    _hiddenSettingButton = hiddenSettingButton;
+    
+    if (hiddenSettingButton == YES) {
+        self.settingButton.hidden = YES;
+    }else{
+        self.settingButton.hidden = NO;
+    }
 }
 
 @end

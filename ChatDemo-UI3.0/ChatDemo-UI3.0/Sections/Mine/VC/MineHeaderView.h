@@ -11,9 +11,11 @@
 
 @interface MineHeaderView : UIView
 @property (nonatomic, strong) UserInfoModel *userModel;
+@property (nonatomic, assign) BOOL hiddenSettingButton;
+
 @property (nonatomic, weak) UIImageView *iconImageView;
 @property (nonatomic, weak) UILabel *nameLabel;
-//@property (nonatomic, weak) UIButton *settingButton;
+@property (nonatomic, weak) UIButton *settingButton;
 
 @property (nonatomic, copy) void(^iconImageViewBlock)();
 @property (nonatomic, copy) void(^settingButtonBlock)();
