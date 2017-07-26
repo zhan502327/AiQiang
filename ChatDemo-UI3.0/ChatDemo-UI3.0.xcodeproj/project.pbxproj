@@ -269,6 +269,8 @@
 		4D9C8C831EC59F1B00032EB2 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB62A0E1D926341000776F0 /* libz.tbd */; };
 		4D9E35461EAD988E0050B91D /* CircleDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D9E35451EAD988E0050B91D /* CircleDetailViewController.m */; };
 		4DA1B05E1F287D4A00E46EB1 /* Hyphenate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DA1B05D1F287D4A00E46EB1 /* Hyphenate.framework */; };
+		4DA1B05F1F287D9B00E46EB1 /* Hyphenate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DA1B05D1F287D4A00E46EB1 /* Hyphenate.framework */; };
+		4DA1B0601F287D9B00E46EB1 /* Hyphenate.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4DA1B05D1F287D4A00E46EB1 /* Hyphenate.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4DA7A4CD1F0232E6009DB805 /* CHTCollectionViewWaterfallFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA7A4C61F0232E6009DB805 /* CHTCollectionViewWaterfallFooter.m */; };
 		4DA7A4CE1F0232E6009DB805 /* CHTCollectionViewWaterfallHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA7A4C81F0232E6009DB805 /* CHTCollectionViewWaterfallHeader.m */; };
 		4DA7A4CF1F0232E6009DB805 /* CHTCollectionViewWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA7A4CA1F0232E6009DB805 /* CHTCollectionViewWaterfallLayout.m */; };
@@ -737,6 +739,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				4DA1B0601F287D9B00E46EB1 /* Hyphenate.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1993,6 +1996,7 @@
 				3C3527451931D37900385240 /* SystemConfiguration.framework in Frameworks */,
 				3C06AAFF194050A00076FF0B /* CoreLocation.framework in Frameworks */,
 				4DCF01C51EEE8EE000C91C6C /* AlipaySDK.framework in Frameworks */,
+				4DA1B05F1F287D9B00E46EB1 /* Hyphenate.framework in Frameworks */,
 				921C6A9E1D2A841600D8257F /* CoreMotion.framework in Frameworks */,
 				90911028192EEA70008A48AA /* Foundation.framework in Frameworks */,
 				9091102C192EEA70008A48AA /* UIKit.framework in Frameworks */,
