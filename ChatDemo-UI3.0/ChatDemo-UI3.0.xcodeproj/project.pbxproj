@@ -268,8 +268,7 @@
 		4D9C8C821EC59F0500032EB2 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB62A101D92636E000776F0 /* libiconv.tbd */; };
 		4D9C8C831EC59F1B00032EB2 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB62A0E1D926341000776F0 /* libz.tbd */; };
 		4D9E35461EAD988E0050B91D /* CircleDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D9E35451EAD988E0050B91D /* CircleDetailViewController.m */; };
-		4DA4EC091EC6B182001972AA /* Hyphenate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DA4EC081EC6B182001972AA /* Hyphenate.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		4DA4EC0B1EC6B1F9001972AA /* Hyphenate.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4DA4EC081EC6B182001972AA /* Hyphenate.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4DA1B05E1F287D4A00E46EB1 /* Hyphenate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DA1B05D1F287D4A00E46EB1 /* Hyphenate.framework */; };
 		4DA7A4CD1F0232E6009DB805 /* CHTCollectionViewWaterfallFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA7A4C61F0232E6009DB805 /* CHTCollectionViewWaterfallFooter.m */; };
 		4DA7A4CE1F0232E6009DB805 /* CHTCollectionViewWaterfallHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA7A4C81F0232E6009DB805 /* CHTCollectionViewWaterfallHeader.m */; };
 		4DA7A4CF1F0232E6009DB805 /* CHTCollectionViewWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA7A4CA1F0232E6009DB805 /* CHTCollectionViewWaterfallLayout.m */; };
@@ -738,7 +737,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				4DA4EC0B1EC6B1F9001972AA /* Hyphenate.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1118,7 +1116,7 @@
 		4D9C8C801EC59EF200032EB2 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		4D9E35441EAD988E0050B91D /* CircleDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleDetailViewController.h; sourceTree = "<group>"; };
 		4D9E35451EAD988E0050B91D /* CircleDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleDetailViewController.m; sourceTree = "<group>"; };
-		4DA4EC081EC6B182001972AA /* Hyphenate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Hyphenate.framework; sourceTree = "<group>"; };
+		4DA1B05D1F287D4A00E46EB1 /* Hyphenate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Hyphenate.framework; sourceTree = "<group>"; };
 		4DA7A4C51F0232E6009DB805 /* CHTCollectionViewWaterfallFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CHTCollectionViewWaterfallFooter.h; path = CHTLayout/CHTCollectionViewWaterfallFooter.h; sourceTree = "<group>"; };
 		4DA7A4C61F0232E6009DB805 /* CHTCollectionViewWaterfallFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CHTCollectionViewWaterfallFooter.m; path = CHTLayout/CHTCollectionViewWaterfallFooter.m; sourceTree = "<group>"; };
 		4DA7A4C71F0232E6009DB805 /* CHTCollectionViewWaterfallHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CHTCollectionViewWaterfallHeader.h; path = CHTLayout/CHTCollectionViewWaterfallHeader.h; sourceTree = "<group>"; };
@@ -2026,6 +2024,7 @@
 				D25972881BCBBFA100148BF6 /* libMobClickLibrary.a in Frameworks */,
 				3AB62A131D926375000776F0 /* libbz2.tbd in Frameworks */,
 				D29A6BB61B7209C8002324BB /* Social.framework in Frameworks */,
+				4DA1B05E1F287D4A00E46EB1 /* Hyphenate.framework in Frameworks */,
 				4DBAFA2F1EE158E00029DA47 /* libWeChatSDK.a in Frameworks */,
 				D29A6BB51B7209C1002324BB /* Accounts.framework in Frameworks */,
 				C035E8151AEA40F400283EE9 /* CoreData.framework in Frameworks */,
@@ -2034,7 +2033,6 @@
 				D21E563F1E11120800C50BA0 /* libRedpacketLib.a in Frameworks */,
 				4DBAF9661ED3E8000029DA47 /* libGeTuiSdk-1.6.3.0.a in Frameworks */,
 				4DBAF9671ED3E8000029DA47 /* libGtExtensionSdk-1.2.0.a in Frameworks */,
-				4DA4EC091EC6B182001972AA /* Hyphenate.framework in Frameworks */,
 				D29A6BB21B72098D002324BB /* Bolts.framework in Frameworks */,
 				4DBAFA2B1EE158E00029DA47 /* QQConnector.framework in Frameworks */,
 				90F1BECF1930492B00121AEC /* AddressBook.framework in Frameworks */,
@@ -2623,7 +2621,7 @@
 		4DA4EC071EC6B182001972AA /* HyphenateFullSDK */ = {
 			isa = PBXGroup;
 			children = (
-				4DA4EC081EC6B182001972AA /* Hyphenate.framework */,
+				4DA1B05D1F287D4A00E46EB1 /* Hyphenate.framework */,
 			);
 			path = HyphenateFullSDK;
 			sourceTree = "<group>";
