@@ -1,5 +1,5 @@
 _Store
-*/build/*
+*/teFullSDKbuild/*
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -17,7 +17,7 @@ DerivedData
 *.xccheckout
 *.xcworkspace
 !default.xcworkspace
-
+HyphenateFullSDK/
 #CocoaPods
 Pods
 !Podfile
