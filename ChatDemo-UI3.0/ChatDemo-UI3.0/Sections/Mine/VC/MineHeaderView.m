@@ -60,11 +60,15 @@
 - (UIButton *)settingButton{
     if (_settingButton == nil) {
         UIButton *button = [[UIButton alloc] init];;
-        button.frame = CGRectMake(self.frame.size.width - 50, 10, 40, 30);
+        button.frame = CGRectMake(self.frame.size.width - 80, 20, 60, 30);
         [button setTitle:@"签到" forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [button addTarget:self action:@selector(settingButtonClicked) forControlEvents:UIControlEventTouchUpInside];
-        button.titleLabel.font = [UIFont systemFontOfSize:14];
+        button.titleLabel.font = [UIFont systemFontOfSize:17];
+        button.layer.masksToBounds = YES;
+        button.layer.cornerRadius = 5;
+        button.backgroundColor = [UIColor orangeColor];
+        
         button.hidden = YES;
         [self addSubview:button];
         _settingButton = button;
