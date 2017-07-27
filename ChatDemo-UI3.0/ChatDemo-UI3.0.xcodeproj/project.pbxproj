@@ -268,6 +268,8 @@
 		4D9C8C821EC59F0500032EB2 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB62A101D92636E000776F0 /* libiconv.tbd */; };
 		4D9C8C831EC59F1B00032EB2 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB62A0E1D926341000776F0 /* libz.tbd */; };
 		4D9E35461EAD988E0050B91D /* CircleDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D9E35451EAD988E0050B91D /* CircleDetailViewController.m */; };
+		4DA156CA1F29C80400E46EB1 /* DBUserInfoDataBaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA156C91F29C80400E46EB1 /* DBUserInfoDataBaseManager.m */; };
+		4DA156CE1F29C86F00E46EB1 /* DBUserInfoDataBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA156CD1F29C86F00E46EB1 /* DBUserInfoDataBaseModel.m */; };
 		4DA1B05E1F287D4A00E46EB1 /* Hyphenate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DA1B05D1F287D4A00E46EB1 /* Hyphenate.framework */; };
 		4DA1B05F1F287D9B00E46EB1 /* Hyphenate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DA1B05D1F287D4A00E46EB1 /* Hyphenate.framework */; };
 		4DA1B0601F287D9B00E46EB1 /* Hyphenate.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4DA1B05D1F287D4A00E46EB1 /* Hyphenate.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -1119,6 +1121,10 @@
 		4D9C8C801EC59EF200032EB2 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		4D9E35441EAD988E0050B91D /* CircleDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleDetailViewController.h; sourceTree = "<group>"; };
 		4D9E35451EAD988E0050B91D /* CircleDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleDetailViewController.m; sourceTree = "<group>"; };
+		4DA156C81F29C80400E46EB1 /* DBUserInfoDataBaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBUserInfoDataBaseManager.h; sourceTree = "<group>"; };
+		4DA156C91F29C80400E46EB1 /* DBUserInfoDataBaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBUserInfoDataBaseManager.m; sourceTree = "<group>"; };
+		4DA156CC1F29C86F00E46EB1 /* DBUserInfoDataBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBUserInfoDataBaseModel.h; sourceTree = "<group>"; };
+		4DA156CD1F29C86F00E46EB1 /* DBUserInfoDataBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBUserInfoDataBaseModel.m; sourceTree = "<group>"; };
 		4DA1B05D1F287D4A00E46EB1 /* Hyphenate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Hyphenate.framework; sourceTree = "<group>"; };
 		4DA7A4C51F0232E6009DB805 /* CHTCollectionViewWaterfallFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CHTCollectionViewWaterfallFooter.h; path = CHTLayout/CHTCollectionViewWaterfallFooter.h; sourceTree = "<group>"; };
 		4DA7A4C61F0232E6009DB805 /* CHTCollectionViewWaterfallFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CHTCollectionViewWaterfallFooter.m; path = CHTLayout/CHTCollectionViewWaterfallFooter.m; sourceTree = "<group>"; };
@@ -2622,6 +2628,25 @@
 			path = Tool;
 			sourceTree = "<group>";
 		};
+		4DA156C71F29C7C800E46EB1 /* UserInfoDataBase */ = {
+			isa = PBXGroup;
+			children = (
+				4DA156CB1F29C84A00E46EB1 /* DataBaseModel */,
+				4DA156C81F29C80400E46EB1 /* DBUserInfoDataBaseManager.h */,
+				4DA156C91F29C80400E46EB1 /* DBUserInfoDataBaseManager.m */,
+			);
+			path = UserInfoDataBase;
+			sourceTree = "<group>";
+		};
+		4DA156CB1F29C84A00E46EB1 /* DataBaseModel */ = {
+			isa = PBXGroup;
+			children = (
+				4DA156CC1F29C86F00E46EB1 /* DBUserInfoDataBaseModel.h */,
+				4DA156CD1F29C86F00E46EB1 /* DBUserInfoDataBaseModel.m */,
+			);
+			path = DataBaseModel;
+			sourceTree = "<group>";
+		};
 		4DA4EC071EC6B182001972AA /* HyphenateFullSDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -3881,6 +3906,7 @@
 		BE26F3021E6FF5F700D087F8 /* Sections */ = {
 			isa = PBXGroup;
 			children = (
+				4DA156C71F29C7C800E46EB1 /* UserInfoDataBase */,
 				4DA7A4D11F0242D0009DB805 /* LaunchIntroduction */,
 				BE26F3131E6FF5F700D087F8 /* Main */,
 				4DBAF9A01EDFAFFD0029DA47 /* RedBag */,
@@ -5153,7 +5179,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0810;
-				ORGANIZATIONNAME = ___FULLUSERNAME___;
+				ORGANIZATIONNAME = "___FULLUSERNAME___";
 				TargetAttributes = {
 					90911023192EEA70008A48AA = {
 						DevelopmentTeam = 44Q6PHG89S;
@@ -5623,6 +5649,7 @@
 				4D773F731EC995F100FE64C1 /* MyAccountViewController.m in Sources */,
 				D2C9DE841E14E07F00323A7D /* MWGridCell.m in Sources */,
 				4DE451DA1EC44B8000034300 /* MyRedBagTool.m in Sources */,
+				4DA156CE1F29C86F00E46EB1 /* DBUserInfoDataBaseModel.m in Sources */,
 				3C6BBA0619419EBD00A64684 /* EMRemarkImageView.m in Sources */,
 				4DBAFA0A1EE14F770029DA47 /* SystemMessageListTableViewCell.m in Sources */,
 				D2C9DEB11E14E07F00323A7D /* UIViewController+DismissKeyboard.m in Sources */,
@@ -5887,6 +5914,7 @@
 				D2FFDB921C1687A30031425A /* ChatDemoHelper.m in Sources */,
 				D2BF98B31AEDD780009E0D5C /* EditNicknameViewController.m in Sources */,
 				4DB5A03B1EB317DF00BE3969 /* UzysGroupViewCell.m in Sources */,
+				4DA156CA1F29C80400E46EB1 /* DBUserInfoDataBaseManager.m in Sources */,
 				8414902F1E0BD66F000A2B0C /* AppDelegate+Redpacket.m in Sources */,
 				4DAB2F7B1F1C671900A8E1A0 /* DrawCircleProgressButton.m in Sources */,
 				4DC99B341EB02C29001008B1 /* MJMember.m in Sources */,
