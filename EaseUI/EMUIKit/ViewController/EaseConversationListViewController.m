@@ -21,6 +21,7 @@
 #import "FriendsListTool.h"
 #import "FriendsListModel.h"
 
+
 @interface EaseConversationListViewController ()
 
 @property (nonatomic, strong) NSMutableArray *userInfoArray;
@@ -215,14 +216,10 @@
 }
 
 - (void)loadDataFromMyServeWithUidArray:(NSMutableArray *)array{
-//    typeof(self) weakself = self;
     if (array) {
         NSString *str = [array componentsJoinedByString:@","];
-        
         NSDictionary *dic = @{@"uid" : User_ID, @"uids" : str};
-        
-        [FriendsListTool friendsListWithParam:dic successBlock:^(NSMutableArray *array) {
-            
+        [FriendsListTool friendsListWithParam:dic successBlock:^(NSMutableArray *array, NSNumber *status) {
             self.userInfoArray = array;
             for (EaseConversationModel *model in self.dataArray) {
                 for (FriendsListModel *myModel in self.userInfoArray) {
@@ -234,13 +231,17 @@
             }
             [self.tableView reloadData];
             [self tableViewDidFinishTriggerHeader:YES reload:NO];
-            
+
+           
             
         } errorBlock:^(NSError *error) {
             
+            [self showHint:@"网络错误"];
         }];
     }
 }
+
+
 
 #pragma mark - EMGroupManagerDelegate
 

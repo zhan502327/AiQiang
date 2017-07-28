@@ -15,5 +15,4 @@
 @property (nonatomic ,copy) NSString *headimg;
 @property (nonatomic ,copy) NSString *remark;
 
-
 @end

@@ -13,7 +13,7 @@
 
 
 //根据环信id  从自己服务器上获取好友列表信息
-+ (void)friendsListWithParam:(NSDictionary *)param successBlock:(void(^)(NSMutableArray *))successBlock errorBlock:(void(^)(NSError *error))errorBlock;
++ (void)friendsListWithParam:(NSDictionary *)param successBlock:(void(^)(NSMutableArray *modelArray, NSNumber *status))successBlock errorBlock:(void(^)(NSError *error))errorBlock;
 
 
 //偷好友红包

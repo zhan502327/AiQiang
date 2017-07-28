@@ -26,7 +26,8 @@
 #import "FriendsListModel.h"
 #import "StealRedBagView.h"
 #import "OtherPersonInfoViewController.h"
-
+#import "DBUserInfoDataBaseModel.h"
+#import "DBUserInfoDataBaseManager.h"
 @implementation NSString (search)
 
 //根据用户昵称进行搜索
@@ -776,18 +777,63 @@
         
         NSDictionary *dic = @{@"uid" : User_ID, @"uids" : str};
         
-        [FriendsListTool friendsListWithParam:dic successBlock:^(NSMutableArray *array) {
+        [FriendsListTool friendsListWithParam:dic successBlock:^(NSMutableArray *array, NSNumber *status) {
             
             self.friendsListInfoArray = array;
             [weakself _sortDataArray:self.contactsSource];
 
+            if ([status intValue] == 1) {
+                [self FMDB];
+            }
+            
         } errorBlock:^(NSError *error) {
             
         }];
     }
-
-    
 }
+//数据库操作
+- (void)FMDB{
+    for (FriendsListModel *myModel in self.friendsListInfoArray) {
+        DBUserInfoDataBaseModel *model = [[DBUserInfoDataBaseModel alloc] init];
+        model.uid = myModel.uid;
+        model.nickname = myModel.nickname;
+        model.headimg = myModel.headimg;
+        model.remark = myModel.remark;
+        
+        //查询是否存在
+        NSArray *resultModelArray = [[DBUserInfoDataBaseManager shareDBManager] getUserInfoModelWithUid:myModel.uid];
+        
+        if (resultModelArray.count > 0) {// 数据库中存在此数据
+            for (DBUserInfoDataBaseModel *dbModel in resultModelArray) {
+                BOOL isdelete = [[DBUserInfoDataBaseManager shareDBManager] deleteUserInfoWithUid:dbModel.uid];
+                
+                if (isdelete == YES) {
+                    int64_t messageid = [[DBUserInfoDataBaseManager shareDBManager] addNewUserInfoWithModel:model];
+                    if (-1 != messageid){
+                        NSLog(@"数据插入成功 消息id %lld",messageid);
+                    }
+                }else{
+                    
+                }
+            }
+        }else{// 不存在此数据  插入
+            
+            int64_t messageid = [[DBUserInfoDataBaseManager shareDBManager] addNewUserInfoWithModel:model];
+            if (-1 != messageid){
+                NSLog(@"数据插入成功 消息id %lld",messageid);
+            }
+            
+        }
+    }
+    
+    
+    
+    //获取所有数据
+    NSArray *allUserInfoModelArray = [[DBUserInfoDataBaseManager shareDBManager] getAllUserInfoModel];
+    
+    NSLog(@"allUserInfoModelArray------%@",allUserInfoModelArray);
+}
+
 
 #pragma mark - data
 

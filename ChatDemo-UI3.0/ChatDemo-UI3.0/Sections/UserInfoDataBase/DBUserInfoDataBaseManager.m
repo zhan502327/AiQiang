@@ -132,8 +132,7 @@ static DBUserInfoDataBaseManager *dbManager = nil;
     NSString *datestring = [dateFormatter stringFromDate:[NSDate date]];
     
     NSString *sql = [NSString stringWithFormat:@"insert into %@ (version, updateDate) values ('%@','%@')",DBUserInfoVersionTableNmae,version,datestring];
-    
-    
+
     return [self.database executeUpdate:sql];
 }
 
@@ -208,7 +207,7 @@ static DBUserInfoDataBaseManager *dbManager = nil;
     NSString *uid = [NSString stringWithString:model.uid];
     NSString *nickname = [NSString stringWithString:model.nickname];
     NSString *headimg = [NSString stringWithString:model.headimg];
-    NSString *remark = [NSString stringWithString:model.remark];
+    NSString *remark = [NSString stringWithFormat:@"%@",model.remark];
     
     NSArray *array = @[uid, nickname, headimg, remark];
     if ([self.database executeUpdate:sql withArgumentsInArray:array]){
@@ -225,6 +224,8 @@ static DBUserInfoDataBaseManager *dbManager = nil;
     NSString *sql = [NSString stringWithFormat:@"delete from %@ where uid=%@",DBUserInfoTableName, uid];
     return [self.database executeUpdate:sql];
 }
+
+
 
 #pragma mark - 改
 - (BOOL)updateUserInfoModelWithModel:(DBUserInfoDataBaseModel *)model{
@@ -243,8 +244,7 @@ static DBUserInfoDataBaseManager *dbManager = nil;
 
 
 #pragma mark - 查
-- (NSArray<DBUserInfoDataBaseModel *> *)getAllUserInfoModelWithUid:(NSString *)uid{
-    
+- (NSArray<DBUserInfoDataBaseModel *> *)getUserInfoModelWithUid:(NSString *)uid{
     if (uid<=0){
         NSLog(@"参数 uid 不对");
         return nil;
@@ -261,6 +261,31 @@ static DBUserInfoDataBaseManager *dbManager = nil;
         model.headimg = [set stringForColumn:@"headimg"];
         model.remark = [set stringForColumn:@"remark"];
     
+        [data addObject:model];
+    }
+    if (data.count>0){
+        return [NSArray arrayWithArray:data];
+    }else{
+        return nil;
+    }
+    
+}
+
+// 查询所有数据
+- (NSArray<DBUserInfoDataBaseModel *> *)getAllUserInfoModel{
+    
+    
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM '%@'",DBUserInfoTableName];
+    
+    NSMutableArray<DBUserInfoDataBaseModel *> *data = [NSMutableArray array];
+    FMResultSet *set = [self.database executeQuery:sql];
+    while ([set next]) {
+        DBUserInfoDataBaseModel *model = [[DBUserInfoDataBaseModel alloc] init];
+        model.uid = [set stringForColumn:@"uid"];
+        model.nickname = [set stringForColumn:@"nickname"];
+        model.headimg = [set stringForColumn:@"headimg"];
+        model.remark = [set stringForColumn:@"remark"];
+        
         [data addObject:model];
     }
     if (data.count>0){

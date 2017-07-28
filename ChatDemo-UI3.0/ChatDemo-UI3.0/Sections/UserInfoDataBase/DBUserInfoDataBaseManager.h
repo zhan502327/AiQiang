@@ -55,6 +55,10 @@
  @return 模型数组
  */
 
-- (NSArray<DBUserInfoDataBaseModel *> *)getAllUserInfoModelWithUid:(NSString *)uid;
+- (NSArray<DBUserInfoDataBaseModel *> *)getUserInfoModelWithUid:(NSString *)uid;
+
+
+// 查询所有数据
+- (NSArray<DBUserInfoDataBaseModel *> *)getAllUserInfoModel;
 
 @end

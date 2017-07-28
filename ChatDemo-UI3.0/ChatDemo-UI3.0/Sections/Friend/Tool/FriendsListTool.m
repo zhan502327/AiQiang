@@ -14,8 +14,7 @@
 
 
 //根据环信id  从自己服务器上获取好友列表信息
-+ (void)friendsListWithParam:(NSDictionary *)param successBlock:(void(^)(NSMutableArray *))successBlock errorBlock:(void(^)(NSError *error))errorBlock{
-    
++ (void)friendsListWithParam:(NSDictionary *)param successBlock:(void(^)(NSMutableArray *modelArray, NSNumber *status))successBlock errorBlock:(void(^)(NSError *error))errorBlock{
     [[NetworkManager new] postWithURL:FriendsListInfoURL parameter:param success:^(id obj) {
         //获取JSON
         NSData *jsonData=[NSJSONSerialization dataWithJSONObject:obj options:NSJSONWritingPrettyPrinted error:nil];
@@ -23,6 +22,7 @@
         NSLog(@"%@",jsonString);
         
         NSArray *array=obj[@"data"];
+        NSNumber *status = obj[@"status"];
         
         NSMutableArray *modelArray = [NSMutableArray arrayWithCapacity:0];
         for (NSDictionary *dis in array) {
@@ -31,7 +31,7 @@
             [modelArray addObject:model];
         }
         if (successBlock) {
-            successBlock(modelArray.copy);
+            successBlock(modelArray.copy, status);
         }
     } fail:^(NSError *error) {
         if (errorBlock) {
