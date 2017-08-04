@@ -320,16 +320,13 @@
     .heightIs(20);
     
     self.detailView.contentLabel.sd_layout
-    .topSpaceToView(self.detailView.iconImageView,GAP + GAP + GAP)
+    .topSpaceToView(self.detailView.iconImageView,GAP)
     .leftSpaceToView(self.detailView,GAP)
     .rightSpaceToView(self.detailView,GAP)
     .autoHeightRatio(0);
     
     if (model.img.count > 0) {
-        
         CGFloat contentImageViewHeight;
-      
-        
         if (model.img.count == 1) {
             contentImageViewHeight = 190;
         }else if (model.img.count > 3){
@@ -337,9 +334,8 @@
         }else{
             contentImageViewHeight = 89;
         }
-        
         self.detailView.contentImageView.sd_layout
-        .topSpaceToView(self.detailView.contentLabel,GAP + GAP + GAP)
+        .topSpaceToView(self.detailView.contentLabel,GAP )
         .leftEqualToView(self.detailView.contentLabel)
         .rightEqualToView(self.detailView.contentLabel)
         .heightIs(contentImageViewHeight);
@@ -349,7 +345,7 @@
     }else{
 
         self.detailView.contentImageView.sd_layout
-        .topSpaceToView(self.detailView.contentLabel,GAP + GAP + GAP)
+        .topSpaceToView(self.detailView.contentLabel,GAP )
         .leftEqualToView(self.detailView.contentLabel)
         .rightEqualToView(self.detailView.contentLabel)
         .heightIs(0.01);

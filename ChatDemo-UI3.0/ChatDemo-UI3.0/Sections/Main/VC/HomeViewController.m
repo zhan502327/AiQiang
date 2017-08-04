@@ -23,6 +23,8 @@
 #import "StealRedBagView.h"
 #import "AllManRedPacketTool.h"
 #import "SellerListViewController.h"
+#import "DBCycleModel.h"
+#import "DBWebViewViewController.h"
 
 @interface HomeViewController ()< SDCycleScrollViewDelegate,UITableViewDelegate,UITableViewDataSource> {
     CGFloat _cellHeight;
@@ -30,6 +32,7 @@
 @property (nonatomic, weak) UITableView *tableView;
 
 @property (strong, nonatomic) NSMutableArray *imageArray;//滚动视图的imageArray；
+@property (nonatomic, strong) NSMutableArray *cycleModelArray;
 @property (nonatomic, strong) NSMutableArray *allManRedBagArray;
 @property (nonatomic, strong) NSMutableArray *sellerRedBagArray;
 
@@ -49,6 +52,13 @@
     
 }
 
+- (NSMutableArray *)cycleModelArray{
+    if (_cycleModelArray == nil) {
+        NSMutableArray *array = [NSMutableArray arrayWithCapacity:0];
+        _cycleModelArray = array;
+    }
+    return _cycleModelArray;
+}
 - (StealRedBagView *)stealView{
     if (_stealView == nil) {
         StealRedBagView *view = [[StealRedBagView alloc] init];
@@ -90,7 +100,7 @@
 
 - (SDCycleScrollView *)cycleView {
     if (!_cycleView) {
-        self.cycleView = [[SDCycleScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 7 / 16)];
+        self.cycleView = [[SDCycleScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, (SCREEN_WIDTH + 12) * 7/16 )];
         _cycleView.delegate = self;
     }
     return _cycleView;
@@ -118,7 +128,7 @@
                 [weakSelf performSegueWithIdentifier:@"all" sender:nil];
             }
         }];
-        _threeView.frame = CGRectMake(0, SCREEN_WIDTH * 7 / 16, SCREEN_WIDTH, 80);
+        _threeView.frame = CGRectMake(0, (SCREEN_WIDTH +12)* 7/16, SCREEN_WIDTH, 80);
     }
     return _threeView;
 }
@@ -131,7 +141,7 @@
         tableView.delegate = self;
         tableView.dataSource = self;
         UIView *view = [[UIView alloc] init];
-        view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 7/16 + 80);
+        view.frame = CGRectMake(0, 0, SCREEN_WIDTH, (SCREEN_WIDTH + 12)*7/16 + 80);
         view.userInteractionEnabled = YES;
         [view addSubview:self.cycleView];
         [view addSubview:self.threeView];
@@ -157,10 +167,17 @@
     //获取轮播图片数据
     [[NetworkManager new] getWithURL:MainImageURL success:^(id obj) {
         [self.imageArray removeAllObjects];
+        [self.cycleModelArray removeAllObjects];
         if ([obj[@"status"] isEqualToNumber:@1]) {
+            NSMutableArray * array = [NSMutableArray arrayWithCapacity:0];
             for (NSDictionary *dic in obj[@"data"]) {
+                DBCycleModel *model = [[DBCycleModel alloc] init];
+                [model setValuesForKeysWithDictionary:dic];
+                [array addObject:model];
                 [self.imageArray addObject:[NSString stringWithFormat:@"%@%@", www, dic[@"homeimg"]]];
             }
+            
+            [self.cycleModelArray addObjectsFromArray:array];
             self.cycleView.imageURLStringsGroup = self.imageArray;
         } else {
             [self showHint:obj[@"msg"]];
@@ -200,7 +217,12 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0) {
-        return 1;
+        if (self.sellerRedBagArray.count == 0) {
+            return 0;
+        }else{
+            return 1;
+
+        }
     }else{
         return self.allManRedBagArray.count;
     }
@@ -325,6 +347,22 @@
 #pragma mark - SDCycleScrollViewDelegate
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
     NSLog(@"%ld", index);
+    DBCycleModel *model = self.cycleModelArray[index];
+    if ([model.act intValue] == 1) {
+        DBWebViewViewController *vc = [[DBWebViewViewController alloc] init];
+        vc.url = model.content;
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+    if ([model.act intValue] == 2) {
+        AllManRedPacketDetailViewController *vc = [[AllManRedPacketDetailViewController alloc] init];
+        vc.sellerID = model.ID;
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+    
 }
 
 #pragma mark - segue传值

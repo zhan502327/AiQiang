@@ -53,6 +53,16 @@
     
 }
 
+- (void)setUrl:(NSString *)url{
+    _url = url;
+    
+    self.title = @"详情";
+    
+    NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];//创建NSURLRequest
+    
+    [self.webview loadRequest:request];
+}
+
 
 
 

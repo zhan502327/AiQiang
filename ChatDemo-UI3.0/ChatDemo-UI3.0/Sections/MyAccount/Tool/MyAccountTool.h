@@ -11,7 +11,7 @@
 @interface MyAccountTool : NSObject
 
 //设置支付密码
-+ (void)setupPasswordWithParam:(NSDictionary *)param successBlock:(void(^)(NSString *msg))successBlock errorBlock:(void(^)(NSError *error))errorBlock;
++ (void)setupPasswordWithParam:(NSDictionary *)param successBlock:(void(^)(NSString *msg ,NSNumber *status))successBlock errorBlock:(void(^)(NSError *error))errorBlock;
 
 
 //支付宝充值

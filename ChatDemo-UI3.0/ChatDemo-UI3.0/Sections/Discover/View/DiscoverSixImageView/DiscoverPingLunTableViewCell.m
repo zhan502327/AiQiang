@@ -97,9 +97,12 @@
 - (UILabel *)contentLabel{
     if (_contentLabel == nil) {
         UILabel *label = [[UILabel alloc] init];
-        label.backgroundColor = [UIColor whiteColor];
+        label.backgroundColor = [UIColor clearColor];
+        label.layer.borderColor = [UIColor whiteColor].CGColor;
+        label.layer.borderWidth = 1;
         label.textColor = [UIColor blackColor];
-        label.font = [UIFont systemFontOfSize:13];
+        label.lineBreakMode = NSLineBreakByWordWrapping;
+        label.font = [UIFont systemFontOfSize:14];
         [self.contentView addSubview:label];
         _contentLabel = label;
     }

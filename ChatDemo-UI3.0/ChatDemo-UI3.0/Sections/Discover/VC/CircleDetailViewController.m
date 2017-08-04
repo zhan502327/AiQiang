@@ -365,7 +365,7 @@
     
     [self.tableView addInfiniteScrollingWithActionHandler:^{
          weakSelf.count ++;
-        NSString *pageCount = [NSString stringWithFormat:@"%ld",weakSelf.count];
+        NSString *pageCount = [NSString stringWithFormat:@"%ld",(long)weakSelf.count];
         [DiscoverDetailPinglunModel discoverPinglunWithSuccessBlockWithPram:@{@"uid":User_ID,@"page":pageCount,@"cid":self.discoverModel.discoverID} successBlock:^(NSMutableArray *array, int pageCount) {
             
             if ([self.dataSource isKindOfClass:[NSMutableArray class]]) {
@@ -420,8 +420,6 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        
-        
         Discover *model = self.discoverModel;
         
         CGFloat imageHeight = 0;
@@ -437,13 +435,20 @@
                 imageHeight = 99;
             }
         }
-        return 150 + imageHeight + model.labelHeight;
+        CGFloat h = 0;
+        if (model.content.length > 0) {
+            h = 20;
+        }
+        
+        return 90 + imageHeight + model.labelHeight + h;
     
     }else{
         NSArray *sectionArray = self.dataSource[indexPath.section-1];
         if (indexPath.row == 0) {
             DiscoverDetailPinglunModel *model = sectionArray[0];
-            CGRect labelSize = [model.content boundingRectWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width-20, 1000) options:NSStringDrawingUsesLineFragmentOrigin attributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:13],NSFontAttributeName, nil] context:nil];
+            CGRect labelSize = [model.content boundingRectWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width - 60, 1000) options:NSStringDrawingUsesLineFragmentOrigin attributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:14],NSFontAttributeName, nil] context:nil];
+            
+            
             return labelSize.size.height + 60;
         }else{
             DiscoverHuifuModek *model = sectionArray[indexPath.row];
@@ -462,7 +467,7 @@
             style.lineSpacing = 0;
             [newString addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, totalString.length)];
             
-            CGRect labelSize = [totalString boundingRectWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width-20 -40, 1000) options:NSStringDrawingUsesLineFragmentOrigin attributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:13],NSFontAttributeName, nil] context:nil];
+            CGRect labelSize = [totalString boundingRectWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width-20 -40, 1000) options:NSStringDrawingUsesLineFragmentOrigin attributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:14],NSFontAttributeName, nil] context:nil];
             return labelSize.size.height + 30  ;
         }
     }
@@ -618,7 +623,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView *backView = [[UIView alloc]init];
-    backView.backgroundColor = [UIColor clearColor];
+    backView.backgroundColor = [UIColor whiteColor];
     return backView;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -627,44 +632,53 @@
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    UIView *backView = [[UIView alloc]init];
-    backView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 0.5);
-    backView.backgroundColor = [UIColor whiteColor];
-    if (self.dataSource.count == 0) {
-
-        
-        UILabel *label = [[UILabel alloc] init];
-        label.frame = CGRectMake(0, 0, SCREEN_WIDTH, 40);
-        label.text = @"暂时一个评论都没有";
-        label.backgroundColor = [UIColor whiteColor];
-        label.textColor = DBGrayColor;
-        label.textAlignment = NSTextAlignmentCenter;
-        label.font = DBMidFont;
-        [backView addSubview:label];
-        UIView *lineview = [[UIView alloc] init];
-        lineview.backgroundColor = ColorTableViewBg;
-        lineview.frame = CGRectMake(15, 0, SCREEN_WIDTH- 15, 0.5);
-        [backView addSubview:lineview];
-    }else{
-        UIView *lineview = [[UIView alloc] init];
-        lineview.backgroundColor = ColorTableViewBg;
-        lineview.frame = CGRectMake(15, 0, SCREEN_WIDTH- 15, 0.5);
-        [backView addSubview:lineview];
+    
+    if (section == 0) {
+        UIView *backView = [[UIView alloc]init];
+        backView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 0.5);
+        backView.backgroundColor = [UIColor whiteColor];
+        if (self.dataSource.count == 0) {
+            UILabel *label = [[UILabel alloc] init];
+            label.frame = CGRectMake(0, 0, SCREEN_WIDTH, 40);
+            label.text = @"暂时一个评论都没有";
+            label.backgroundColor = [UIColor whiteColor];
+            label.textColor = DBGrayColor;
+            label.textAlignment = NSTextAlignmentCenter;
+            label.font = DBMidFont;
+            [backView addSubview:label];
+            UIView *lineview = [[UIView alloc] init];
+            lineview.backgroundColor = ColorTableViewBg;
+            lineview.frame = CGRectMake(15, 0, SCREEN_WIDTH- 15, 0.5);
+            [backView addSubview:lineview];
+        }else{
+            UIView *lineview = [[UIView alloc] init];
+            lineview.backgroundColor = ColorTableViewBg;
+            lineview.frame = CGRectMake(15, 0, SCREEN_WIDTH- 15, 0.5);
+            [backView addSubview:lineview];
+        }
+        return backView;
+    }else
+    {
+        return nil;
     }
     
     
     
     
-    return backView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    
-    if (self.dataSource.count == 0) {
-        return 40;
+
+    if (section == 0) {
+        
+        if (self.dataSource.count == 0) {
+            return 40;
+        }
+        return 0.5;
+    }else{
+        return 0.0000001;
     }
-    return 0.5;
 }
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     

@@ -32,7 +32,7 @@
         UILabel *titleLabel = [[UILabel alloc] init];
         titleLabel.backgroundColor = [UIColor whiteColor];
         titleLabel.textColor=[UIColor blackColor];
-        titleLabel.font = [UIFont systemFontOfSize:14];
+        titleLabel.font = [UIFont systemFontOfSize:13];
         titleLabel.numberOfLines = 0;//设置UILable自适应
         titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
         [self.contentView addSubview:titleLabel];

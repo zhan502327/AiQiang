@@ -112,7 +112,8 @@
     if (_imageView1 == nil) {
         UIImageView *imageView = [[UIImageView alloc] init];
         imageView.userInteractionEnabled = YES;
-
+        imageView.layer.masksToBounds = YES;
+        imageView.contentMode=UIViewContentModeScaleAspectFill;
         imageView.backgroundColor = [UIColor whiteColor];
         imageView.tag = 100+ 0;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageViewClocked:)];
@@ -128,7 +129,8 @@
     if (_imageView2 == nil) {
         UIImageView *imageView = [[UIImageView alloc] init];
         imageView.userInteractionEnabled = YES;
-
+        imageView.layer.masksToBounds = YES;
+        imageView.contentMode=UIViewContentModeScaleAspectFill;
         imageView.tag = 100+ 1;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageViewClocked:)];
         [imageView addGestureRecognizer:tap];
@@ -142,7 +144,8 @@
     if (_imageView3 == nil) {
         UIImageView *imageView = [[UIImageView alloc] init];
         imageView.userInteractionEnabled = YES;
-
+        imageView.layer.masksToBounds = YES;
+        imageView.contentMode=UIViewContentModeScaleAspectFill;
         imageView.tag = 100+ 2;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageViewClocked:)];
         [imageView addGestureRecognizer:tap];
@@ -156,7 +159,8 @@
     if (_imageView4 == nil) {
         UIImageView *imageView = [[UIImageView alloc] init];
         imageView.userInteractionEnabled = YES;
-
+        imageView.layer.masksToBounds = YES;
+        imageView.contentMode=UIViewContentModeScaleAspectFill;
         imageView.tag = 100+ 3;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageViewClocked:)];
         [imageView addGestureRecognizer:tap];
@@ -170,7 +174,8 @@
     if (_imageView5 == nil) {
         UIImageView *imageView = [[UIImageView alloc] init];
         imageView.userInteractionEnabled = YES;
-
+        imageView.layer.masksToBounds = YES;
+        imageView.contentMode=UIViewContentModeScaleAspectFill;
         imageView.tag = 100+ 4;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageViewClocked:)];
         [imageView addGestureRecognizer:tap];
@@ -187,7 +192,8 @@
         imageView.tag = 100+ 5;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageViewClocked:)];
         [imageView addGestureRecognizer:tap];
-
+        imageView.layer.masksToBounds = YES;
+        imageView.contentMode=UIViewContentModeScaleAspectFill;
         [self.contentImageView addSubview:imageView];
         _imageView6 = imageView;
     }

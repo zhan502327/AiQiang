@@ -661,8 +661,6 @@
 
 - (void)_sortDataArray:(NSArray *)buddyList
 {
-    
-    
     [self.dataArray removeAllObjects];
     [self.sectionTitles removeAllObjects];
     NSMutableArray *contactsSource = [NSMutableArray array];//存储环信id
@@ -722,7 +720,6 @@
 //            [array addObject:model];
 //        }
 //    }
-    
     
     
     //每个section内的数组排序
@@ -788,6 +785,7 @@
             
         } errorBlock:^(NSError *error) {
             
+            [self showHint:@"网络错误"];
         }];
     }
 }
@@ -826,8 +824,6 @@
         }
     }
     
-    
-    
     //获取所有数据
     NSArray *allUserInfoModelArray = [[DBUserInfoDataBaseManager shareDBManager] getAllUserInfoModel];
     
@@ -841,7 +837,6 @@
 {
     //查询保护期
     [self checkoutProtectTime];
-    
     
 //    [self showHudInView:self.view hint:NSLocalizedString(@"loadData", @"Load data...")];
     __weak typeof(self) weakself = self;
@@ -876,8 +871,6 @@
         }
         [weakself tableViewDidFinishTriggerHeader:YES reload:NO];
     });
-    
-    
 }
 
 #pragma mark - public

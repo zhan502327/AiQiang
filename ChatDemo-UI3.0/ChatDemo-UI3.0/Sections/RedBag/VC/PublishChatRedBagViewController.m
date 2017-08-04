@@ -11,9 +11,9 @@
 #import "RedBagSecondTableViewCell.h"
 #import "TPKeyboardAvoidingTableView.h"
 #import "RedBagChainTool.h"
+#import "PasswordViewController.h"
+
 @interface PublishChatRedBagViewController ()<UITableViewDelegate,UITableViewDataSource>
-
-
 @property (nonatomic, strong) NSArray *dataSource;
 @property (nonatomic, strong) NSArray *titleArray;
 @property (nonatomic, strong) NSArray *rightArray;
@@ -221,42 +221,48 @@
 }
 
 - (void)sendRedBagButtonClicked{
-    
-    NSString *greeting;
-    if (self.greeting.length == 0) {
-        greeting = @"恭喜发财，大吉大利！";
-    }
-    if (self.redBagCount.length == 0) {
-        if ([self.redbagType isEqualToString:SingleChatRedBagType]) {
-            self.redBagCount = @"1";
-        }else{
-            [self showHint:@"请填写红包个数"];
+    if ([User_pay_password intValue] == 1) {
+        NSString *greeting;
+        if (self.greeting.length == 0) {
+            greeting = @"恭喜发财，大吉大利！";
+        }
+        if (self.redBagCount.length == 0) {
+            if ([self.redbagType isEqualToString:SingleChatRedBagType]) {
+                self.redBagCount = @"1";
+            }else{
+                [self showHint:@"请填写红包个数"];
+                return;
+            }
+        }
+        
+        if (self.redBagMoney.length == 0) {
+            [self showHint:@"请填写金额"];
             return;
         }
-    }
-    
-    if (self.redBagMoney.length == 0) {
-        [self showHint:@"请填写金额"];
-        return;
-    }
-    NSDictionary *param = @{@"uid":User_ID, @"type":@"11",@"num":self.redBagCount,@"total_amount":self.redBagMoney,@"desc":greeting};
-    [RedBagChainTool publishGroupChatRedbagWithWithParam:param successBlock:^(NSString *msg, NSNumber *status,NSString *rid) {
-        if ([status intValue] == 1) {
-            if (self->_sendGroupChatRedBagBlock) {
-                NSString *redbagtye = @"groupChatOrSingle";
-                self->_sendGroupChatRedBagBlock(rid,redbagtye);
+        NSDictionary *param = @{@"uid":User_ID, @"type":@"11",@"num":self.redBagCount,@"total_amount":self.redBagMoney,@"desc":greeting};
+        [RedBagChainTool publishGroupChatRedbagWithWithParam:param successBlock:^(NSString *msg, NSNumber *status,NSString *rid) {
+            if ([status intValue] == 1) {
+                if (self->_sendGroupChatRedBagBlock) {
+                    NSString *redbagtye = @"groupChatOrSingle";
+                    self->_sendGroupChatRedBagBlock(rid,redbagtye);
+                }
+                [self.navigationController popViewControllerAnimated:YES];
+            }else{
+                [self showHint:msg];
             }
-            [self.navigationController popViewControllerAnimated:YES];
-        }else{
-            [self showHint:msg];
-        }
-        
-        
-    } errorBlock:^(NSError *error) {
-        
-    }];
+            
+            
+        } errorBlock:^(NSError *error) {
+            
+        }];
+    }else{
+        [self showHint:@"请先设置支付密码"];
+        NSLog(@"设置支付密码");
+        PasswordViewController *vc = [[PasswordViewController alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
 
-
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section

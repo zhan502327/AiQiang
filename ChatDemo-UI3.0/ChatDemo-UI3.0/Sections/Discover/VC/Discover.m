@@ -24,6 +24,21 @@
         message.discoverID = dic[@"id"];
     }
     
+    if (dic[@"content"]) {
+        
+        NSString *str = dic[@"content"];
+        
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        paragraphStyle.lineSpacing = 0;
+        paragraphStyle.alignment = NSTextAlignmentLeft;
+        paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+        NSDictionary *attributes = @{NSParagraphStyleAttributeName: paragraphStyle,NSFontAttributeName:DBMaxFont};
+        
+        CGRect labelSize = [str boundingRectWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width-20, 1000) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil];
+        
+        message.labelHeight = labelSize.size.height;
+    }
+    
     return message;
 }
 
@@ -32,19 +47,19 @@
     
 }
 
-- (void)setValue:(id)value forKey:(NSString *)key{
-    [super setValue:value forKey:key];
-    if ([key isEqualToString:@"content"]) {
-        NSString *str = value;
-        if (str.length == 0) {
-            self.labelHeight = 0;
-        }else{
-            CGRect labelSize = [str boundingRectWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width-20, 1000) options:NSStringDrawingUsesLineFragmentOrigin attributes:[NSDictionary dictionaryWithObjectsAndKeys:DBMaxFont,NSFontAttributeName, nil] context:nil];
-            self.labelHeight = labelSize.size.height;
-        }
-   
-    }
-}
+//- (void)setValue:(id)value forKey:(NSString *)key{
+//    [super setValue:value forKey:key];
+//    if ([key isEqualToString:@"content"]) {
+//        NSString *str = value;
+//        if (str.length == 0) {
+//            self.labelHeight = 0;
+//        }else{
+//            CGRect labelSize = [str boundingRectWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width-20, 1000) options:NSStringDrawingUsesLineFragmentOrigin attributes:[NSDictionary dictionaryWithObjectsAndKeys:DBMaxFont,NSFontAttributeName, nil] context:nil];
+//            self.labelHeight = labelSize.size.height;
+//        }
+//   
+//    }
+//}
 
 
 //发送异步请求，获取数据，字典转模型

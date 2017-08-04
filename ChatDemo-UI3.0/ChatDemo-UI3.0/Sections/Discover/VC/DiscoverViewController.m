@@ -68,13 +68,16 @@
     
     self.discoverTableView.tableFooterView = [[UIView alloc] init];
     self.discoverTableView.backgroundColor = [UIColor whiteColor];
+    self.discoverTableView.rowHeight = UITableViewAutomaticDimension;
+    self.discoverTableView.estimatedRowHeight = 200;
+    
     
     self.discoverTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         self->page = 1;
         [self loadData];
     }];
     
-    self.discoverTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+    self.discoverTableView.mj_footer = [MJRefreshFooter footerWithRefreshingBlock:^{
         self->page ++;
         [self loadData];
     }];
@@ -191,7 +194,6 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     Discover *model=self.messageList[indexPath.row];
-    
     NSString *cellid = [DiscoverCell getReuseID:model];
     
     DiscoverCell *cell=[self.tableView dequeueReusableCellWithIdentifier:cellid];
@@ -299,8 +301,7 @@
 
 #pragma mark - 返回不同行的行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-
-    Discover *message=self.messageList[indexPath.row];
+    Discover *message= self.messageList[indexPath.row];
     return [DiscoverCell getRowHeight:message];
 }
 

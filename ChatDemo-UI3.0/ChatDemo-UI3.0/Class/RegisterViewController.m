@@ -135,8 +135,14 @@
         [self showHint:@"请输入正确六位推荐码，没有可不填"];
         return;
     }
+    NSDictionary *param;
+    if (self.tuijianmaText.length == 0) {
+        param =@{@"username": self.phoneText, @"mobile": self.phoneText, @"password": self.passwordText, @"repassword": self.repeartPassWordText,@"code": self.yanzhengmaText};
+    }else{
+        
+        param =@{@"username": self.phoneText, @"mobile": self.phoneText, @"password": self.passwordText, @"repassword": self.repeartPassWordText,@"code": self.yanzhengmaText,@"recommend":self.tuijianmaText};
+    }
     
-    NSDictionary *param =@{@"username": self.phoneText, @"mobile": self.phoneText, @"password": self.passwordText, @"repassword": self.repeartPassWordText,@"code": self.yanzhengmaText,@"recommend":self.tuijianmaText};
     [[NetworkManager new] postWithURL:[NSString stringWithFormat:@"%@/api.php/Public/register", www] parameter:param success:^(id obj) {
         [self showHint:obj[@"msg"]];
         if ([obj[@"status"] isEqualToNumber:@1]) {

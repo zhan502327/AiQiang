@@ -19,7 +19,7 @@
 #import "MineTool.h"
 #import "RedBagChainTool.h"
 #import "DBImageManger.h"
-
+#import "PasswordViewController.h"
 @interface PublishRedBagViewController ()<UITableViewDelegate,UITableViewDataSource,UzysAssetsPickerControllerDelegate, UITextViewDelegate>
 @property (nonatomic, weak) TPKeyboardAvoidingTableView *tableView;
 
@@ -348,53 +348,67 @@
 
 - (void)sendRedBag{
     [self.view endEditing:YES];
-    
-    //数据
-    NSString *title = (self.redBagtitle == nil) ? @"" : self.redBagtitle;
-    NSString *des = (self.desc == nil) ? @"" : self.desc;
-    NSString *num = (self.num == nil) ? @"" : self.num;
-    NSString *total_amount = (self.total_amount == nil) ? @"" : self.total_amount;
-    total_amount = [NSString stringWithFormat:@"%.2f",[total_amount floatValue]];
-    
-    if (total_amount.length == 0) {
-        [self showHint:@"请输入红包金额"];
-        return ;
-    }
-    
-    if (num.length == 0 ) {
-        [self showHint:@"请输入红包个数"];
-        return;
-    }
-    
-    if (title.length == 0) {
-        [self showHint:@"请输入标题"];
-        return;
-    }
-    
-    if (des.length == 0) {
-        [self showHint:@"请输入内容"];
-        return;
-    }
+    if ([User_pay_password intValue] == 1) {
+        
+        //数据
+        NSString *title = (self.redBagtitle == nil) ? @"" : self.redBagtitle;
+        NSString *des = (self.desc == nil) ? @"" : self.desc;
+        NSString *num = (self.num == nil) ? @"" : self.num;
+        NSString *total_amount = (self.total_amount == nil) ? @"" : self.total_amount;
+        total_amount = [NSString stringWithFormat:@"%.2f",[total_amount floatValue]];
+        
+        if (total_amount.length == 0) {
+            [self showHint:@"请输入红包金额"];
+            return ;
+        }
+        
+        if (num.length == 0 ) {
+            [self showHint:@"请输入红包个数"];
+            return;
+        }
+        
+        if (title.length == 0) {
+            [self showHint:@"请输入标题"];
+            return;
+        }
+        
+        if (des.length == 0) {
+            [self showHint:@"请输入内容"];
+            return;
+        }
+        
+        
+        NSDictionary *moneyParam = @{@"uid":User_ID};
+        [MineTool userMoneyWithSuccessBlockWithPram:moneyParam successBlock:^(NSString *rmb, NSString *balance) {
+            self.rmb = rmb;
+            
+            self.balance = balance;
+            
+            [self blackview];
+            UILabel *moneylabel = [self.choosePayTypeView viewWithTag:10];
+            moneylabel.text = [NSString stringWithFormat:@"¥ %@",total_amount];
+            
+            UILabel *firstLabel = [self.choosePayTypeView viewWithTag:100];
+            firstLabel.text = [NSString stringWithFormat:@"现金余额（余额 ¥%@）",self.rmb];
+            
+            UILabel *secondLabel = [self.choosePayTypeView viewWithTag:101];
+            secondLabel.text = [NSString stringWithFormat:@"红包余额（余额 ¥%@）",self.balance];
+        } errorBlock:^(NSError *error) {
+            [self showHint:@"网络错误"];
+        }];
 
+    }else{
+        
+        [self showHint:@"请先设置支付密码"];
+        NSLog(@"设置支付密码");
+        PasswordViewController *vc = [[PasswordViewController alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }
     
-    NSDictionary *moneyParam = @{@"uid":User_ID};
-    [MineTool userMoneyWithSuccessBlockWithPram:moneyParam successBlock:^(NSString *rmb, NSString *balance) {
-        self.rmb = rmb;
-        
-        self.balance = balance;
-        
-        [self blackview];
-        UILabel *moneylabel = [self.choosePayTypeView viewWithTag:10];
-        moneylabel.text = [NSString stringWithFormat:@"¥ %@",total_amount];
-        
-        UILabel *firstLabel = [self.choosePayTypeView viewWithTag:100];
-        firstLabel.text = [NSString stringWithFormat:@"现金余额（余额 ¥%@）",self.rmb];
-        
-        UILabel *secondLabel = [self.choosePayTypeView viewWithTag:101];
-        secondLabel.text = [NSString stringWithFormat:@"红包余额（余额 ¥%@）",self.balance];
-    } errorBlock:^(NSError *error) {
-        [self showHint:@"网络错误"];
-    }];
+    
+    
 }
 
 - (void)initData{

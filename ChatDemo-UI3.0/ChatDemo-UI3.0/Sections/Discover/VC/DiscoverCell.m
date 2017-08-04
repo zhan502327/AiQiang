@@ -24,28 +24,20 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageViewOne;
 //两张图片
 @property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *imageViewTwo;
-
-
 //三张图片
-
 @property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *imageViewThree;
-
 //四张图片
-
 @property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *imageViewFour;
-
 //五张图片
 @property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *imageViewFive;
-
 //六张图片
 @property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *imageViewSix;
-
-
 @property (nonatomic, copy) NSString *textFieldText;
 @property (nonatomic, strong) NSMutableArray *imageArray;
 @property (nonatomic, strong) NSMutableArray *imageViewArray;
 @end
 @implementation DiscoverCell
+
 
 
 - (IBAction)firstButtonClicked:(id)sender {
@@ -78,7 +70,6 @@
     
     [self.firstButton setImage:[UIImage imageNamed:@"zan"] forState:UIControlStateNormal];
     [self.firstButton setImage:[UIImage imageNamed:@"discover_zan_selected"] forState:UIControlStateSelected];
-//    self.firstButton.backgroundColor = [UIColor greenColor];
     
     [self.firstButton setImageEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 0)];
     [self.firstButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
@@ -140,10 +131,19 @@
     self.create_time.text=strDate;
     
     //设置正文
-    self.content.text=message.content;
-    self.content.contentMode=UIViewContentModeTopLeft;
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:message.content];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.lineSpacing = 0;
+    paragraphStyle.alignment = NSTextAlignmentLeft;
+    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+    
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, message.content.length)];
+    self.content.attributedText = attributedString;
+    
+    
     //设置图片
     [self loadImage:message];
+    
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
@@ -187,8 +187,8 @@
             NSString *encodeURL = [strUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
             UIImageView *imageView=self.imageViewOne;
-            
-//            imageView.contentMode=UIViewContentModeScaleToFill;
+            imageView.layer.masksToBounds = YES;
+            imageView.contentMode=UIViewContentModeScaleAspectFill;
             
             UIImage *placeholderImage=[UIImage imageNamed:@"imagePlaceHolder"];
             [imageView sd_setImageWithURL:[NSURL URLWithString:encodeURL] placeholderImage:placeholderImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
@@ -212,6 +212,8 @@
             NSString *encodeURL = [strUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
             UIImageView *imageView=self.imageViewTwo[idx];
+            imageView.layer.masksToBounds = YES;
+            imageView.contentMode=UIViewContentModeScaleAspectFill;
             UIImage *placeholderImage=[UIImage imageNamed:@"imagePlaceHolder"];
             [imageView sd_setImageWithURL:[NSURL URLWithString:encodeURL] placeholderImage:placeholderImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                 
@@ -220,7 +222,6 @@
                 }
                 
             }];
-            
             imageView.userInteractionEnabled = YES;
             imageView.tag = 100+ idx;
             UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageViewClocked:)];
@@ -236,6 +237,8 @@
             NSString *encodeURL = [strUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
             UIImageView *imageView=self.imageViewThree[idx];
+            imageView.layer.masksToBounds = YES;
+            imageView.contentMode=UIViewContentModeScaleAspectFill;
             UIImage *placeholderImage=[UIImage imageNamed:@"imagePlaceHolder"];
             [imageView sd_setImageWithURL:[NSURL URLWithString:encodeURL] placeholderImage:placeholderImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                 if (image) {
@@ -259,6 +262,8 @@
             NSString *encodeURL = [strUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
             UIImageView *imageView=self.imageViewFour[idx];
+            imageView.layer.masksToBounds = YES;
+            imageView.contentMode=UIViewContentModeScaleAspectFill;
             UIImage *placeholderImage=[UIImage imageNamed:@"imagePlaceHolder"];
             
             [imageView sd_setImageWithURL:[NSURL URLWithString:encodeURL] placeholderImage:placeholderImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
@@ -267,7 +272,6 @@
 
                 }
             }];
-            
             
             imageView.userInteractionEnabled = YES;
             imageView.tag = 100+ idx;
@@ -283,6 +287,8 @@
             NSString *encodeURL = [strUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
             UIImageView *imageView=self.imageViewFive[idx];
+            imageView.layer.masksToBounds = YES;
+            imageView.contentMode=UIViewContentModeScaleAspectFill;
             UIImage *placeholderImage=[UIImage imageNamed:@"imagePlaceHolder"];
             [imageView sd_setImageWithURL:[NSURL URLWithString:encodeURL] placeholderImage:placeholderImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                 if (image) {
@@ -306,6 +312,8 @@
             NSString *encodeURL = [strUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
             UIImageView *imageView=self.imageViewSix[idx];
+            imageView.layer.masksToBounds = YES;
+            imageView.contentMode=UIViewContentModeScaleAspectFill;
             NSLog(@"%@",NSStringFromCGRect(imageView.frame));
             UIImage *placeholderImage=[UIImage imageNamed:@"imagePlaceHolder"];
             [imageView sd_setImageWithURL:[NSURL URLWithString:encodeURL] placeholderImage:placeholderImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
@@ -374,29 +382,73 @@
 
 #pragma mark - 返回对应的行高
 +(CGFloat)getRowHeight:(Discover *)message{
-
     NSInteger arrCount=[message.img count];
+    NSLog(@"message.content === %@ ,message.labelHeight===%f", message.content,message.labelHeight);
+    
     if (arrCount==1) {
         
-        return 440;
+        if (message.content.length == 0) {
+            return 330 + message.labelHeight +10;
+
+        }else{
+            return 350 + message.labelHeight +10;
+
+        }
+        
     }else if(arrCount==2){
         
-        return 300;
+        if (message.content.length == 0) {
+            return 220 + message.labelHeight +10;
+            
+        }else{
+            return 240 + message.labelHeight+10;
+            
+        }
     }else if(arrCount==3){
         
-        return 312;
+        if (message.content.length == 0) {
+            return 220 + message.labelHeight+10;
+            
+        }else{
+            return 260 + message.labelHeight+10;
+            
+        }
     }else if(arrCount==4){
-        
-        return 430;
+        if (message.content.length == 0) {
+            return 220 + message.labelHeight + 100+10;
+            
+        }else{
+            return 240 + message.labelHeight + 100+10;
+            
+        }
     }else if(arrCount==5){
         
-        return 410;
+        if (message.content.length == 0) {
+            return 220 + message.labelHeight + 100+10;
+            
+        }else{
+            return 240 + message.labelHeight + 100+10;
+            
+        }
     }else if(arrCount==6){
         
-        return 420;
+        if (message.content.length == 0) {
+            return 220 + message.labelHeight + 100+10;
+            
+        }else{
+            return 240 + message.labelHeight + 100+10;
+            
+        }
     }else{
+        if (message.content.length == 0) {
+            return 120 + message.labelHeight+10;
+            
+        }else{
+            return 140 + message.labelHeight+10;
+            
+        }
+
         
-        return 266;
     }
 
     

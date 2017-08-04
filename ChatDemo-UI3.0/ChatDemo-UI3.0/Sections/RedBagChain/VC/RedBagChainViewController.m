@@ -12,7 +12,7 @@
 #import "RedPacketChatViewController.h"
 #import "ChatViewController.h"
 #import "DBWebViewViewController.h"
-
+#import "PasswordViewController.h"
 #define LeftAndRightGap 30
 #define TopAndBottomGap 50
 #define ImageWidth (SCREEN_WIDTH - LeftAndRightGap * 3)/2
@@ -240,24 +240,34 @@
 }
 
 - (void)imageViewClicked:(UITapGestureRecognizer *)tap{
-    
-    self.tag = tap.view.tag;
-    
-    NSString *moneyStr = @"";
+    if ([User_pay_password intValue] == 1) {
+        NSLog(@"已经设置支付密码");
+        self.tag = tap.view.tag;
+        
+        NSString *moneyStr = @"";
+        
+        if (tap.view.tag == 100) {
+            moneyStr = @"0.5";
+        }else if (tap.view.tag == 101){
+            moneyStr = @"1.0";
+        }else if (tap.view.tag == 102){
+            moneyStr = @"3.0";
+        }else{
+            moneyStr = @"5.0";
+        }
+        
+        NSString *messageStr = [NSString stringWithFormat:@"进入本群需要支付¥%@元押金，押金将在退出群组时返回到您的余额。",moneyStr];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:messageStr delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        [alertView show];
 
-    if (tap.view.tag == 100) {
-        moneyStr = @"0.5";
-    }else if (tap.view.tag == 101){
-        moneyStr = @"1.0";
-    }else if (tap.view.tag == 102){
-        moneyStr = @"3.0";
     }else{
-        moneyStr = @"5.0";
+        [self showHint:@"请先设置支付密码"];
+        NSLog(@"设置支付密码");
+        PasswordViewController *vc = [[PasswordViewController alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
     }
     
-    NSString *messageStr = [NSString stringWithFormat:@"进入本群需要支付¥%@元押金，押金将在退出群组时返回到您的余额。",moneyStr];
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:messageStr delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-    [alertView show];
     
 
 }

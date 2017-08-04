@@ -51,7 +51,7 @@
     textfield.font = DBMaxFont;
     textfield.textColor = DBBlackColor;
     textfield.layer.masksToBounds = YES;
-    textfield.layer.cornerRadius = 5;
+    textfield.layer.cornerRadius = 4;
     [textfield addTarget:self action:@selector(textfieldchangeValue:) forControlEvents:UIControlEventEditingChanged];
     
     textfield.placeholder = @"请填写短信验证码";
@@ -64,7 +64,7 @@
     [getbutton setTitle:@"获取验证码" forState:UIControlStateNormal];
     [getbutton addTarget:self action:@selector(getYanZhengMa) forControlEvents:UIControlEventTouchUpInside];
     getbutton.layer.masksToBounds = YES;
-    getbutton.layer.cornerRadius = 5;
+    getbutton.layer.cornerRadius = 4;
     getbutton.titleLabel.font = DBMaxFont;
     [getbutton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.view addSubview:getbutton];
@@ -77,11 +77,10 @@
     [sendButton setTitle:@"确定" forState:UIControlStateNormal];
     sendButton.backgroundColor = [UIColor colorWithRed:0.981 green:0.532 blue:0.036 alpha:1.000];;
     sendButton.layer.masksToBounds = YES;
-    sendButton.layer.cornerRadius = 5;
+    sendButton.layer.cornerRadius = 4;
     sendButton.titleLabel.font = DBMaxFont;
     [sendButton addTarget:self action:@selector(checkoutMessage) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:sendButton];
-    
 }
 
 - (void)textfieldchangeValue:(UITextField *)textfield{
@@ -129,18 +128,13 @@
     [MySettingTool chectoutMessageCodeWithParam:param successBlock:^(NSString *msg, NSNumber *num) {
         [self showHint:msg];
         if ([num intValue] == 1) {
-            
             PasswordViewController *vc = [[PasswordViewController alloc] init];
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
-            
         }
     } errorBlock:^(NSError *error) {
         [self showHint:@"网络错误"];
     }];
-    
-    
-    
 }
 
 @end

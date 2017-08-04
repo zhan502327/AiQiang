@@ -185,7 +185,7 @@
         tableView.tableFooterView = [[UIView alloc] init];
         self.headerview = [MineHeaderView viewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 180)];
         self.headerview.userModel = self.userModel;
-        self.headerview.hiddenSettingButton = NO;
+        self.headerview.hiddenSettingButton = YES;
         typeof(self) weakself = self;
         [self.headerview setIconImageViewBlock:^{
             PersonalInfoViewController *vc = [[PersonalInfoViewController alloc] init];

@@ -390,6 +390,12 @@
     ID = sellerRedBagModel.ID;
     self.fromWhere = FromSellerRedBag;
 }
+
+- (void)setSellerID:(NSString *)sellerID{
+    _sellerID = sellerID;
+    ID = sellerID;
+    self.fromWhere = FromSellerRedBag;
+}
 - (void) loadData{
     
     NSString *redbagType;

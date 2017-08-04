@@ -12,5 +12,5 @@
 
 @property (nonatomic, copy) NSString *type;
 
-
+@property (nonatomic, copy) NSString *url;
 @end

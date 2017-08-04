@@ -146,11 +146,12 @@
 #define SingleChatRedBagType @"singleChatRedBagType"
 
 
+
 //公开群组ID
-#define OneGroupId    @"15711408816129"
-#define TwoGroupId    @"15710997774339"
-#define ThreeGroupId  @"15711465439233"
-#define FourGroupId   @"15711490605057"
+#define OneGroupId    @"23497252339714"
+#define TwoGroupId    @"23497275408385"
+#define ThreeGroupId  @"23497302671361"
+#define FourGroupId   @"23497323642882"
 
 //聊天头像
 #define FromHeading   @"aq_headimg"
@@ -163,6 +164,10 @@
 //RGB颜色
 #define UIColorFromRGB(rgbValue) [BaseTool colorFromHexRGB:rgbValue]
 #define Login_Success [[NSUserDefaults standardUserDefaults] boolForKey:@"loginSuccess"]
+
+//屏幕适配
+#define FitRealValue(value) ((value)/375.0f*[UIScreen mainScreen].bounds.size.width)
+
 
 
 //  ===========工程URL===========

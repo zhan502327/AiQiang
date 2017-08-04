@@ -12,13 +12,14 @@
 @implementation MyAccountTool
 
 //设置支付密码
-+ (void)setupPasswordWithParam:(NSDictionary *)param successBlock:(void(^)(NSString *msg))successBlock errorBlock:(void(^)(NSError *error))errorBlock{
++ (void)setupPasswordWithParam:(NSDictionary *)param successBlock:(void(^)(NSString *msg ,NSNumber *status))successBlock errorBlock:(void(^)(NSError *error))errorBlock{
     
     [[NetworkManager new] postWithURL:SetPayPasswordURL parameter:param success:^(id obj) {
         
         NSString *msg = obj[@"msg"];
+        NSNumber *status = obj[@"status"];
         if (successBlock) {
-            successBlock(msg);
+            successBlock(msg,status);
         }
     
         

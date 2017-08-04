@@ -170,15 +170,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     Discover *model = self.dataSource[indexPath.row];
-
-
     CGFloat imageHeight = 0;
     if (model.img.count == 0) {
         imageHeight = 10;
     }else{
-        
         if (model.img.count == 1) {
             imageHeight = 200;
         }else if (model.img.count > 3){
@@ -187,7 +183,14 @@
             imageHeight = 99;
         }
     }
-    return 150 + imageHeight + model.labelHeight;
+    
+    
+    CGFloat h = 0;
+    if (model.content.length > 0) {
+        h = 20;
+    }
+    
+    return 90 + imageHeight + model.labelHeight + h;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

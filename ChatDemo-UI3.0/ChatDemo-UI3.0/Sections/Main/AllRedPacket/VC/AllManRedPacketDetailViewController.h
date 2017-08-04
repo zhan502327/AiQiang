@@ -20,4 +20,8 @@
 @property (nonatomic, strong) MyRedBagListModel *myRedBagModel;
 @property (nonatomic, strong) SellerRedBagListModel *sellerRedBagModel;
 
+//主页轮播图 商家红包id
+@property (nonatomic, strong) NSString *sellerID;
+
+
 @end

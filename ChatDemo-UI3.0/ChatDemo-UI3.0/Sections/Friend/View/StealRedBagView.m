@@ -7,10 +7,9 @@
 //
 
 #import "StealRedBagView.h"
+#import "DBGtInfo.h"
 
 @implementation StealRedBagView
-
-
 - (instancetype)init{
     
     self = [super init];
@@ -52,8 +51,30 @@
 
 - (UIImageView *)iconImageView{
     if (_iconImageView == nil) {
+        
+        
         UIImageView *imageView = [[UIImageView alloc] init];
-        imageView.frame = CGRectMake(self.resultImageView.frame.size.width/2 - 30, 68, 60, 60);
+        CGFloat y = 80;
+        NSString *type = [DBGtInfo iphoneType];
+        
+        if ([[DBGtInfo iphoneType] isEqualToString:@"iPhone 7 Plus"] || [[DBGtInfo iphoneType] isEqualToString:@"iPhone 6 Plus"] || [[DBGtInfo iphoneType] isEqualToString:@"iPhone 6s Plus"]) {
+            y = 80;
+        }
+        
+        if ([[DBGtInfo iphoneType] isEqualToString:@"iPhone 6"] ||
+            [[DBGtInfo iphoneType] isEqualToString:@"iPhone 6s"] ||
+            [[DBGtInfo iphoneType] isEqualToString:@"iPhone 7"] ) {
+            y = 68;
+        }
+        
+        if ([[DBGtInfo iphoneType] isEqualToString:@"iPhone 5"] ||
+            [[DBGtInfo iphoneType] isEqualToString:@"iPhone 5c"] ||
+            [[DBGtInfo iphoneType] isEqualToString:@"iPhone 5s"] ||
+            [[DBGtInfo iphoneType] isEqualToString:@"iPhone SE"]) {
+            y = 22;
+        }
+        
+        imageView.frame = CGRectMake(self.resultImageView.frame.size.width/2 - 30, y, 60, 60);
         imageView.layer.masksToBounds = YES;
         imageView.layer.cornerRadius = imageView.frame.size.width/2;
         [self.resultImageView addSubview:imageView];

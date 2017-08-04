@@ -16,6 +16,8 @@
 #import "ChooseSexView.h"
 #import "OtherPersonInfoViewController.h"
 #import "StealRedBagView.h"
+#import "DBCycleModel.h"
+#import "DBWebViewViewController.h"
 
 
 @interface AllRedPacketViewController ()<SDCycleScrollViewDelegate,UITableViewDelegate,UITableViewDataSource>
@@ -28,14 +30,13 @@
 
 @property (nonatomic, strong) NSMutableArray *maxDataSource;
 @property (nonatomic, strong) NSMutableArray *minDataSource;
-
 @property (nonatomic, weak) UIView *sexBgView;
 @property (nonatomic, weak) ChooseSexView *contentView;
-
 @property (nonatomic, copy) NSString *sexStr;
 @property (nonatomic, strong) NSMutableArray *imageArray;//轮播图
-
 @property (nonatomic, weak) StealRedBagView *stealView;
+@property (nonatomic, strong) NSMutableArray *cycleModelArray;
+
 @end
 
 @implementation AllRedPacketViewController
@@ -49,6 +50,13 @@
     [self configSex];
 }
 
+- (NSMutableArray *)cycleModelArray{
+    if (_cycleModelArray == nil) {
+        NSMutableArray *array = [NSMutableArray arrayWithCapacity:0];
+        _cycleModelArray = array;
+    }
+    return _cycleModelArray;
+}
 - (NSMutableArray *)imageArray{
     if (_imageArray == nil) {
         NSMutableArray *array = [NSMutableArray array];
@@ -185,14 +193,21 @@
 }
 
 - (void)loadData{
-    
+
     //获取轮播图片数据
     [[NetworkManager new] getWithURL:MainImageURL success:^(id obj) {
         [self.imageArray removeAllObjects];
+        [self.cycleModelArray removeAllObjects];
         if ([obj[@"status"] isEqualToNumber:@1]) {
+            NSMutableArray * array = [NSMutableArray arrayWithCapacity:0];
             for (NSDictionary *dic in obj[@"data"]) {
+                DBCycleModel *model = [[DBCycleModel alloc] init];
+                [model setValuesForKeysWithDictionary:dic];
+                [array addObject:model];
                 [self.imageArray addObject:[NSString stringWithFormat:@"%@%@", www, dic[@"homeimg"]]];
             }
+            
+            [self.cycleModelArray addObjectsFromArray:array];
             self.cycleView.imageURLStringsGroup = self.imageArray;
         } else {
             [self showHint:obj[@"msg"]];
@@ -200,7 +215,7 @@
     } fail:^(NSError *error) {
         [self showHint:@"网络错误"];
     }];
-
+    
     
     NSDictionary *param = @{@"uid":User_ID,@"page":[NSString stringWithFormat:@"%d",page]};
     
@@ -330,6 +345,24 @@
 #pragma mark - SDCycleScrollViewDelegate
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
     NSLog(@"%ld", index);
+    
+    
+    DBCycleModel *model = self.cycleModelArray[index];
+    if ([model.act intValue] == 1) {
+        DBWebViewViewController *vc = [[DBWebViewViewController alloc] init];
+        vc.url = model.content;
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+    if ([model.act intValue] == 2) {
+        AllManRedPacketDetailViewController *vc = [[AllManRedPacketDetailViewController alloc] init];
+        vc.sellerID = model.ID;
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+    
 }
 
 @end

@@ -18,7 +18,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *pingLunTextField;
 
-@property (nonatomic,strong)Discover *message;
+@property (nonatomic, strong)Discover *message;
 
 @property (nonatomic, copy) void(^iconImageViewBlock)();
 

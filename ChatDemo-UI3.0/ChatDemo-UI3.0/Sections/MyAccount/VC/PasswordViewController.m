@@ -48,7 +48,7 @@
 
 - (void)setupUI{
     self.view.backgroundColor = ColorTableViewBg;
-    self.title = @"密码管理";
+    self.title = @"设置支付密码";
     self.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 }
 - (void)initData{
@@ -109,15 +109,31 @@
     
     NSDictionary *param = @{@"uid":User_ID,@"pay_password":self.secondPassword};
     
-    [MyAccountTool setupPasswordWithParam:param successBlock:^(NSString *msg) {
+    [MyAccountTool setupPasswordWithParam:param successBlock:^(NSString *msg,NSNumber *status) {
         
         [MBProgressHUD showSuccess:msg toView:self.view];
         self.inputCount = 0;
         self.tipLabel.text = @"请输入六位数字支付密码（1/2）";
         [self.passWordView clearUpPassword];
         [self.passWordView.textField resignFirstResponder];
-        UIAlertView *view = [[UIAlertView alloc] initWithTitle:@"提示" message:@"支付密码设置成功" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-        [view show];
+        if ([status intValue]== 1) {
+            UIAlertView *view = [[UIAlertView alloc] initWithTitle:@"提示" message:@"支付密码设置成功" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+            [view show];
+            
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            
+            [defaults setObject:@"1" forKey:@"pay_password"];
+            
+            [defaults synchronize];
+        }else{
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            
+            [defaults setObject:@"0" forKey:@"pay_password"];
+            
+            [defaults synchronize];
+        }
+
+        
     } errorBlock:^(NSError *error) {
         [MBProgressHUD showSuccess:@"网络错误" toView:self.view];
         self.inputCount = 0;
@@ -137,7 +153,5 @@
 - (void)popview
 {
     [self.navigationController popViewControllerAnimated:YES];
-
-    
 }
 @end
