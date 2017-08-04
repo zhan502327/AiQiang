@@ -35,6 +35,7 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
+            
         //加载地址数据源
         [self loadAddressData];
         //加载标题栏
@@ -48,14 +49,16 @@
 }
 
 #define SELFSIZE self.bounds.size
-static CGFloat const TITLEHEIGHT = 50.0;
+static CGFloat const TITLEHEIGHT = 40.0;
 static CGFloat const TITLEBUTTONWIDTH = 75.0;
+
+
 
 - (UIView *)titleBackgroundView{
     if (!_titleBackgroundView) {
         _titleBackgroundView = [[UIView alloc]initWithFrame:
                                 CGRectMake(0, 0, SELFSIZE.width, TITLEHEIGHT)];
-        _titleBackgroundView.backgroundColor = [UIColor whiteColor];
+        _titleBackgroundView.backgroundColor = ColorTableViewBg;
     }
     return _titleBackgroundView;
 }
@@ -68,6 +71,7 @@ static CGFloat const TITLEBUTTONWIDTH = 75.0;
                     forState:UIControlStateNormal];
         [_cancelBtn setTitleColor:[UIColor blueColor]
                          forState:UIControlStateNormal];
+        _cancelBtn.titleLabel.font = [UIFont systemFontOfSize:20];
         [_cancelBtn addTarget:self
                        action:@selector(cancelBtnClicked)
              forControlEvents:UIControlEventTouchUpInside];
@@ -79,10 +83,11 @@ static CGFloat const TITLEBUTTONWIDTH = 75.0;
     if (!_sureBtn) {
         _sureBtn = [[UIButton alloc]initWithFrame:
                     CGRectMake(SELFSIZE.width - TITLEBUTTONWIDTH, 0, TITLEBUTTONWIDTH, TITLEHEIGHT)];
-        [_sureBtn setTitle:@"完成"
+        [_sureBtn setTitle:@"确定"
                   forState:UIControlStateNormal];
         [_sureBtn setTitleColor:[UIColor blueColor]
                        forState:UIControlStateNormal];
+        _sureBtn.titleLabel.font = [UIFont systemFontOfSize:20];
         [_sureBtn addTarget:self
                      action:@selector(sureBtnClicked)
            forControlEvents:UIControlEventTouchUpInside];
@@ -92,11 +97,12 @@ static CGFloat const TITLEBUTTONWIDTH = 75.0;
 - (UIPickerView *)addressPickerView{
     if (!_addressPickerView) {
         _addressPickerView = [[UIPickerView alloc]initWithFrame:
-                              CGRectMake(0, TITLEHEIGHT, SELFSIZE.width, 165)];
-        _addressPickerView.backgroundColor = [UIColor colorWithRed:239/255.f
-                                                             green:239/255.f
-                                                              blue:244.0/255.f
-                                                             alpha:1.0];
+                              CGRectMake(0, TITLEHEIGHT, SELFSIZE.width, 175)];
+//        _addressPickerView.backgroundColor = [UIColor colorWithRed:239/255.f
+//                                                             green:239/255.f
+//                                                              blue:244.0/255.f
+//                                                             alpha:1.0];
+        _addressPickerView.backgroundColor = [UIColor whiteColor];
         _addressPickerView.delegate = self;
         _addressPickerView.dataSource = self;
     }

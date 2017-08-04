@@ -54,7 +54,7 @@
         
         
         UIImageView *imageView = [[UIImageView alloc] init];
-        CGFloat y = 80;
+        CGFloat y = 68;
         NSString *type = [DBGtInfo iphoneType];
         
         if ([[DBGtInfo iphoneType] isEqualToString:@"iPhone 7 Plus"] || [[DBGtInfo iphoneType] isEqualToString:@"iPhone 6 Plus"] || [[DBGtInfo iphoneType] isEqualToString:@"iPhone 6s Plus"]) {

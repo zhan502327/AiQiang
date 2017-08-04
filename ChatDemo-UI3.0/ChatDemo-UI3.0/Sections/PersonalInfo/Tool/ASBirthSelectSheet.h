@@ -11,4 +11,7 @@
 @interface ASBirthSelectSheet : UIActionSheet
 @property (nonatomic, copy) void(^GetSelectDate)(NSString *dateStr);
 @property (nonatomic, strong) NSString * selectDate;
+
+@property (nonatomic, copy) void(^cancelViewAnimationBlock)();
+
 @end

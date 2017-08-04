@@ -10,7 +10,7 @@
 #import "LoginTool.h"
 #import "MySettingTool.h"
 #import "PasswordViewController.h"
-
+#import "DBUITextField.h"
 @interface DBSMSCodeViewController ()
 {
     NSInteger _second;
@@ -45,13 +45,12 @@
     label.font = [UIFont systemFontOfSize:14];
     [self.view addSubview:label];
     
-    UITextField *textfield = [[UITextField alloc] init];
-    textfield.frame = CGRectMake(10, CGRectGetMaxY(label.frame), SCREEN_WIDTH - 10 - 100 - 0.5, 40);
+    DBUITextField *textfield = [[DBUITextField alloc] init];
+    textfield.frame = CGRectMake(0, CGRectGetMaxY(label.frame), SCREEN_WIDTH - 90 - 0.5, 40);
     textfield.backgroundColor = [UIColor whiteColor];
-    textfield.font = DBMaxFont;
+    textfield.font = DBMidFont;
     textfield.textColor = DBBlackColor;
-    textfield.layer.masksToBounds = YES;
-    textfield.layer.cornerRadius = 4;
+
     [textfield addTarget:self action:@selector(textfieldchangeValue:) forControlEvents:UIControlEventEditingChanged];
     
     textfield.placeholder = @"请填写短信验证码";
@@ -63,9 +62,8 @@
     getbutton.frame = CGRectMake(CGRectGetMaxX(self.textField.frame) + 0.5, CGRectGetMinY(self.textField.frame), 90, 40);
     [getbutton setTitle:@"获取验证码" forState:UIControlStateNormal];
     [getbutton addTarget:self action:@selector(getYanZhengMa) forControlEvents:UIControlEventTouchUpInside];
-    getbutton.layer.masksToBounds = YES;
-    getbutton.layer.cornerRadius = 4;
-    getbutton.titleLabel.font = DBMaxFont;
+
+    getbutton.titleLabel.font = DBMidFont;
     [getbutton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.view addSubview:getbutton];
     self.getButton = getbutton;
@@ -78,7 +76,7 @@
     sendButton.backgroundColor = [UIColor colorWithRed:0.981 green:0.532 blue:0.036 alpha:1.000];;
     sendButton.layer.masksToBounds = YES;
     sendButton.layer.cornerRadius = 4;
-    sendButton.titleLabel.font = DBMaxFont;
+    sendButton.titleLabel.font = DBMidFont;
     [sendButton addTarget:self action:@selector(checkoutMessage) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:sendButton];
 }

@@ -35,20 +35,18 @@
     }];
 }
 
-+ (void)configUserInfoWithParam:(NSDictionary *)param successBlock:(void (^)(NSString *))successBlock errorBlock:(void (^)(NSError *))errorBlock{
-    
++ (void)configUserInfoWithParam:(NSDictionary *)param successBlock:(void(^)(NSString *msg, NSNumber *status))successBlock errorBlock:(void(^)(NSError *error))errorBlock{
     [[NetworkManager new] postWithURL:ConfigUserInfoURL parameter:param success:^(NSDictionary  *responseObject) {
         //获取JSON
         NSData *jsonData=[NSJSONSerialization dataWithJSONObject:responseObject options:NSJSONWritingPrettyPrinted error:nil];
         NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
         NSLog(@"%@",jsonString);
         
-
         NSString *msg = responseObject[@"msg"];
-        
+        NSNumber *status = responseObject[@"status"];
         
         if (successBlock) {
-            successBlock(msg);
+            successBlock(msg, status);
         }
     } fail:^(NSError *error){
         if (errorBlock) {

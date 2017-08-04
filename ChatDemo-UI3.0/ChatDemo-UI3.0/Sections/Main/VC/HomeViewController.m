@@ -327,7 +327,11 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (section == 0) {
-        return 10;
+        if (self.sellerRedBagArray.count == 0) {
+            return 0.000001;
+        }else{
+            return 10;
+        }
     }else{
         return 0.0000001;
     }

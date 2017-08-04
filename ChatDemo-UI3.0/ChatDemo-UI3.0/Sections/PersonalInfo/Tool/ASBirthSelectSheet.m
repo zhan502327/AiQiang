@@ -25,11 +25,24 @@ static CGFloat MainScreenWidth = 0;
 @end
 @implementation ASBirthSelectSheet
 
+- (instancetype)init{
+    if (self = [super init]) {
+        MainScreenHeight = [UIScreen mainScreen].bounds.size.height;
+        MainScreenWidth = [UIScreen mainScreen].bounds.size.width;
+        //        [self setBackgroundColor:[UIColor colorWithWhite:0.5 alpha:0.5]];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickEmpty:)];
+        [self addGestureRecognizer:tap];
+        [self makeUI];
+
+    }
+    return self;
+}
+
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         MainScreenHeight = [UIScreen mainScreen].bounds.size.height;
         MainScreenWidth = [UIScreen mainScreen].bounds.size.width;
-        [self setBackgroundColor:[UIColor colorWithWhite:0.5 alpha:0.5]];
+//        [self setBackgroundColor:[UIColor colorWithWhite:0.5 alpha:0.5]];
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickEmpty:)];
         [self addGestureRecognizer:tap];
         [self makeUI];
@@ -38,54 +51,74 @@ static CGFloat MainScreenWidth = 0;
 }
 
 - (void)makeUI {
+
     
-    _containerView = [[UIView alloc] initWithFrame:CGRectMake(10, MainScreenHeight - 290 - 70, MainScreenWidth - 20, 290)];
+    _containerView = [[UIView alloc] initWithFrame:CGRectMake(0, MainScreenHeight - 250 - 64, MainScreenWidth, 250)];
     _containerView.backgroundColor = [UIColor whiteColor];
     _containerView.layer.cornerRadius = 3;
     _containerView.layer.masksToBounds = YES;
-    _datePicker =  [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 10, MainScreenWidth - 20, 200)];
+    
+    UIView *topview = [[UIView alloc] init];
+    topview.backgroundColor =  ColorTableViewBg;
+    topview.frame = CGRectMake(0, 0, SCREEN_WIDTH, 40);
+    [_containerView addSubview:topview];
+    
+    _btnCancel = [UIButton buttonWithType:UIButtonTypeCustom];
+    _btnCancel.frame = CGRectMake(10, 0, 60, 40);
+    [_btnCancel setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    _btnCancel.titleLabel.font = [UIFont systemFontOfSize:20];
+    [_btnCancel setTitle:@"取消" forState:UIControlStateNormal];
+    [_btnCancel addTarget:self action:@selector(cancelAction:) forControlEvents:UIControlEventTouchUpInside];
+    [topview addSubview:_btnCancel];
+    
+    
+    _btnDone = [UIButton buttonWithType:UIButtonTypeCustom];
+    _btnDone.frame = CGRectMake(SCREEN_WIDTH - 70, 0, 60, 40);
+    _btnDone.titleLabel.font = [UIFont systemFontOfSize:20];
+    [_btnDone setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [_btnDone setTitle:@"确定" forState:UIControlStateNormal];
+    [_btnDone addTarget:self action:@selector(doneAction:) forControlEvents:UIControlEventTouchUpInside];
+//    _btnDone.layer.borderWidth = 0.3;
+//    _btnDone.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    [topview addSubview:_btnDone];
+    
+    
+    _datePicker =  [[UIDatePicker alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(topview.frame), MainScreenWidth, 200)];
     [_datePicker setDate:[NSDate date] animated:YES];
     [_datePicker setMaximumDate:[NSDate date]];
     [_datePicker setDatePickerMode:UIDatePickerModeDate];
-
+    _datePicker.tintColor = [UIColor colorWithRed:51.0/255
+                                            green:51.0/255
+                                             blue:51.0/255
+                                            alpha:1.0];
+    
     [_datePicker setMinimumDate:[self.formatter dateFromString:@"1900-01-01日"]];
     [_datePicker addTarget:self action:@selector(dateChange:) forControlEvents:UIControlEventValueChanged];
     [_containerView addSubview:_datePicker];
     
-    
-    _btnDone = [UIButton buttonWithType:UIButtonTypeCustom];
-    _btnDone.frame = CGRectMake(-0.4, CGRectGetMaxY(_datePicker.frame), MainScreenWidth - 19.2, 40);
-    [_btnDone setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    [_btnDone setTitle:@"确定" forState:UIControlStateNormal];
-    [_btnDone addTarget:self action:@selector(doneAction:) forControlEvents:UIControlEventTouchUpInside];
-    _btnDone.layer.borderWidth = 0.3;
-    _btnDone.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    [_containerView addSubview:_btnDone];
-    
-    _btnCancel = [UIButton buttonWithType:UIButtonTypeCustom];
-    _btnCancel.frame = CGRectMake(0, CGRectGetMaxY(_btnDone.frame), MainScreenWidth - 20, 40);
-    [_btnCancel setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-    [_btnCancel setTitle:@"取消" forState:UIControlStateNormal];
-    [_btnCancel addTarget:self action:@selector(cancelAction:) forControlEvents:UIControlEventTouchUpInside];
-    [_containerView addSubview:_btnCancel];
-    
     [self addSubview:_containerView];
 }
 
+
+
 #pragma mark - private method
 - (void)clickEmpty:(UITapGestureRecognizer *)tap {
-    [self removeFromSuperview];
+
 }
 #pragma mark - Action
 - (void)doneAction:(UIButton *)btn {
     if (self.GetSelectDate) {
         _GetSelectDate([self.formatter stringFromDate:_datePicker.date]);
-        [self removeFromSuperview];
+    }
+    if (_cancelViewAnimationBlock) {
+        _cancelViewAnimationBlock();
     }
 }
 
 - (void)cancelAction:(UIButton *)btn {
-    [self removeFromSuperview];
+    if (_cancelViewAnimationBlock) {
+        _cancelViewAnimationBlock();
+    }
 }
 
 - (void)dateChange:(id)datePicker {

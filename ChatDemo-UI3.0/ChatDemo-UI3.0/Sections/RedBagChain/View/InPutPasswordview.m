@@ -52,11 +52,11 @@
 - (UILabel *)titleLabel{
     if (_titleLabel == nil) {
         UILabel *label = [[UILabel alloc] init];
-        label.frame = CGRectMake(CGRectGetMaxX(self.cancelButton.frame), 10, self.frame.size.width - CGRectGetMaxX(self.cancelButton.frame), 30);
+        label.frame = CGRectMake(CGRectGetMaxX(self.cancelButton.frame), 10, self.frame.size.width - CGRectGetMaxX(self.cancelButton.frame)-CGRectGetMaxX(self.cancelButton.frame), 30);
         label.backgroundColor = [UIColor whiteColor];
         label.text = @"请输入支付密码";
-        label.textAlignment = NSTextAlignmentLeft;
-        label.font = [UIFont systemFontOfSize:15];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.font = [UIFont systemFontOfSize:17];
         label.textColor = [UIColor blackColor];
         [self addSubview:label];
         _titleLabel = label;
@@ -81,7 +81,7 @@
         label.textColor = [UIColor blackColor];
         label.text = @"零钱支付";
         label.textAlignment = NSTextAlignmentCenter;
-        label.font = [UIFont systemFontOfSize:13];
+        label.font = [UIFont systemFontOfSize:17];
         label.frame = CGRectMake(0, CGRectGetMaxY(self.lineview.frame) + 10, self.frame.size.width, 30);
         [self addSubview:label];
         _tipsLabel = label;
@@ -93,7 +93,7 @@
     if (_moneyLabel == nil) {
         UILabel *label = [[UILabel alloc] init];
         label.frame =CGRectMake(0, CGRectGetMaxY(self.tipsLabel.frame) , self.frame.size.width, 40);
-        label.font= [UIFont boldSystemFontOfSize:25];
+        label.font= [UIFont boldSystemFontOfSize:30];
         label.textColor = [UIColor blackColor];
         label.textAlignment = NSTextAlignmentCenter;
         [self addSubview:label];

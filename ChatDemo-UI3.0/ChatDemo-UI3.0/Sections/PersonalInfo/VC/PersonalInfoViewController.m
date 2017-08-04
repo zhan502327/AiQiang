@@ -18,13 +18,16 @@
 
 @interface PersonalInfoViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,AddressPickerViewDelegate>
 
+{
+    BOOL haveShowBirthDayView;
+    
+    BOOL canClickFixButton;
+}
+
 @property (nonatomic, weak) TPKeyboardAvoidingTableView *tableView;
 @property (nonatomic, strong) NSArray *dataSource;
-
 @property (nonatomic, strong) UserInfoModel *userModel;
-
 @property (nonatomic, strong) UIImage *iconImage;
-
 @property (nonatomic, weak) AddressPickerView * addressPickerView;
 @end
 
@@ -32,6 +35,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    haveShowBirthDayView = NO;
+    canClickFixButton = NO;
+    
     [self setupUI];
     [self loadData];
     [self addAGesutreRecognizerForYourView];
@@ -49,23 +56,18 @@
     
     [PersonalInfoTool userInfoWithSuccessBlockWithPram:dic successBlock:^(UserInfoModel *model) {
         self.userModel = model;
-        
         [self.tableView reloadData];
     } errorBlock:^(NSError *error) {
-        
+        [self showHint:@"网络错误"];
     }];
 }
 
-- (void)addAGesutreRecognizerForYourView
-
-{
+- (void)addAGesutreRecognizerForYourView{
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideView:)];
     gestureRecognizer.numberOfTapsRequired = 1;
     gestureRecognizer.cancelsTouchesInView = NO;
-    
     [self.tableView addGestureRecognizer:gestureRecognizer];
 }
-
 
 - (void)hideView:(UITapGestureRecognizer *)recognizer
 
@@ -75,14 +77,13 @@
 
 }
 
-
 - (AddressPickerView *)addressPickerView{
     if (!_addressPickerView) {
-        AddressPickerView *view = [[AddressPickerView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT , SCREEN_WIDTH, 215)];
+        AddressPickerView *view = [[AddressPickerView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT , SCREEN_WIDTH, 225)];
         
         view.delegate = self;
         // 关闭默认支持打开上次的结果
-        view.backgroundColor = [UIColor redColor];
+        view.backgroundColor = [UIColor whiteColor];
 
         view.isAutoOpenLast = YES;
         [self.view addSubview:view];
@@ -99,7 +100,15 @@
 }
 - (void)sureBtnClickReturnProvince:(NSString *)province City:(NSString *)city Area:(NSString *)area{
     
-    self.userModel.address = [NSString stringWithFormat:@"%@%@%@",province,city,area];
+    
+    NSString *str = [NSString stringWithFormat:@"%@%@%@",province,city,area];
+    if ([str isEqualToString:self.userModel.address]) {
+        canClickFixButton = NO;
+    }else{
+        canClickFixButton = YES;
+    }
+    
+    self.userModel.address = str;
     [self.tableView reloadData];
     [self.addressPickerView hide];
 }
@@ -221,10 +230,18 @@
 }
 
 - (void)textFieldChangeText:(UITextField *)textField{
-    
+    if ([self.userModel.nickname isEqualToString:textField.text]) {
+        canClickFixButton = NO;
+    }else{
+        canClickFixButton = YES;
+    }
+
     self.userModel.nickname = textField.text;
+ 
+    [self.tableView reloadData];
     
 }
+
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
  
@@ -236,18 +253,69 @@
         
         if (indexPath.row == 3) {//生日
             
+            if (haveShowBirthDayView == YES) {
+                return;
+            }
             
-            ASBirthSelectSheet *datesheet = [[ASBirthSelectSheet alloc] initWithFrame:self.view.bounds];
+            ASBirthSelectSheet *datesheet;
+            if (haveShowBirthDayView == NO) {
+                datesheet = [[ASBirthSelectSheet alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT)];
+            }else{
+                datesheet = [[ASBirthSelectSheet alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+
+            }
+            
             if (self.userModel.birthdy.length == 0) {
                 self.userModel.birthdy = [self getCurrentTimes];
             }
-            datesheet.selectDate = self.userModel.birthdy;
-            
             datesheet.GetSelectDate = ^(NSString *dateStr) {
+                if ([self.userModel.birthdy isEqualToString:dateStr]) {
+                    self->canClickFixButton = NO;
+                }else{
+                    self->canClickFixButton = YES;
+                }
+                
                 self.userModel.birthdy = dateStr;
                 [self.tableView reloadData];
             };
+            datesheet.selectDate = self.userModel.birthdy;
+            
+            __weak typeof(datesheet) weakSelf = datesheet;
+            [datesheet setCancelViewAnimationBlock:^{
+               
+                [UIView animateWithDuration:0.5 animations:^{
+                    [UIView beginAnimations:@"move" context:nil];
+                    [UIView setAnimationDuration:0.75];
+                    [UIView setAnimationDelegate:self];
+
+                    weakSelf.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT);
+                    [UIView commitAnimations];
+                    
+                    self->haveShowBirthDayView = !self->haveShowBirthDayView;
+
+                } completion:^(BOOL finished) {
+                }];
+                
+                
+                
+            }];
             [self.view addSubview:datesheet];
+            [UIView animateWithDuration:0.5 animations:^{
+                
+                [UIView beginAnimations:@"move" context:nil];
+                [UIView setAnimationDuration:0.75];
+                [UIView setAnimationDelegate:self];
+
+                if (self->haveShowBirthDayView == YES) {
+                    datesheet.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT);
+                }else{
+                    datesheet.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+                }
+                [UIView commitAnimations];
+                self->haveShowBirthDayView = !self->haveShowBirthDayView;
+
+            } completion:^(BOOL finished) {
+            }];
         }
     }
     
@@ -255,7 +323,6 @@
     if (indexPath.section == 1) {
         if (indexPath.row == 0) {//地区
 
-//            [self.blackview addSubview:self.addressPickerView];
             [self.addressPickerView show];
             [self.view bringSubviewToFront:self.addressPickerView];
             
@@ -301,7 +368,6 @@
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-
     if (section == 2) {
         UIView *backView = [[UIView alloc]init];
         backView.backgroundColor = [UIColor clearColor];
@@ -310,10 +376,23 @@
         button.frame = CGRectMake(20, 10, SCREEN_WIDTH - 40, 40);
         [button setTitle:@"确认修改" forState:UIControlStateNormal];
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        button.backgroundColor = [UIColor grayColor];
+        button.enabled = NO;
+        
+//        if (canClickFixButton == YES) {
+//            button.backgroundColor = UIColorFromRGB(@"d9343c");
+//            button.enabled = YES;
+//        }else{
+//            button.backgroundColor = [UIColor grayColor];
+//            button.enabled = NO;
+//        }
         button.backgroundColor = UIColorFromRGB(@"d9343c");
+        button.enabled = YES;
+        
         button.layer.masksToBounds = YES;
         [button addTarget:self action:@selector(configPersonalData) forControlEvents:UIControlEventTouchUpInside];
         button.layer.cornerRadius = 5;
+        
         [backView addSubview:button];
         return backView;
     }else{
@@ -335,12 +414,12 @@
 
 - (void)configPersonalData{
     
-    
-    
     NSDictionary *dic = @{@"uid":User_ID,@"nickname":self.userModel.nickname,@"sex":self.userModel.sex,@"address":self.userModel.address,@"birthdy":self.userModel.birthdy};
-    [PersonalInfoTool configUserInfoWithParam:dic successBlock:^(NSString *msg) {
+    [PersonalInfoTool configUserInfoWithParam:dic successBlock:^(NSString *msg, NSNumber *status) {
         
-        [self showHint:msg];
+        if ([status intValue] == 1) {
+            [self showHint:msg];
+        }
         
     } errorBlock:^(NSError *error) {
         [self showHint:@"网络错误"];

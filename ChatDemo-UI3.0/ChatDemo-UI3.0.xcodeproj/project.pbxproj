@@ -179,6 +179,7 @@
 		4D9C8C831EC59F1B00032EB2 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB62A0E1D926341000776F0 /* libz.tbd */; };
 		4D9E35461EAD988E0050B91D /* CircleDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D9E35451EAD988E0050B91D /* CircleDetailViewController.m */; };
 		4DA01D3B1F331B8600EF62D6 /* DBCycleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA01D3A1F331B8600EF62D6 /* DBCycleModel.m */; };
+		4DA01D3E1F34100C00EF62D6 /* DBUITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA01D3D1F34100C00EF62D6 /* DBUITextField.m */; };
 		4DA156CA1F29C80400E46EB1 /* DBUserInfoDataBaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA156C91F29C80400E46EB1 /* DBUserInfoDataBaseManager.m */; };
 		4DA156CE1F29C86F00E46EB1 /* DBUserInfoDataBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA156CD1F29C86F00E46EB1 /* DBUserInfoDataBaseModel.m */; };
 		4DA156D11F33063100E46EB1 /* DBGtInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA156D01F33063100E46EB1 /* DBGtInfo.m */; };
@@ -945,6 +946,8 @@
 		4D9E35451EAD988E0050B91D /* CircleDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleDetailViewController.m; sourceTree = "<group>"; };
 		4DA01D391F331B8600EF62D6 /* DBCycleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBCycleModel.h; sourceTree = "<group>"; };
 		4DA01D3A1F331B8600EF62D6 /* DBCycleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBCycleModel.m; sourceTree = "<group>"; };
+		4DA01D3C1F34100C00EF62D6 /* DBUITextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBUITextField.h; sourceTree = "<group>"; };
+		4DA01D3D1F34100C00EF62D6 /* DBUITextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBUITextField.m; sourceTree = "<group>"; };
 		4DA156C81F29C80400E46EB1 /* DBUserInfoDataBaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBUserInfoDataBaseManager.h; sourceTree = "<group>"; };
 		4DA156C91F29C80400E46EB1 /* DBUserInfoDataBaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBUserInfoDataBaseManager.m; sourceTree = "<group>"; };
 		4DA156CC1F29C86F00E46EB1 /* DBUserInfoDataBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBUserInfoDataBaseModel.h; sourceTree = "<group>"; };
@@ -3630,6 +3633,8 @@
 				BE26F2F41E6FEC8D00D087F8 /* NSObject+Category.m */,
 				4DA156CF1F33063100E46EB1 /* DBGtInfo.h */,
 				4DA156D01F33063100E46EB1 /* DBGtInfo.m */,
+				4DA01D3C1F34100C00EF62D6 /* DBUITextField.h */,
+				4DA01D3D1F34100C00EF62D6 /* DBUITextField.m */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -5243,6 +5248,7 @@
 				90011F921AE4BF090088D549 /* EMAlertView.m in Sources */,
 				4DB5A06A1EB34D0500BE3969 /* AllManRedPacketListModel.m in Sources */,
 				4D043AAE1EB8673D003BC71C /* AllManRedPacketDetailViewController.m in Sources */,
+				4DA01D3E1F34100C00EF62D6 /* DBUITextField.m in Sources */,
 				4DBAF9451ED01F430029DA47 /* UIButton+ImageTitleSpacing.m in Sources */,
 				4DE3B5A41ECD842500D407F9 /* MySettingTool.m in Sources */,
 				841490321E0BD66F000A2B0C /* RedpacketTakenMessageTipCell.m in Sources */,
