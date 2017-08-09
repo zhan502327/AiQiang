@@ -47,7 +47,6 @@
     [self initData];
     [self loadData];
     [self setupTableView];
-    [self configSex];
 }
 
 - (NSMutableArray *)cycleModelArray{
@@ -64,18 +63,6 @@
     }
     return _imageArray;
 }
-- (UIView *)sexBgView{
-    if (_sexBgView == nil) {
-        UIView *view = [[UIView alloc] init];
-        view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT + 64);
-        view.userInteractionEnabled = YES;
-        view.backgroundColor = [UIColor blackColor];
-        view.alpha = 0.4;
-        [[UIApplication sharedApplication].keyWindow addSubview:view];
-        _sexBgView = view;
-    }
-    return _sexBgView;
-}
 
 - (StealRedBagView *)stealView{
     if (_stealView == nil) {
@@ -85,75 +72,10 @@
     return _stealView;
 }
 
-- (ChooseSexView *)contentView{
-    if (_contentView == nil) {
 
-        ChooseSexView *view = [ChooseSexView viewWithFrame:CGRectMake(30, SCREEN_HEIGHT/2 - 150, SCREEN_WIDTH - 60, 300)];
-        [[UIApplication sharedApplication].keyWindow addSubview:view];
-        _contentView = view;
-    }
-    return _contentView;
-}
 
-- (void)configSex{
-    
-    if ([User_Sex isEqualToString:@"0"]) {
-        
-        [self sexBgView];
 
-        [self.contentView setManButtonBlock:^{
-            self.sexStr = @"1";
-            self.contentView.manButton.selected = YES;
-            self.contentView.womanButton.selected = NO;
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            [defaults setObject:@"1" forKey:@"sex"];
 
-        }];
-        
-        [self.contentView setWomanButtonBlock:^{
-            self.sexStr = @"2";
-            self.contentView.manButton.selected = NO;
-            self.contentView.womanButton.selected = YES;
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            [defaults setObject:@"2" forKey:@"sex"];
-
-        }];
-        
-        [self.contentView setLeftButtonBlock:^{
-            [self.contentView removeFromSuperview];
-            [self.sexBgView removeFromSuperview];
-            [self.navigationController popViewControllerAnimated:YES];
-        }];
-        
-        [self.contentView setRightButtonBlock:^{
-            
-            [self loadConfigUserSex];
-        }];
-        
-    }
-}
-
-- (void)loadConfigUserSex{
-    if ([self.sexStr isEqualToString:@"0"]) {
-        [self showHint:@"请先选择性别"];
-    }else{
-        NSDictionary *dic = @{@"uid":User_ID,@"sex":self.sexStr};
-        [AllManRedPacketTool configSexWithParam:dic successBlock:^(NSString *msg, NSNumber *num) {
-            
-            [self showHint:msg];
-            if ([num isEqualToNumber:@1]) {
-                [self.contentView removeFromSuperview];
-                [self.sexBgView removeFromSuperview];
-            }
-            
-        } errorBlock:^(NSError *error) {
-            if (error) {
-                [self showHint:@"网络错误"];
-            }
-        }];
-    }
-
-}
 - (void)setupNav{
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"发红包" style:UIBarButtonItemStylePlain target:self action:@selector(sendRedBag)];
     self.navigationItem.rightBarButtonItem = item;
@@ -189,7 +111,6 @@
     self.maxDataSource = [NSMutableArray arrayWithCapacity:0];
     self.minDataSource = [NSMutableArray arrayWithCapacity:0];
     page = 1;
-    self.sexStr = @"0";
 }
 
 - (void)loadData{

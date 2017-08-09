@@ -55,7 +55,6 @@
         
         UIImageView *imageView = [[UIImageView alloc] init];
         CGFloat y = 68;
-        NSString *type = [DBGtInfo iphoneType];
         
         if ([[DBGtInfo iphoneType] isEqualToString:@"iPhone 7 Plus"] || [[DBGtInfo iphoneType] isEqualToString:@"iPhone 6 Plus"] || [[DBGtInfo iphoneType] isEqualToString:@"iPhone 6s Plus"]) {
             y = 80;
@@ -145,7 +144,7 @@
         self.resultSecondLabel.hidden = NO;
 
         self.resultImageView.image = [UIImage imageNamed:@"bigRedPacket"];
-        NSString *moneyStr = [NSString stringWithFormat:@"%@元",money];
+        NSString *moneyStr = [NSString stringWithFormat:@"%.2f元",[money floatValue]];
         
         NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc] initWithString:moneyStr];
         [attributeStr addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:40], NSForegroundColorAttributeName : [UIColor yellowColor]} range:NSMakeRange(0, moneyStr.length - 1)];

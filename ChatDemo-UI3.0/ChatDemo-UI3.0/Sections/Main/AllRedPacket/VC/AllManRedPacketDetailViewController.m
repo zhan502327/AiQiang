@@ -14,12 +14,13 @@
 #import "StealRedBagView.h"
 #import <WebKit/WebKit.h>
 #import "OtherPersonInfoViewController.h"
+#import "ChooseSexView.h"
+
 
 #define FromeAllMan @"allMan"
 #define FromMyCollection @"myCollection"
 #define FromMyRedBag @"myRedBag"
 #define FromSellerRedBag @"sellerRedBag"
-
 #define BottomViewHeight 200
 #define PlaceHolderStr @"我有话要说~~"
 
@@ -45,12 +46,12 @@
 @property (nonatomic, weak) UIButton *zanButton;
 @property (nonatomic, weak) UIButton *pinglunButton;
 @property (nonatomic, weak) UIButton *shoucangButton;
-
+@property (nonatomic, copy) NSString *sexStr;
 @property (nonatomic, copy) NSString *fromWhere;
 @property (nonatomic, strong) AllManRedPacketDetailModel *detailModel;
 @property (nonatomic, weak) StealRedBagView *stealView;
 
-
+@property (nonatomic, weak) ChooseSexView *contentView;
 //
 @property (nonatomic, assign) CGFloat webViewHeight;
 @property (nonatomic, weak) UIView *bottomView;
@@ -58,7 +59,7 @@
 @property (nonatomic, weak) UIView *inputView;
 @property (nonatomic, weak) UITextField *textField;
 @property (nonatomic, weak) UIButton *sendMessageButton;
-
+@property (nonatomic, weak) UIView *sexBgView;
 @property (nonatomic, copy) NSString *textFieldtext;
 
 @property (nonatomic, assign) BOOL showRightItem;
@@ -257,17 +258,14 @@
 }
 
 - (void)sendCommentAllManRedBagWithParam:(NSDictionary *)param{
-    
     [AllManRedPacketTool allManRedBagSendCommentWithParam:param successBlock:^(NSString *msg, NSNumber *num) {
         [self showHint:msg];
         if ([num intValue] == 1) {
             [self loadData];
         }
-        
     } errorBlock:^(NSError *error) {
         [self showHint:@"网络错误"];
     }];
-    
 }
 
 - (void)sendCommentSellerRedBagWithParam:(NSDictionary *)param{
@@ -356,6 +354,9 @@
     
     addZan = 0;
     addShouCang = 0;
+    
+    self.sexStr = @"0";
+
 }
 
 - (StealRedBagView *)stealView{
@@ -370,7 +371,99 @@
     _allManmodel = allManmodel;
     rid = allManmodel.ID;
     self.fromWhere = FromeAllMan;
+    NSLog(@"User_Sex%@",User_Sex);
+    [self configSex];
 }
+
+- (UIView *)sexBgView{
+    if (_sexBgView == nil) {
+        UIView *view = [[UIView alloc] init];
+        view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT + 64);
+        view.userInteractionEnabled = YES;
+        view.backgroundColor = [UIColor blackColor];
+        view.alpha = 0.4;
+        [[UIApplication sharedApplication].keyWindow addSubview:view];
+        _sexBgView = view;
+    }
+    return _sexBgView;
+}
+
+- (ChooseSexView *)contentView{
+    if (_contentView == nil) {
+        
+        ChooseSexView *view = [ChooseSexView viewWithFrame:CGRectMake(30, SCREEN_HEIGHT/2 - 150, SCREEN_WIDTH - 60, 300)];
+        [[UIApplication sharedApplication].keyWindow addSubview:view];
+        _contentView = view;
+    }
+    return _contentView;
+}
+
+- (void)configSex{
+    
+    if ([User_Sex isEqualToString:@"0"]) {
+        
+        [self sexBgView];
+        
+        [self.contentView setManButtonBlock:^{
+            self.sexStr = @"1";
+            self.contentView.manButton.selected = YES;
+            self.contentView.womanButton.selected = NO;
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setObject:@"1" forKey:@"sex"];
+            
+        }];
+        
+        [self.contentView setWomanButtonBlock:^{
+            self.sexStr = @"2";
+            self.contentView.manButton.selected = NO;
+            self.contentView.womanButton.selected = YES;
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setObject:@"2" forKey:@"sex"];
+            
+        }];
+        
+        [self.contentView setLeftButtonBlock:^{
+            [self.contentView removeFromSuperview];
+            [self.sexBgView removeFromSuperview];
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
+        
+        [self.contentView setRightButtonBlock:^{
+            
+            [self loadConfigUserSex];
+        }];
+        
+    }
+}
+
+- (void)loadConfigUserSex{
+    if ([self.sexStr isEqualToString:@"0"]) {
+        [self showHint:@"请先选择性别"];
+    }else{
+        NSDictionary *dic = @{@"uid":User_ID,@"sex":self.sexStr};
+        [AllManRedPacketTool configSexWithParam:dic successBlock:^(NSString *msg, NSNumber *num) {
+            
+            [self showHint:msg];
+            if ([num isEqualToNumber:@1]) {
+                [self.contentView removeFromSuperview];
+                [self.sexBgView removeFromSuperview];
+                
+                
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                
+                [defaults setObject:self.sexStr forKey:@"sex"];
+                [defaults synchronize];
+            }
+            
+        } errorBlock:^(NSError *error) {
+            if (error) {
+                [self showHint:@"网络错误"];
+            }
+        }];
+    }
+    
+}
+
 
 - (void)setMycollectionModel:(MyCollectionListModel *)mycollectionModel{
     _mycollectionModel = mycollectionModel;
