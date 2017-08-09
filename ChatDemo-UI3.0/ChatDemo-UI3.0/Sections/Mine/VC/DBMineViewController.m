@@ -118,7 +118,8 @@
 }
 - (DBShareView *)shareView{
     if (_shareView == nil) {
-        DBShareView *shareViw = [DBShareView viewWithFrame:CGRectMake(0, SCREEN_HEIGHT - 120, SCREEN_HEIGHT, 120)];
+        
+        DBShareView *shareViw = [DBShareView viewWithFrame:CGRectMake(0, SCREEN_HEIGHT - 120, SCREEN_HEIGHT, 120) andShareType:1 andMoney:nil];
         [[UIApplication sharedApplication].keyWindow addSubview:shareViw];
         _shareView = shareViw;
     }

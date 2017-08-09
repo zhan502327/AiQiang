@@ -28,14 +28,23 @@
         [self resultFirstLabel];
         [self resultSecondLabel];
         [self resultthirdLabel];
-        [self shareLabel];
         
     }
     
     return self;
 }
 
+- (void)setType:(int)type{
+    _type = type;
+    
+    [self shareButton];
 
+}
+
+- (void)setRedBagMoney:(NSString *)redBagMoney{
+    _redBagMoney = redBagMoney;
+    
+}
 
 - (UIImageView *)resultImageView{
     if (_resultImageView == nil) {
@@ -48,6 +57,45 @@
         _resultImageView = imageView;
     }
     return _resultImageView;
+}
+
+- (UIButton *)shareButton{
+    if (_shareButton == nil) {
+        UIButton *button = [[UIButton alloc] init];
+        button.frame = CGRectMake(100, CGRectGetMaxY(self.resultImageView.frame)+ 50, SCREEN_WIDTH - 200, 40);
+
+        [button setTitle:@"分享给好友" forState:UIControlStateNormal];
+        button.layer.masksToBounds = YES;
+        button.layer.cornerRadius = 4;
+        [button addTarget:self action:@selector(shareButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+        button.backgroundColor = [UIColor whiteColor];
+        [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        [[UIApplication sharedApplication].keyWindow addSubview:button];
+        _shareButton = button;
+    }
+    return _shareButton;
+}
+
+- (DBShareView *)shareView{
+    if (_shareView == nil) {
+        
+        DBShareView *shareView= [DBShareView viewWithFrame:CGRectMake(0, SCREEN_HEIGHT - 120, SCREEN_HEIGHT, 120) andShareType:self.type andMoney:self.redBagMoney];
+        
+        [[UIApplication sharedApplication].keyWindow addSubview:shareView];
+        _shareView = shareView;
+    }
+    return _shareView;
+}
+
+
+- (void)shareButtonClicked{
+    [self.resultImageView removeFromSuperview];
+    [self.shareButton removeFromSuperview];
+    
+    
+    [self shareView];
+
+    
 }
 
 - (UIImageView *)iconImageView{
@@ -86,11 +134,15 @@
     [self removeFromSuperview];
     
     [self.resultImageView removeFromSuperview];
+    
+    [self.shareView removeFromSuperview];
 }
 
 - (void)resultImageViewClicked{
     [self removeFromSuperview];
     [self.resultImageView removeFromSuperview];
+    
+    [self.shareView removeFromSuperview];
 
 }
 
@@ -143,6 +195,7 @@
         self.resultFirstLabel.hidden = NO;
         self.resultthirdLabel.hidden = NO;
         self.resultSecondLabel.hidden = NO;
+        self.shareButton.hidden = NO;
 
         self.resultImageView.image = [UIImage imageNamed:@"bigRedPacket"];
         NSString *moneyStr = [NSString stringWithFormat:@"%.2f元",[money floatValue]];
@@ -159,10 +212,8 @@
         self.resultFirstLabel.hidden = YES;
         self.resultthirdLabel.hidden = YES;
         self.resultSecondLabel.hidden = YES;
+        self.shareButton.hidden = YES;
     }
 }
-
-
-
 
 @end

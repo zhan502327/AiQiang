@@ -292,6 +292,8 @@
 - (void)stealAllManRedBagWith:(NSDictionary *)param andModel:(AllManRedPacketListModel *)model{
     [AllManRedPacketTool stealAllManRedBagWithParam:param successBlock:^(StealRedBagResult *result) {
         if ([result.status intValue] == 1) {
+            self.stealView.redBagMoney = result.monsyStr;
+            self.stealView.type = 3;
             [self.stealView configViewWithStatus:1 Moeny:result.monsyStr andNickName:model.nickname andImageName:[NSString stringWithFormat:@"%@%@",www,model.headimg]];
             
         }else if ([result.status intValue] == 5){

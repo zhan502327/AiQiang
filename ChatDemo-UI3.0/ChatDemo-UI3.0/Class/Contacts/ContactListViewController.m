@@ -321,7 +321,8 @@
                 [self tableViewDidTriggerHeaderRefresh];
                 
                 if ([status isEqualToNumber:@1]) {
-                    
+                    self.stealView.type = 2;
+                    self.stealView.redBagMoney = msg;
                     [self.stealView configViewWithStatus:1 Moeny:msg andNickName:model.nickname andImageName:model.avatarURLPath];
                 }else{
 //                    [self showHint:msg];

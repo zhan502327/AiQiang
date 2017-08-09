@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DBShareView.h"
+
 
 @interface StealRedBagView : UIView
 
@@ -16,10 +18,13 @@
 @property (nonatomic, weak) UILabel *resultFirstLabel;
 @property (nonatomic, weak) UILabel *resultSecondLabel;
 @property (nonatomic, weak) UILabel *resultthirdLabel;
-@property (nonatomic, weak) UILabel *shareLabel;
-
+@property (nonatomic, weak) UIButton *shareButton;
+@property (nonatomic, weak) DBShareView *shareView;
+@property (nonatomic, copy) NSString *redBagMoney;
+@property (nonatomic, assign) int type;
 
 - (instancetype)init;
+
 
 - (void)configViewWithStatus:(int) status Moeny:(NSString *)money andNickName:(NSString *)nickName andImageName:(NSString *)imageName;
 

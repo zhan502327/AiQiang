@@ -638,6 +638,9 @@
                 [self showHint:result.msg];
                 break;
             case 1:
+                
+                self.stealView.type = 4;
+                self.stealView.redBagMoney = result.monsyStr;
                 [self.stealView configViewWithStatus:1 Moeny:result.monsyStr andNickName:self.sellerRedBagModel.title andImageName:[NSString stringWithFormat:@"%@%@",www,self.sellerRedBagModel.img]];
                 break;
             case 2:
@@ -671,6 +674,8 @@
 - (void)stealAllManRedBagWith:(NSDictionary *)param{
     [AllManRedPacketTool stealAllManRedBagWithParam:param successBlock:^(StealRedBagResult *result) {
         if ([result.status intValue] == 1) {
+            self.stealView.redBagMoney = result.monsyStr;
+            self.stealView.type = 3;
             [self.stealView configViewWithStatus:1 Moeny:result.monsyStr andNickName:self.allManmodel.nickname andImageName:[NSString stringWithFormat:@"%@%@",www,self.allManmodel.headimg]];
             
         }else if ([result.status intValue] == 5){

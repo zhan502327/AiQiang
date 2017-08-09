@@ -122,7 +122,7 @@
 }
 - (DBShareView *)shareView{
     if (_shareView == nil) {
-        DBShareView *shareViw = [DBShareView viewWithFrame:CGRectMake(0, SCREEN_HEIGHT - 120, SCREEN_HEIGHT, 120)];
+        DBShareView *shareViw = [DBShareView viewWithFrame:CGRectMake(0, SCREEN_HEIGHT - 120, SCREEN_HEIGHT, 120) andShareType:5 andMoney:nil];
         [[UIApplication sharedApplication].keyWindow addSubview:shareViw];
         _shareView = shareViw;
     }
@@ -140,14 +140,10 @@
 
 - (void)loadData{
     
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
-//    [self showHudInView:self.view hint:@"加载数据..."];
     
     NSDictionary *param = @{@"uid": User_ID,@"page": [NSString stringWithFormat:@"%d",page]};
     [Discover discoverLIstWithParam:param successBlock:^(NSString *msg, NSMutableArray *modelArray, NSNumber *status) {
-        //        [self hideHud];
-        [hud hide:YES];
         [self endRefresh];
         if (self->page == 1) {
             [self.messageList removeAllObjects];
@@ -157,9 +153,7 @@
         [self.discoverTableView reloadData];
 
     } errorBlock:^(NSError *error) {
-        [hud hide:YES];
         [self endRefresh];
-
         [self showHint:@"网络错误"];
     }];
 

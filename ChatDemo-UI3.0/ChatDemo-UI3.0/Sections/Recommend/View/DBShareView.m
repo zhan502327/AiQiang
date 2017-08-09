@@ -18,17 +18,38 @@
 
 @interface DBShareView ()
 
+@property (nonatomic, copy) NSString *contentText;
 
 @end
 
 @implementation DBShareView
 
 
-+ (DBShareView *)viewWithFrame:(CGRect)frame{
-    
++ (DBShareView *)viewWithFrame:(CGRect)frame andShareType:(int)type andMoney:(NSString *)money{
     DBShareView *shareview = [[DBShareView alloc] init];
     shareview.frame = frame;
     shareview.backgroundColor = [UIColor whiteColor];
+    
+    if (type == 1) {//我要推荐
+        shareview.contentText = @"我在爱抢APP上抢红包，你也一起来玩吧！";
+    }
+    
+    if (type == 2) {//偷抢好友红包
+        shareview.contentText = [NSString stringWithFormat:@"我在爱抢APP里偷到好友\"%@\"元，快来跟我一起偷好友红包吧！",money];
+
+    }
+    
+    if (type == 3) {//全民红包
+        shareview.contentText = [NSString stringWithFormat:@"我在爱抢APP的全民红包抢到\"%@\"元，快来跟我一起抢红包吧！",money];
+    }
+    
+    if (type == 4) {//特约红包
+        shareview.contentText = [NSString stringWithFormat:@"我在爱抢APP的特约红包抢到\"%@\"元，快来跟我一起抢红包吧！",money];
+    }
+    
+    if (type == 5) {//分享评论和点赞
+        shareview.contentText = @"我在爱抢APP上发表了一篇动态，快来点赞和评论吧！";
+    }
     
     [shareview createUI];
     
@@ -90,13 +111,15 @@
     }
 }
 
+
+
 - (void)shareWitType:(SSDKPlatformType)platformType{
     
     //1、创建分享参数
     NSArray* imageArray = @[[UIImage imageNamed:@"aq_icon 1360"]];
     if (imageArray) {
         NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
-        [shareParams SSDKSetupShareParamsByText:@"我在爱抢APP上抢红包，你也一起来玩吧！"
+        [shareParams SSDKSetupShareParamsByText:self.contentText
                                          images:imageArray
                                             url:[NSURL URLWithString:@"http://47.93.114.245/aiqiang/"]
                                           title:@"爱抢"

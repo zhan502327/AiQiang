@@ -11,7 +11,8 @@
 @interface DBShareView : UIView
 
 
-+ (DBShareView *)viewWithFrame:(CGRect)frame;
+
++ (DBShareView *)viewWithFrame:(CGRect)frame andShareType:(int)type andMoney:(NSString *)money;
 
 
 @end
