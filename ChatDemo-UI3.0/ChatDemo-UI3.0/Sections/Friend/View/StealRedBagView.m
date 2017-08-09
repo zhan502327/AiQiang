@@ -28,6 +28,7 @@
         [self resultFirstLabel];
         [self resultSecondLabel];
         [self resultthirdLabel];
+        [self shareLabel];
         
     }
     
@@ -154,16 +155,11 @@
         self.resultthirdLabel.text = [NSString stringWithFormat:@"来自 %@ 的红包",nickName];
         
     }else{
-        
         self.resultImageView.image = [UIImage imageNamed:@"bigRedPacket_un"];
-        
         self.resultFirstLabel.hidden = YES;
         self.resultthirdLabel.hidden = YES;
         self.resultSecondLabel.hidden = YES;
-        
     }
-    
-    
 }
 
 

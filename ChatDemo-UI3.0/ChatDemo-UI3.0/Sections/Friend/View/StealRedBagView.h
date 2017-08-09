@@ -16,6 +16,7 @@
 @property (nonatomic, weak) UILabel *resultFirstLabel;
 @property (nonatomic, weak) UILabel *resultSecondLabel;
 @property (nonatomic, weak) UILabel *resultthirdLabel;
+@property (nonatomic, weak) UILabel *shareLabel;
 
 
 - (instancetype)init;

@@ -460,6 +460,19 @@
     [self.tableView reloadData];
     //网络请求
     [[NetworkManager new] networkWithURL:[NSString stringWithFormat:@"%@/api.php/User/changeHeadimg", www] pic:[info objectForKey:@"UIImagePickerControllerEditedImage"] parameter:@{@"uid": User_ID} success:^(id obj) {
+        
+        if ([obj[@"status"] intValue] == 1) {
+            
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setObject:obj[@"data"] forKey:@"headimg"];
+
+            [defaults synchronize];
+            
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"DBrefreshFriendsList" object:nil];
+        }
+        
+        
         [self showHint:obj[@"msg"]];
     } fail:^(NSError *error) {
         [self showHint:@"网络错误"];
