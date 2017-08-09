@@ -79,24 +79,24 @@
     if (type == 1) {//充值
         self.iconimageView.hidden = NO;
         self.nameLabel.hidden = YES;
- 
-        if (self.indexPath.row == 1) {
-            self.iconimageView.frame = CGRectMake(50, 15, 55, 20);
-        }else{
-            self.iconimageView.frame = CGRectMake(50, 15, 55, 20);
-        }
-        self.rightImageView.image = [UIImage imageNamed:rightImageView[self.indexPath.section]];
-        self.iconimageView.image = [UIImage imageNamed:imageArray[self.indexPath.section]];
+        self.iconimageView.frame = CGRectMake(50, 15, 55, 20);
+    
+//        self.rightImageView.image = [UIImage imageNamed:rightImageView[self.indexPath.section]];
+//        self.iconimageView.image = [UIImage imageNamed:imageArray[self.indexPath.section]];
         
-        
+        self.rightImageView.image = [UIImage imageNamed:rightImageView[0]];
+        self.iconimageView.image = [UIImage imageNamed:imageArray[1]];
         
     }
     if (type == 2) {//提现
         self.iconimageView.hidden = YES;
         self.nameLabel.hidden = NO;
         self.nameLabel.frame = CGRectMake(50, 10, 200, 30);
-        self.nameLabel.text = nameArray[self.indexPath.section];
-        self.rightImageView.image = [UIImage imageNamed:rightImageView[self.indexPath.section]];
+//        self.nameLabel.text = nameArray[self.indexPath.section];
+//        self.rightImageView.image = [UIImage imageNamed:rightImageView[self.indexPath.section]];
+        
+        self.nameLabel.text = nameArray[0];
+        self.rightImageView.image = [UIImage imageNamed:rightImageView[0]];
         
     }
 }

@@ -52,13 +52,23 @@
             [self.dataSource removeAllObjects];
         }
         
-        if ([result.status isEqualToNumber:@1]) {
-            [self.dataSource addObjectsFromArray:result.modelArray];
-            [self.tableView reloadData];
+        [self.dataSource addObjectsFromArray:result.modelArray];
+        if (self.dataSource.count == 0) {
+            UIImageView *imageView = [[UIImageView alloc] init];
+            imageView.frame = CGRectMake(100, 200, SCREEN_WIDTH- 200,SCREEN_WIDTH- 200 );
+            imageView.image = [UIImage imageNamed:@"wushuju"];
+            [self.view addSubview:imageView];
+            UILabel *label = [[UILabel alloc] init];
+            label.frame = CGRectMake(0, CGRectGetMaxY(imageView.frame), SCREEN_WIDTH, 50);
+            label.text = @"暂无数据";
+            label.textColor = [UIColor grayColor];
+            label.textAlignment = NSTextAlignmentCenter;
+            label.font = [UIFont systemFontOfSize:18];
+            [self.view addSubview:label];
         }else{
-
-            [self showHint:result.msg];
+            [self.tableView reloadData];
         }
+
         
         
     } errorBlock:^(NSError *error) {

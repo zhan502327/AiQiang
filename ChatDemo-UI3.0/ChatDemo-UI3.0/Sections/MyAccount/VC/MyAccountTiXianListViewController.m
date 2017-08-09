@@ -93,7 +93,7 @@
     if (_tableView == nil) {
         UITableView *tableView = [[UITableView alloc]init];
         tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64);
-        tableView.backgroundColor=ColorTableViewBg;
+        tableView.backgroundColor=[UIColor whiteColor];
         tableView.tableFooterView = [[UIView alloc] init];
         tableView.scrollEnabled=YES;
         tableView.dataSource=self;

@@ -87,7 +87,6 @@
     return _shareView;
 }
 
-
 - (void)shareButtonClicked{
     [self.resultImageView removeFromSuperview];
     [self.shareButton removeFromSuperview];
@@ -134,14 +133,15 @@
     [self removeFromSuperview];
     
     [self.resultImageView removeFromSuperview];
-    
+    [self.shareButton removeFromSuperview];
     [self.shareView removeFromSuperview];
 }
 
 - (void)resultImageViewClicked{
     [self removeFromSuperview];
     [self.resultImageView removeFromSuperview];
-    
+    [self.shareButton removeFromSuperview];
+
     [self.shareView removeFromSuperview];
 
 }

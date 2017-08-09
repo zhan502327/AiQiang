@@ -48,7 +48,7 @@
     if (_tableView == nil) {
         UITableView *tableView = [[UITableView alloc]init];
         tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64);
-        tableView.backgroundColor=ColorTableViewBg;
+        tableView.backgroundColor=[UIColor whiteColor];
         tableView.tableFooterView = [[UIView alloc] init];
         tableView.scrollEnabled=YES;
         tableView.dataSource=self;
@@ -78,7 +78,24 @@
         }
         
         [self.dataSource addObjectsFromArray:result.modelArray];
-        [self.tableView reloadData];
+        
+        if (self.dataSource.count == 0) {
+            
+            UIImageView *imageView = [[UIImageView alloc] init];
+            imageView.frame = CGRectMake(100, 200, SCREEN_WIDTH- 200,SCREEN_WIDTH- 200 );
+            imageView.image = [UIImage imageNamed:@"wushuju"];
+            [self.view addSubview:imageView];
+            UILabel *label = [[UILabel alloc] init];
+            label.frame = CGRectMake(0, CGRectGetMaxY(imageView.frame), SCREEN_WIDTH, 50);
+            label.text = @"暂无数据";
+            label.textColor = [UIColor grayColor];
+            label.textAlignment = NSTextAlignmentCenter;
+            label.font = [UIFont systemFontOfSize:18];
+            [self.view addSubview:label];
+        }else{
+            [self.tableView reloadData];
+        }
+        
     } errorBlock:^(NSError *error) {
         [self endFresh];
 

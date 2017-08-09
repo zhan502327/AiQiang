@@ -9,6 +9,7 @@
 #import "UserFeedbackViewController.h"
 #import "TPKeyboardAvoidingTableView.h"
 #import "RedbagTextViewTableViewCell.h"
+#import "MySettingTool.h"
 
 @interface UserFeedbackViewController ()<UITableViewDelegate,UITableViewDataSource,UITextViewDelegate>
 @property (nonatomic, weak) TPKeyboardAvoidingTableView *tableView;
@@ -39,9 +40,28 @@
 }
 
 - (void)sendMessage{
+    if (self.firstStr.length == 0) {
+        
+        [self showHint:@"请输入标题"];
+        return;
+    }
     
     
+    if (self.secondStr.length == 0) {
+        [self showHint:@"请输入内容"];
+        return;
+    }
     
+    NSDictionary *param = @{@"uid":User_ID, @"title":self.firstStr, @"content":self.secondStr};
+    [MySettingTool userFeedbackWithParam:param successBlock:^(NSString *msg, NSNumber *status) {
+        if ([status intValue] == 1) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        [self showHint:msg];
+        
+    } errorBlock:^(NSError *error) {
+        [self showHint:@"网络错误"];
+    }];
     
 }
 
@@ -148,5 +168,8 @@
             break;
     }
 }
+
+
+
 
 @end

@@ -16,5 +16,7 @@
 //验证短信验证码
 + (void)chectoutMessageCodeWithParam:(NSDictionary *)param successBlock:(void(^)(NSString *msg, NSNumber *num))successBlock errorBlock:(void(^)(NSError *error))errorBlock;
 
+//用户反馈
++ (void)userFeedbackWithParam:(NSDictionary *)param successBlock:(void(^)(NSString *msg, NSNumber *status))successBlock errorBlock:(void(^)(NSError *error))errorBlock;
 
 @end

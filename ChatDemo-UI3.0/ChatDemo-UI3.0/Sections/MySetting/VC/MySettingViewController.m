@@ -89,7 +89,6 @@
     return cell;
 }
 
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
  
     if (indexPath.row == 0) {//修改密码
@@ -110,9 +109,7 @@
         DBChatBlackListViewController *vc = [[DBChatBlackListViewController alloc] init];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
-        
     }
-    
     if (indexPath.row == 3) {//用户反馈
         UserFeedbackViewController *vc = [[UserFeedbackViewController alloc] init];
         vc.hidesBottomBarWhenPushed = YES;
@@ -120,12 +117,17 @@
     }
     
     if (indexPath.row == 4) {//用户协议
-        
         DBWebViewViewController *vc = [[DBWebViewViewController alloc] init];
         vc.type = @"yong_hu_xie_yi";
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }
+    
+    if (indexPath.row == 5) {// 客服电话
+        NSURL *url = [NSURL URLWithString:@"tel://0371-89930575"];
+        [[UIApplication sharedApplication] openURL:url];
+    }
+    
 }
 
 @end

@@ -177,6 +177,16 @@
     [self.view endEditing:YES];
     
     if (self.type == 1) {//提现到支付宝
+        if (self.firstTextFieldtext.length == 0) {
+            [self showHint:@"请输入账号"];
+            return;
+        }
+        
+        if (self.secondTextFieldtext.length == 0) {
+            [self showHint:@"请输入提现金额"];
+            return;
+        }
+        
         NSDictionary *param = @{@"uid":User_ID, @"total_amount":self.secondTextFieldtext, @"type" : @"2", @"to" : self.firstTextFieldtext};
         [MyAccountTool rmbWithDrawWithParam:param successBlock:^(NSString *msg) {
             [self showHint:msg];
@@ -187,6 +197,16 @@
     }
     
     if (self.type == 2) {//提现到微信
+        
+        if (self.firstTextFieldtext.length == 0) {
+            [self showHint:@"请输入账号"];
+            return;
+        }
+        
+        if (self.secondTextFieldtext.length == 0) {
+            [self showHint:@"请输入提现金额"];
+            return;
+        }
         NSDictionary *param = @{@"uid":User_ID, @"total_amount":self.secondTextFieldtext, @"type" : @"3", @"to" : self.firstTextFieldtext};
         [MyAccountTool rmbWithDrawWithParam:param successBlock:^(NSString *msg) {
             [self showHint:msg];

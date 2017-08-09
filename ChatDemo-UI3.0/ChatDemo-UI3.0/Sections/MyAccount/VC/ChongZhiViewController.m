@@ -115,6 +115,9 @@
 }
 
 - (void)buttonClicked{
+    
+    [self.view endEditing:YES];
+    
     if (self.type == 1) {
         NSLog(@"微信充值");
     }else{
@@ -201,9 +204,12 @@
          @"alipay_sdk=alipay-sdk-php-20161101&app_id=2017060607429952&biz_content=%7B%22body%22%3A%22%5Cu7231%5Cu62a2-%5Cu5145%5Cu503c10%5Cu5143%22%2C%22subject%22%3A%22%5Cu7231%5Cu62a2-%5Cu5145%5Cu503c10%5Cu5143%22%2C%22out_trade_no%22%3A%222017061455100504%22%2C%22timeout_express%22%3A%2230m%22%2C%22total_amount%22%3A10%2C%22product_code%22%3A%22QUICK_MSECURITY_PAY%22%7D&charset=UTF-8&format=json&method=alipay.trade.app.pay&notify_url=http%3A%2F%2Fwww.iiqiang.com%2Fapi.php%2FRecharge%2FalipayRecharge&sign_type=RSA&timestamp=2017-06-14+15%3A18%3A00&version=1.0&sign=Z1y3wM0EUfc8vQlTJHakCj5n9pH1aTx%2BUiNTAzOmM4BNQTkWOrh4Vb3CCM3oavUOf2wGz8mmfBiIgWdRtswXWMjUE8PhTSjxZrDQccf1U4QBR0qEf6FkAM2dO93oDHTqGtwJwEINKq%2FfKUQWCsJ32RifeWx%2B9aK%2BZ57cL7UNxU0%3D"
          */
         
+        if (self.textFieldText.length == 0) {
+            [self showHint:@"请输入充值金额"];
+            return;
+        }
         NSString *appScheme = AliPayAppScheme;
 
-        
         NSDictionary *param = @{@"uid":User_ID, @"total_amount":self.textFieldText};
         [MyAccountTool aliPayChongzhiWithParam:param successBlock:^(NSString *msg, NSString *data, NSNumber *status) {
             

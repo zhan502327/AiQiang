@@ -35,16 +35,16 @@
     }
     
     if (type == 2) {//偷抢好友红包
-        shareview.contentText = [NSString stringWithFormat:@"我在爱抢APP里偷到好友\"%@\"元，快来跟我一起偷好友红包吧！",money];
+        shareview.contentText = [NSString stringWithFormat:@"我在爱抢APP里偷到好友\"%.2f\"元，快来跟我一起偷好友红包吧！",[money floatValue]];
 
     }
     
     if (type == 3) {//全民红包
-        shareview.contentText = [NSString stringWithFormat:@"我在爱抢APP的全民红包抢到\"%@\"元，快来跟我一起抢红包吧！",money];
+        shareview.contentText = [NSString stringWithFormat:@"我在爱抢APP的全民红包抢到\"%.2f\"元，快来跟我一起抢红包吧！",[money floatValue]];
     }
     
     if (type == 4) {//特约红包
-        shareview.contentText = [NSString stringWithFormat:@"我在爱抢APP的特约红包抢到\"%@\"元，快来跟我一起抢红包吧！",money];
+        shareview.contentText = [NSString stringWithFormat:@"我在爱抢APP的特约红包抢到\"%.2f\"元，快来跟我一起抢红包吧！",[money floatValue]];
     }
     
     if (type == 5) {//分享评论和点赞

@@ -367,8 +367,6 @@
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }
-    
-    
 }
 
 #pragma mark - segue传值

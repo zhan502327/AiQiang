@@ -43,6 +43,25 @@
             errorBlock(error);
         }
     }];
+}
+
+
+//用户反馈
++ (void)userFeedbackWithParam:(NSDictionary *)param successBlock:(void(^)(NSString *msg, NSNumber *status))successBlock errorBlock:(void(^)(NSError *error))errorBlock{
+    
+    [[NetworkManager new] postWithURL:UserFeedbackURL parameter:param success:^(id obj) {
+        
+        NSString *msg = obj[@"msg"];
+        NSNumber *num = obj[@"status"];
+        if (successBlock) {
+            successBlock(msg,num);
+        }
+        
+    } fail:^(NSError *error) {
+        if (errorBlock) {
+            errorBlock(error);
+        }
+    }];
     
     
 }

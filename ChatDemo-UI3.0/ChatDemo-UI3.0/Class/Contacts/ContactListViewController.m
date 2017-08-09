@@ -727,11 +727,17 @@
     for (int i = 0; i < [sortedArray count]; i++) {
         NSArray *array = [[sortedArray objectAtIndex:i] sortedArrayUsingComparator:^NSComparisonResult(FriendsListModel *obj1, FriendsListModel *obj2) {
             NSString *firstLetter1 = [EaseChineseToPinyin pinyinFromChineseString:obj1.remark.length > 0 ? obj1.remark : obj1.nickname];
+            if (firstLetter1.length == 0) {
+                firstLetter1 = @"0";
+            }
             firstLetter1 = [[firstLetter1 substringToIndex:1] uppercaseString];
             
             NSString *firstLetter2 = [EaseChineseToPinyin pinyinFromChineseString:obj2.remark.length > 0 ? obj2.remark : obj2.nickname];
-            firstLetter2 = [[firstLetter2 substringToIndex:1] uppercaseString];
             
+            if (firstLetter2.length == 0) {
+                firstLetter2 = @"0";
+            }
+            firstLetter2 = [[firstLetter2 substringToIndex:1] uppercaseString];
             return [firstLetter1 caseInsensitiveCompare:firstLetter2];
         }];
         

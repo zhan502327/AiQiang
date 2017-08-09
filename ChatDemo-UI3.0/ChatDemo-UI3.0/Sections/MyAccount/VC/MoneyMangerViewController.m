@@ -51,11 +51,13 @@
 }
 
 - (void)nextButtonClick{
+    
+    
     if (self.indexPath == nil) {
         if (self.type == 1) {
             NSLog(@"充值微信");
             ChongZhiViewController *vc = [[ChongZhiViewController alloc] init];
-            vc.type = 1;
+            vc.type = 2;
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
             
@@ -73,7 +75,7 @@
             if (self.type == 1) {
                 NSLog(@"充值微信");
                 ChongZhiViewController *vc = [[ChongZhiViewController alloc] init];
-                vc.type = 1;
+                vc.type = 2;
                 vc.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:vc animated:YES];
 
@@ -140,7 +142,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -236,7 +238,8 @@
     if (self.type == 1) {//充值
         if (indexPath.section == 0) {
             //微信支付
-            self.payType = PayTypeWehat;
+//            self.payType = PayTypeWehat;
+            self.payType = PayTypeZhiFuBao;
         }
         
         if (indexPath.section == 1) {
