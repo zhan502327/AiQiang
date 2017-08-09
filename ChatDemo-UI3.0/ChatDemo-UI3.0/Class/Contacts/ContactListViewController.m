@@ -520,9 +520,6 @@
                     nickeName = mymodel.nickname;
                 }
             }
-            
-
-            
             EMError *error = [[EMClient sharedClient].contactManager deleteContact:model.uid isDeleteConversation:YES];
             if (!error) {
                 [[EMClient sharedClient].chatManager deleteConversation:model.uid isDeleteMessages:YES completion:nil];
