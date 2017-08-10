@@ -88,7 +88,6 @@ static ApplyViewController *controller = nil;
     [self.navigationItem setLeftBarButtonItem:backItem];
 }
 
-
 #pragma mark - getter
 
 - (NSMutableArray *)dataSource
@@ -123,10 +122,6 @@ static ApplyViewController *controller = nil;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-
-    
-    
     if (section == 0) {
         return [self.dataSource count];
     }else{
@@ -281,6 +276,8 @@ static ApplyViewController *controller = nil;
                         NSString *loginUsername = [[EMClient sharedClient] currentUsername];
                         [[InvitationManager sharedInstance] removeInvitation:entity loginUser:loginUsername];
 //                        [self.tableView reloadData];
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"setupUntreatedApplyCount" object:nil];
+
                         [self.navigationController popViewControllerAnimated:YES];
 
                     }
@@ -317,6 +314,9 @@ static ApplyViewController *controller = nil;
                     [self showHint:msg];
                     if ([status intValue] == 1) {
                         [[NSNotificationCenter defaultCenter] postNotificationName:@"DBrefreshFriendsList" object:nil];
+                        
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"setupUntreatedApplyCount" object:nil];
+
                         [self.navigationController popViewControllerAnimated:YES];
                     }
                     
@@ -461,7 +461,6 @@ static ApplyViewController *controller = nil;
         [self.dataSource addObjectsFromArray:newArray];
         [self.tableView reloadData];
     }
-    
 }
 
 - (void)endRefresh{
@@ -474,7 +473,6 @@ static ApplyViewController *controller = nil;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"setupUntreatedApplyCount" object:nil];
     [self.navigationController popViewControllerAnimated:YES];
 }
-
 
 - (void)clear
 {

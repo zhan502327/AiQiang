@@ -155,11 +155,8 @@
         self.balance = balance;
         
     } errorBlock:^(NSError *error) {
-
         [self showHint:@"网络错误"];
     }];
-
-    
 }
 
 - (NSArray *)dataSource{
@@ -198,8 +195,6 @@
     
             
         }];
-        
-        
         tableView.tableHeaderView = self.headerview;
         [self.view insertSubview:tableView atIndex:1];
         _tableView = tableView;

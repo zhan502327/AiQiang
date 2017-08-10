@@ -77,7 +77,7 @@
         [self loadData];
     }];
     
-    self.discoverTableView.mj_footer = [MJRefreshFooter footerWithRefreshingBlock:^{
+    self.discoverTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         self->page ++;
         [self loadData];
     }];
@@ -139,9 +139,6 @@
 
 
 - (void)loadData{
-    
-
-    
     NSDictionary *param = @{@"uid": User_ID,@"page": [NSString stringWithFormat:@"%d",page]};
     [Discover discoverLIstWithParam:param successBlock:^(NSString *msg, NSMutableArray *modelArray, NSNumber *status) {
         [self endRefresh];
@@ -161,7 +158,7 @@
 
 - (void)endRefresh{
     [self.discoverTableView.mj_header endRefreshing];
-    [self.discoverTableView.mj_footer endRefreshing];
+    [_discoverTableView.mj_footer endRefreshing];
 }
 
 - (void)reloadDataAfterPublishDiscover{
