@@ -177,6 +177,7 @@
         
         if (indexPath.row == 1) {
             cell.type = @"UITextField";
+            cell.textField.placeholder = @"请输入少于十一位的昵称";
             cell.textField.text = self.userModel.nickname;
             [cell.textField addTarget:self action:@selector(textFieldChangeText:) forControlEvents:UIControlEventEditingChanged];
             return cell;
@@ -235,11 +236,17 @@
     }else{
         canClickFixButton = YES;
     }
-
-    self.userModel.nickname = textField.text;
  
-    [self.tableView reloadData];
+    int MaxLen = 11;
+    NSString* szText = [textField text];
+    if (textField.text.length > MaxLen)
+    {
+        textField.text = [szText substringToIndex:MaxLen];
+    }
     
+    self.userModel.nickname = textField.text;
+
+
 }
 
 
@@ -416,9 +423,22 @@
     
     NSDictionary *dic = @{@"uid":User_ID,@"nickname":self.userModel.nickname,@"sex":self.userModel.sex,@"address":self.userModel.address,@"birthdy":self.userModel.birthdy};
     [PersonalInfoTool configUserInfoWithParam:dic successBlock:^(NSString *msg, NSNumber *status) {
+        if (![msg isEqualToString:@"更改用户信息失败"]) {
+         
+            [self showHint:msg];
+
+        }
         
         if ([status intValue] == 1) {
-            [self showHint:msg];
+            
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setObject:self.userModel.nickname forKey:@"nickname"];
+            
+            [defaults synchronize];
+            
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"DBrefreshFriendsList" object:nil];
+            [self.navigationController popViewControllerAnimated:YES];
         }
         
     } errorBlock:^(NSError *error) {

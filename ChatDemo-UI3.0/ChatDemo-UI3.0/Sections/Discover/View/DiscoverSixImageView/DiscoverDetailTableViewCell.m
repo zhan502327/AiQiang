@@ -109,8 +109,17 @@
             }
         }
         
-        self.detailView.contentLabel.text = model.content;
+        //设置正文
+        self.detailView.contentLabel.isAttributedContent = YES;
+        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:model.content];
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        paragraphStyle.lineSpacing = 10;
+        paragraphStyle.alignment = NSTextAlignmentLeft;
+        paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
         
+        [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, model.content.length)];
+        self.detailView.contentLabel.attributedText = attributedString;
+    
         self.detailView.imageCount = model.img.count;
         
         

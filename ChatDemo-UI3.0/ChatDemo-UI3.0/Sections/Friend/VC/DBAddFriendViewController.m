@@ -138,8 +138,6 @@
 - (void)addFriend{
     [self.view endEditing:YES];
     NSString *message = self.textViewStr;
-
-    
     NSString *buddyName = self.userInfoModel.uid;
     
     if (buddyName && buddyName.length > 0) {
@@ -164,8 +162,6 @@
             [self showHint:@"网络错误"];
         }];
     }
-
-
 }
 
 
@@ -198,5 +194,4 @@
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];
 }
-
 @end

@@ -46,7 +46,7 @@
                                 <constraint firstItem="y8o-yx-pbX" firstAttribute="centerX" secondItem="Nt2-Yr-4lr" secondAttribute="centerX" id="dke-An-Yoi"/>
                             </constraints>
                         </view>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aq_icon 1360" translatesAutoresizingMaskIntoConstraints="NO" id="p88-ap-3IS">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aiqianglogo" translatesAutoresizingMaskIntoConstraints="NO" id="p88-ap-3IS">
                             <rect key="frame" x="152" y="109" width="70" height="70"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="70" id="QwY-of-IfW"/>
@@ -211,7 +211,7 @@
     </objects>
     <resources>
         <image name="account.png" width="43" height="53"/>
-        <image name="aq_icon 1360" width="30" height="30"/>
+        <image name="aiqianglogo" width="256" height="256"/>
         <image name="password.png" width="45" height="53"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

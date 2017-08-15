@@ -49,6 +49,16 @@
     [self setupTableView];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshDataAfterPublishRedBag) name:@"refreshDataAfterPublishRedBag" object:nil];
+}
+
+- (void)refreshDataAfterPublishRedBag{
+    [self.tableView.mj_header beginRefreshing];
+}
+
 - (NSMutableArray *)cycleModelArray{
     if (_cycleModelArray == nil) {
         NSMutableArray *array = [NSMutableArray arrayWithCapacity:0];
@@ -72,10 +82,6 @@
     return _stealView;
 }
 
-
-
-
-
 - (void)setupNav{
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"发红包" style:UIBarButtonItemStylePlain target:self action:@selector(sendRedBag)];
     self.navigationItem.rightBarButtonItem = item;
@@ -94,7 +100,7 @@
     self.tableView.dataSource = self;
     self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.showsHorizontalScrollIndicator = NO;
-    self.tableView.backgroundColor = ColorTableViewBg;
+    self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64);
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         self->page = 1;

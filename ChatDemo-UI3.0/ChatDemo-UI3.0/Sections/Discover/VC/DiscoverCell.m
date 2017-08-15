@@ -133,13 +133,13 @@
     //设置正文
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:message.content];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    paragraphStyle.lineSpacing = 0;
+    paragraphStyle.lineSpacing = 10;
     paragraphStyle.alignment = NSTextAlignmentLeft;
     paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
     
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, message.content.length)];
     self.content.attributedText = attributedString;
-    
+    self.content.font = DBMaxFont;
     
     //设置图片
     [self loadImage:message];

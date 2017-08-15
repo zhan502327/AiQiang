@@ -47,7 +47,7 @@
 }
 
 - (void)loadData{
-    
+
     NSDictionary *param = @{@"uid":User_ID,@"rid":self.rid};
     [RedBagChainTool redBagLogWithParam:param successBlock:^(NSString *msg, NSNumber *status, RedBagChainResultModel *model) {
         self.resultModel = model;

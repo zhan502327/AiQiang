@@ -29,14 +29,16 @@
         NSString *str = dic[@"content"];
         
         NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-        paragraphStyle.lineSpacing = 0;
+        paragraphStyle.lineSpacing = 10;
         paragraphStyle.alignment = NSTextAlignmentLeft;
         paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
         NSDictionary *attributes = @{NSParagraphStyleAttributeName: paragraphStyle,NSFontAttributeName:DBMaxFont};
         
-        CGRect labelSize = [str boundingRectWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width-20, 1000) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil];
+        CGRect labelSize = [str boundingRectWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width-20, 1000) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:attributes context:nil];
         
-        message.labelHeight = labelSize.size.height;
+        
+        message.labelHeight = ceil(labelSize.size.height) + 1;
+
     }
     
     return message;

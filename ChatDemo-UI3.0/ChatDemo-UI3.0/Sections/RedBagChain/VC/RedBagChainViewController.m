@@ -54,7 +54,6 @@
 }
 - (void)loadPublickGroup{
     //获取公开群的数组
-    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         EMError *error = nil;
         EMCursorResult *result = [[EMClient sharedClient].groupManager getPublicGroupsFromServerWithCursor:nil pageSize:-1 error:&error];
@@ -99,7 +98,6 @@
                         }
                     });
                 });
-
             }
             
             if ([group.groupId isEqualToString:ThreeGroupId]) {
@@ -116,7 +114,6 @@
                         }
                     });
                 });
-
             }
             
             if ([group.groupId isEqualToString:FourGroupId]) {
@@ -133,9 +130,7 @@
                         }
                     });
                 });
-
             }
-            
         }
         
         self.publickGroupListArray = @[oneGroup,twoGroup,threeGroup,fourGroup];
@@ -167,7 +162,6 @@
     [self.contentView removeFromSuperview];
 }
 
-
 - (InPutPasswordview *)contentView{
     if (_contentView == nil) {
         InPutPasswordview *contentView = [InPutPasswordview viewWithFrame:CGRectMake(20, SCREEN_HEIGHT/4, SCREEN_WIDTH - 40, (SCREEN_WIDTH - 40)/6 + 150)];
@@ -176,7 +170,6 @@
     }
     return _contentView;
 }
-
 
 - (UIImageView *)bgImageView{
     if (_bgImageView == nil) {

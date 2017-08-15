@@ -236,10 +236,7 @@
         [chooseButton addTarget:self action:@selector(choosetButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         chooseButton.tag = 200 + i;
         [view addSubview:chooseButton];
-        
-        
     }
-    
 }
 
 - (void)choosetButtonClicked:(UIButton *)button{
@@ -260,7 +257,6 @@
         NSDictionary *param = @{@"uid":User_ID,@"pay_password":password};
         
         [RedBagChainTool checkPayPasswordWithParam:param successBlock:^(NSString *msg, NSNumber *status) {
-            [self showHint:msg];
             if ([status intValue] == 1) {
                 
                 //数据
@@ -294,6 +290,9 @@
                         [self.blackview removeFromSuperview];
                         [self.choosePayTypeView removeFromSuperview];
                         [self.passWordView removeFromSuperview];
+                        
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshDataAfterPublishRedBag" object:nil];
+                        
                         [self.navigationController popViewControllerAnimated:YES];
                         
                     }
