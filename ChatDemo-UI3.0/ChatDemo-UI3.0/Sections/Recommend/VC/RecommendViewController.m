@@ -82,7 +82,7 @@
 - (void)shareWitType:(SSDKPlatformType)platformType{
     
     //1、创建分享参数
-    NSArray* imageArray = @[[UIImage imageNamed:@"aq_icon 1360"]];
+    NSArray* imageArray = @[[UIImage imageNamed:@"aiqianglogo"]];
     if (imageArray) {
         NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
         [shareParams SSDKSetupShareParamsByText:@"我在爱抢APP上抢红包，你也一起来玩吧！"

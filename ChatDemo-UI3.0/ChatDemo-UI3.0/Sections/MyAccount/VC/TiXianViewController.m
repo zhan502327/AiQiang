@@ -32,12 +32,24 @@
     
     [self setupUI];
     [self firstLabel];
+    
+
     [self secondLabel];
     [self firsttextField];
     [self secondTextField];
     [self rightLabel];
     [self tipLabel];
     [self button];
+    
+    if (self.type == 3) {
+        self.firstLabel.hidden = YES;
+        self.firsttextField.hidden = YES;
+        self.secondLabel.frame = CGRectMake(0, 15, 100, 40);
+        self.secondTextField.frame = CGRectMake(CGRectGetMaxX(self.secondLabel.frame), CGRectGetMinY(self.secondLabel.frame), CGRectGetMinX(self.rightLabel.frame) - CGRectGetMaxX(self.secondLabel.frame), 40);
+        self.rightLabel.frame = CGRectMake(SCREEN_WIDTH - 30, CGRectGetMinY(self.secondLabel.frame), 30, 40);
+        
+        
+    }
 }
 
 - (void)setupUI{
@@ -53,7 +65,8 @@
         UILabel *label = [[UILabel alloc] init];
         label.frame = CGRectMake(0, 15, 180, 40);
         label.font = DBMaxFont;
-        label.backgroundColor = [UIColor whiteColor];
+        
+        label.backgroundColor = [UIColor redColor];
         label.textColor = DBBlackColor;
         label.textAlignment = NSTextAlignmentLeft;
         [self.view addSubview:label];
@@ -247,7 +260,8 @@
     
     if (type == 3){
         self.firsttextField.hidden = YES;
-        self.firstLabel.text = @"    提现到现金余额";
+        self.firstLabel.hidden = YES;
+        
         [self.button setTitle:@"提现到现金余额" forState:UIControlStateNormal];
         
     }

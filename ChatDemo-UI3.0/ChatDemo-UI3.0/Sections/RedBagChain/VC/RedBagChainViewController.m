@@ -25,8 +25,6 @@
 @property (nonatomic, assign) NSInteger tag;
 @property (nonatomic, weak) UIView *blackview;
 @property (nonatomic, weak) InPutPasswordview *contentView;
-
-
 @property (nonatomic, strong) NSArray *publickGroupListArray;
 
 @end
@@ -40,10 +38,7 @@
     [self setupUI];
     [self bgImageView];
     [self createUI];
-
 }
-
-
 
 - (NSArray *)publickGroupListArray{
     if (_publickGroupListArray == nil) {

@@ -36,7 +36,6 @@
     
     if (type == 2) {//偷抢好友红包
         shareview.contentText = [NSString stringWithFormat:@"我在爱抢APP里偷到好友\"%.2f\"元，快来跟我一起偷好友红包吧！",[money floatValue]];
-
     }
     
     if (type == 3) {//全民红包
@@ -80,9 +79,7 @@
         label.font = [UIFont systemFontOfSize:14];
         label.textColor = [UIColor blackColor];
         [self addSubview:label];
-        
     }
-    
 }
 
 - (void)imageViewClicked:(UIButton *)btn{
@@ -111,12 +108,10 @@
     }
 }
 
-
-
 - (void)shareWitType:(SSDKPlatformType)platformType{
     
-    //1、创建分享参数
-    NSArray* imageArray = @[[UIImage imageNamed:@"aq_icon 1360"]];
+    //1、创建分享参数  aq_icon 1360
+    NSArray* imageArray = @[[UIImage imageNamed:@"aiqianglogo"]];
     if (imageArray) {
         NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
         [shareParams SSDKSetupShareParamsByText:self.contentText
