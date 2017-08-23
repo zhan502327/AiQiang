@@ -26,6 +26,7 @@
 #import "DBWebViewViewController.h"
 #import "DBShareView.h"
 #import "MyRecommendViewController.h"
+#import "DBStoreViewController.h"
 
 @interface DBMineViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, weak) UITableView *tableView;
@@ -163,9 +164,9 @@
     if (_dataSource == nil) {
         NSArray *array = nil;
         if ([User_is_recommend isEqualToString:@"1"]) {
-            array = @[@[@""],@[@"现金余额",@"红包余额",@"我的账单"],@[@"我要推荐",@"推荐的人",@"系统消息"],@[@"查询帮助",@"设置"]];
+            array = @[@[@""],@[@"现金余额",@"红包余额",@"我的账单"],@[@"我要推荐",@"推荐的人",@"系统消息"],@[@"积分商城"],@[@"查询帮助",@"设置"]];
         }else{
-            array = @[@[@""],@[@"现金余额",@"红包余额",@"我的账单"],@[@"我要推荐",@"系统消息"],@[@"查询帮助",@"设置"]];
+            array = @[@[@""],@[@"现金余额",@"红包余额",@"我的账单"],@[@"我要推荐",@"系统消息"], @[@"积分商城"],@[@"查询帮助",@"设置"]];
         }
         _dataSource = array;
     }
@@ -343,6 +344,12 @@
     }
     
     if (indexPath.section == 3) {
+        DBStoreViewController *vc = [[DBStoreViewController alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+    if (indexPath.section == 4) {
         
         if (indexPath.row == 0) {
             DBWebViewViewController *vc = [[DBWebViewViewController alloc] init];
@@ -396,7 +403,7 @@
     [button addTarget:self action:@selector(loginOutButtonClick) forControlEvents:UIControlEventTouchUpInside];
     button.layer.cornerRadius = 5;
     [backView addSubview:button];
-    if (section == 3) {
+    if (section == 4) {
         return backView;
     }else{
         return nil;
@@ -406,7 +413,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    if (section == 3) {
+    if (section == 4) {
         return 80;
     }else{
         return 0.00000001;

@@ -194,6 +194,11 @@
 		4DAB2F7B1F1C671900A8E1A0 /* DrawCircleProgressButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DAB2F7A1F1C671900A8E1A0 /* DrawCircleProgressButton.m */; };
 		4DAD1AE01ECC400900D7CD81 /* DBBillViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DAD1ADF1ECC400900D7CD81 /* DBBillViewController.m */; };
 		4DAD1AE31ECC428200D7CD81 /* DBBillTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DAD1AE21ECC428200D7CD81 /* DBBillTableViewCell.m */; };
+		4DB4B0C61F4BD085006F0D75 /* DBStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB4B0C51F4BD085006F0D75 /* DBStoreViewController.m */; };
+		4DB4B0C91F4BD34D006F0D75 /* DBStoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB4B0C81F4BD34D006F0D75 /* DBStoreTableViewCell.m */; };
+		4DB4B0CC1F4BDFFC006F0D75 /* DBStoreBottomVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB4B0CB1F4BDFFB006F0D75 /* DBStoreBottomVIew.m */; };
+		4DB4B0CF1F4C155B006F0D75 /* DBStoreCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB4B0CE1F4C155B006F0D75 /* DBStoreCollectionViewCell.m */; };
+		4DB4B0D21F4C1EEE006F0D75 /* DBStoreHeaderCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB4B0D11F4C1EEE006F0D75 /* DBStoreHeaderCollectionReusableView.m */; };
 		4DB5A0141EB2EDC800BE3969 /* DiscoverPublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB5A0131EB2EDC800BE3969 /* DiscoverPublishViewController.m */; };
 		4DB5A01B1EB2F34700BE3969 /* DBTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB5A01A1EB2F34700BE3969 /* DBTextView.m */; };
 		4DB5A01E1EB2F38200BE3969 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB5A01D1EB2F38200BE3969 /* UIView+Extension.m */; };
@@ -971,6 +976,16 @@
 		4DAD1ADF1ECC400900D7CD81 /* DBBillViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBBillViewController.m; sourceTree = "<group>"; };
 		4DAD1AE11ECC428200D7CD81 /* DBBillTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBBillTableViewCell.h; sourceTree = "<group>"; };
 		4DAD1AE21ECC428200D7CD81 /* DBBillTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBBillTableViewCell.m; sourceTree = "<group>"; };
+		4DB4B0C41F4BD085006F0D75 /* DBStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBStoreViewController.h; sourceTree = "<group>"; };
+		4DB4B0C51F4BD085006F0D75 /* DBStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBStoreViewController.m; sourceTree = "<group>"; };
+		4DB4B0C71F4BD34D006F0D75 /* DBStoreTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBStoreTableViewCell.h; sourceTree = "<group>"; };
+		4DB4B0C81F4BD34D006F0D75 /* DBStoreTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBStoreTableViewCell.m; sourceTree = "<group>"; };
+		4DB4B0CA1F4BDFFB006F0D75 /* DBStoreBottomVIew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBStoreBottomVIew.h; sourceTree = "<group>"; };
+		4DB4B0CB1F4BDFFB006F0D75 /* DBStoreBottomVIew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBStoreBottomVIew.m; sourceTree = "<group>"; };
+		4DB4B0CD1F4C155B006F0D75 /* DBStoreCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBStoreCollectionViewCell.h; sourceTree = "<group>"; };
+		4DB4B0CE1F4C155B006F0D75 /* DBStoreCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBStoreCollectionViewCell.m; sourceTree = "<group>"; };
+		4DB4B0D01F4C1EEE006F0D75 /* DBStoreHeaderCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBStoreHeaderCollectionReusableView.h; sourceTree = "<group>"; };
+		4DB4B0D11F4C1EEE006F0D75 /* DBStoreHeaderCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBStoreHeaderCollectionReusableView.m; sourceTree = "<group>"; };
 		4DB5A0121EB2EDC800BE3969 /* DiscoverPublishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverPublishViewController.h; sourceTree = "<group>"; };
 		4DB5A0131EB2EDC800BE3969 /* DiscoverPublishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverPublishViewController.m; sourceTree = "<group>"; };
 		4DB5A0191EB2F34700BE3969 /* DBTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBTextView.h; path = TextView/DBTextView.h; sourceTree = "<group>"; };
@@ -2405,6 +2420,55 @@
 			path = WSDrawCircleProgress;
 			sourceTree = "<group>";
 		};
+		4DB4B0BF1F4BD062006F0D75 /* MyStore */ = {
+			isa = PBXGroup;
+			children = (
+				4DB4B0C01F4BD062006F0D75 /* Model */,
+				4DB4B0C11F4BD062006F0D75 /* Tool */,
+				4DB4B0C21F4BD062006F0D75 /* VC */,
+				4DB4B0C31F4BD062006F0D75 /* VIew */,
+			);
+			path = MyStore;
+			sourceTree = "<group>";
+		};
+		4DB4B0C01F4BD062006F0D75 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4DB4B0C11F4BD062006F0D75 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
+		4DB4B0C21F4BD062006F0D75 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				4DB4B0C41F4BD085006F0D75 /* DBStoreViewController.h */,
+				4DB4B0C51F4BD085006F0D75 /* DBStoreViewController.m */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		4DB4B0C31F4BD062006F0D75 /* VIew */ = {
+			isa = PBXGroup;
+			children = (
+				4DB4B0C71F4BD34D006F0D75 /* DBStoreTableViewCell.h */,
+				4DB4B0C81F4BD34D006F0D75 /* DBStoreTableViewCell.m */,
+				4DB4B0CA1F4BDFFB006F0D75 /* DBStoreBottomVIew.h */,
+				4DB4B0CB1F4BDFFB006F0D75 /* DBStoreBottomVIew.m */,
+				4DB4B0CD1F4C155B006F0D75 /* DBStoreCollectionViewCell.h */,
+				4DB4B0CE1F4C155B006F0D75 /* DBStoreCollectionViewCell.m */,
+				4DB4B0D01F4C1EEE006F0D75 /* DBStoreHeaderCollectionReusableView.h */,
+				4DB4B0D11F4C1EEE006F0D75 /* DBStoreHeaderCollectionReusableView.m */,
+			);
+			path = VIew;
+			sourceTree = "<group>";
+		};
 		4DB5A0151EB2EF6F00BE3969 /* TextViewAndPhotoView */ = {
 			isa = PBXGroup;
 			children = (
@@ -3642,6 +3706,7 @@
 		BE26F3021E6FF5F700D087F8 /* Sections */ = {
 			isa = PBXGroup;
 			children = (
+				4DB4B0BF1F4BD062006F0D75 /* MyStore */,
 				4DA156C71F29C7C800E46EB1 /* UserInfoDataBase */,
 				4DA7A4D11F0242D0009DB805 /* LaunchIntroduction */,
 				BE26F3131E6FF5F700D087F8 /* Main */,
@@ -5314,6 +5379,7 @@
 				4DA156CE1F29C86F00E46EB1 /* DBUserInfoDataBaseModel.m in Sources */,
 				3C6BBA0619419EBD00A64684 /* EMRemarkImageView.m in Sources */,
 				4DBAFA0A1EE14F770029DA47 /* SystemMessageListTableViewCell.m in Sources */,
+				4DB4B0D21F4C1EEE006F0D75 /* DBStoreHeaderCollectionReusableView.m in Sources */,
 				D2C9DEB11E14E07F00323A7D /* UIViewController+DismissKeyboard.m in Sources */,
 				D29A6BAC1B72090F002324BB /* UserProfileManager.m in Sources */,
 				4DB5A0421EB3202D00BE3969 /* UIImage+IW.m in Sources */,
@@ -5370,6 +5436,7 @@
 				4DBAF9511ED046F50029DA47 /* MainTool.m in Sources */,
 				4DBAFA071EE14EA80029DA47 /* SystemMessageViewController.m in Sources */,
 				4DB5A0551EB321AD00BE3969 /* MJPhotoBrowser.m in Sources */,
+				4DB4B0CC1F4BDFFC006F0D75 /* DBStoreBottomVIew.m in Sources */,
 				3CBF90C019302F5000AD68AE /* BaseViewController.m in Sources */,
 				D2C9DE811E14E07F00323A7D /* UIScrollView+MJRefresh.m in Sources */,
 				4D40169F1EC321BD0083D904 /* MyCollectionListModel.m in Sources */,
@@ -5458,6 +5525,7 @@
 				D2CB225C1B60CB08001BC741 /* UserProfileViewController.m in Sources */,
 				4D4366B61EADDDAD006CA029 /* DiscoverDetailTableViewCell.m in Sources */,
 				90985E481A8A08D400976DD6 /* InvitationManager.m in Sources */,
+				4DB4B0CF1F4C155B006F0D75 /* DBStoreCollectionViewCell.m in Sources */,
 				4DE5A8BB1EF14BD700D6657B /* DBImageManger.m in Sources */,
 				4DE5A8BE1EF3C2F500D6657B /* MyAccountTiXianListViewController.m in Sources */,
 				4DB5A03A1EB317DF00BE3969 /* UzysGroupPickerViewController.m in Sources */,
@@ -5471,6 +5539,7 @@
 				90517D6A1A5C3DB0008F1315 /* AppDelegate+UMeng.m in Sources */,
 				4DC99B531EB0AA90001008B1 /* TPKeyboardAvoidingTableView.m in Sources */,
 				4DB5A05A1EB321AD00BE3969 /* SDWebImageManager+MJ.m in Sources */,
+				4DB4B0C61F4BD085006F0D75 /* DBStoreViewController.m in Sources */,
 				D2C9DED31E14E08000323A7D /* EaseFacialView.m in Sources */,
 				4DE451F51EC4636000034300 /* BillDetailViewController.m in Sources */,
 				4D0DB6A21EE8F3AD000EBF06 /* DBAddFriendViewController.m in Sources */,
@@ -5597,6 +5666,7 @@
 				9091111B192EEAED008A48AA /* UIResponder+Router.m in Sources */,
 				D2C9DEB61E14E07F00323A7D /* EaseEmoji.m in Sources */,
 				D2C9DE721E14E07F00323A7D /* MJRefreshComponent.m in Sources */,
+				4DB4B0C91F4BD34D006F0D75 /* DBStoreTableViewCell.m in Sources */,
 				D2C9DEB51E14E07F00323A7D /* EaseMessageReadManager.m in Sources */,
 				4D773FA71ECB03E200FE64C1 /* MyAccountTool.m in Sources */,
 				4DBAF94D1ED040110029DA47 /* SellerListViewController.m in Sources */,
