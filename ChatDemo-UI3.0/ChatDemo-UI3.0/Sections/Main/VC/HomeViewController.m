@@ -160,7 +160,6 @@
     return _tableView ;
 }
 
-
 - (void)loaddata{
     [self showHudInView:self.view hint:@"加载数据..."];
     
