@@ -4,7 +4,6 @@
 //
 //  Created by 闫世宗 on 2017/3/9.
 //  Copyright © 2017年 闫世宗. All rights reserved.
-//
 
 #import "HomeViewController.h"
 #import "HomeCollectionViewCell.h"
@@ -30,12 +29,10 @@
     CGFloat _cellHeight;
 }
 @property (nonatomic, weak) UITableView *tableView;
-
 @property (strong, nonatomic) NSMutableArray *imageArray;//滚动视图的imageArray；
 @property (nonatomic, strong) NSMutableArray *cycleModelArray;
 @property (nonatomic, strong) NSMutableArray *allManRedBagArray;
 @property (nonatomic, strong) NSMutableArray *sellerRedBagArray;
-
 @property (strong, nonatomic) SDCycleScrollView *cycleView;
 @property (strong, nonatomic) ThreeButtonView *threeView;
 
@@ -47,9 +44,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self loaddata];
-    
 }
 
 - (NSMutableArray *)cycleModelArray{
@@ -197,7 +192,6 @@
     } errorBlock:^(NSError *error) {
         [self hideHud];
         [self endRefresh];
-
         [self showHint:@"网络错误"];
     }];
 }
@@ -207,14 +201,11 @@
 }
 
 #pragma mark - tableView delegate and tableView dataSource
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 2;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 0) {
         if (self.sellerRedBagArray.count == 0) {
             return 0;
@@ -319,8 +310,7 @@
 
 
 //HeaderInSection  &&  FooterInSection
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UIView *backView = [[UIView alloc]init];
     backView.backgroundColor = [UIColor clearColor];
     return backView;
