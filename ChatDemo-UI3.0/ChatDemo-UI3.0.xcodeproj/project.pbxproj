@@ -4921,7 +4921,7 @@
 				TargetAttributes = {
 					90911023192EEA70008A48AA = {
 						DevelopmentTeam = 44Q6PHG89S;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -5742,8 +5742,8 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CODE_SIGN_ENTITLEMENTS = "ChatDemo-UI3.0/ChatDemo-UI3.0.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: WENJIE ZHOU (44Q6PHG89S)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: WENJIE ZHOU (44Q6PHG89S)";
-				DEVELOPMENT_TEAM = 44Q6PHG89S;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				EASEMOB_INC = "";
 				EASEMOB_LIB = "";
 				EASEMOB_LIBNAME = "";
@@ -5802,8 +5802,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.flycatiphone.aiqiang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "24ccdac5-7e1a-475c-b05d-628e6dbe0559";
-				PROVISIONING_PROFILE_SPECIFIER = ai_qiang_distribution;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = NO;
 				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
@@ -5823,8 +5823,8 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CODE_SIGN_ENTITLEMENTS = "ChatDemo-UI3.0/ChatDemo-UI3.0.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: WENJIE ZHOU (44Q6PHG89S)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: WENJIE ZHOU (44Q6PHG89S)";
-				DEVELOPMENT_TEAM = 44Q6PHG89S;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				EASEMOB_INC = "";
 				EASEMOB_LIB = "";
 				EASEMOB_LIBNAME = "";
@@ -5883,8 +5883,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.flycatiphone.aiqiang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "24ccdac5-7e1a-475c-b05d-628e6dbe0559";
-				PROVISIONING_PROFILE_SPECIFIER = ai_qiang_distribution;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = NO;
 				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;

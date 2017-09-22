@@ -871,6 +871,8 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [weakself showHint:NSLocalizedString(@"loadDataFailed", @"Load data failed.")];
                 [weakself reloadDataSource];
+                    
+                
             });
         }
         [weakself tableViewDidFinishTriggerHeader:YES reload:NO];
