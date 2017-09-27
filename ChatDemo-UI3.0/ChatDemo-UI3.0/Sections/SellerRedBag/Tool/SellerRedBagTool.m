@@ -9,7 +9,6 @@
 #import "SellerRedBagTool.h"
 #import "SellerRedBagListModel.h"
 #import "AllManRedPacketPingLunModel.h"
-
 @implementation SellerRedBagTool
 
 //商家红包列表
@@ -37,19 +36,15 @@
 
 //获取商家红包详情
 + (void)sellerRedBagDetailWithParam:(NSDictionary *)param successBlock:(void (^)(NSArray *))successBlock errorBlock:(void (^)(NSError *))errorBlock{
-    
     [[NetworkManager new] postWithURL:SellerRedBagDetailURL parameter:param success:^(id obj) {
-  
         if (successBlock) {
         }
-        
     } fail:^(NSError *error) {
         if (errorBlock) {
             errorBlock(error);
         }
     }];
 }
-
 
 //偷取商家红包
 + (void)stealSellerRedBagWirthParam:(NSDictionary *)param successBlock:(void(^)(StealRedBagResult *result))successBlock errorBlock:(void(^)(NSError *error))errorBlock{

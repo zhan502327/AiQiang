@@ -80,7 +80,6 @@
 
 - (IBAction)back:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
-
 }
 
 - (IBAction)querenAction:(id)sender {
@@ -154,10 +153,7 @@
     } errorBlcok:^(NSError *error) {
         [self showHint:@"网络错误"];
     }];
-    
-    
 }
-
 
 - (void)less {
     _second--;
@@ -168,11 +164,9 @@
         _getYanzhengmaButton.userInteractionEnabled = YES;
         _getYanzhengmaButton.backgroundColor =[UIColor colorWithRed:0.981 green:0.532 blue:0.036 alpha:1.000];
     }
-    
 }
 
 #pragma mark - UITextFieldDelegate
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [_phone resignFirstResponder];
@@ -182,7 +176,4 @@
     
     return YES;
 }
-
-
-
 @end

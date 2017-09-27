@@ -38,7 +38,7 @@
         [iconImageView sd_setImageWithURL:[NSURL URLWithString:urlstr] placeholderImage:nil];
         
         //名字
-        UILabel *name = [view viewWithTag:2000 + 1];
+        UILabel *name = [view viewWithTag:2000 + i];
         name.text = model.nickname;
         
         //金额
@@ -79,7 +79,7 @@
         [iconImageView sd_setImageWithURL:[NSURL URLWithString:urlstr] placeholderImage:nil];
         
         //名字
-        UILabel *name = [view viewWithTag:2000 + 1];
+        UILabel *name = [view viewWithTag:2000 + i];
         name.text = model.nickname;
         
         //金额

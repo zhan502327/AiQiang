@@ -4,7 +4,6 @@
 //
 //  Created by 闫世宗 on 2017/3/9.
 //  Copyright © 2017年 闫世宗. All rights reserved.
-//
 
 #import "HomeViewController.h"
 #import "HomeCollectionViewCell.h"
@@ -30,15 +29,12 @@
     CGFloat _cellHeight;
 }
 @property (nonatomic, weak) UITableView *tableView;
-
 @property (strong, nonatomic) NSMutableArray *imageArray;//滚动视图的imageArray；
 @property (nonatomic, strong) NSMutableArray *cycleModelArray;
 @property (nonatomic, strong) NSMutableArray *allManRedBagArray;
 @property (nonatomic, strong) NSMutableArray *sellerRedBagArray;
-
 @property (strong, nonatomic) SDCycleScrollView *cycleView;
 @property (strong, nonatomic) ThreeButtonView *threeView;
-
 @property (nonatomic, strong) NSMutableArray *sellerImageArray;
 @property (nonatomic, weak) StealRedBagView *stealView;
 @end
@@ -47,9 +43,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self loaddata];
-    
 }
 
 - (NSMutableArray *)cycleModelArray{
@@ -59,6 +53,7 @@
     }
     return _cycleModelArray;
 }
+
 - (StealRedBagView *)stealView{
     if (_stealView == nil) {
         StealRedBagView *view = [[StealRedBagView alloc] init];
@@ -110,7 +105,6 @@
     if (!_threeView) {
         __weak __typeof(self) weakSelf = self;
         self.threeView = [[[NSBundle mainBundle] loadNibNamed:@"ThreeButtonView" owner:nil options:nil] objectAtIndex:0];
-        
         [_threeView setDidClickButton:^(NSInteger tag) {
             if (tag == 1) {
                 NSLog(@"商家红包");
@@ -147,12 +141,9 @@
         [view addSubview:self.threeView];
         tableView.tableHeaderView = view;
         tableView.tableFooterView = [[UIView alloc] init];
-        
         tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-           
             [self loaddata];
         }];
-        
         
         [self.view insertSubview:tableView atIndex:1];
         _tableView = tableView;
@@ -160,10 +151,8 @@
     return _tableView ;
 }
 
-
 - (void)loaddata{
     [self showHudInView:self.view hint:@"加载数据..."];
-    
     //获取轮播图片数据
     [[NetworkManager new] getWithURL:MainImageURL success:^(id obj) {
         [self.imageArray removeAllObjects];
@@ -198,7 +187,6 @@
     } errorBlock:^(NSError *error) {
         [self hideHud];
         [self endRefresh];
-
         [self showHint:@"网络错误"];
     }];
 }
@@ -208,14 +196,11 @@
 }
 
 #pragma mark - tableView delegate and tableView dataSource
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 2;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 0) {
         if (self.sellerRedBagArray.count == 0) {
             return 0;
@@ -237,7 +222,6 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     if (indexPath.section == 0) {
         HomeFirstTableViewCell *cell = [HomeFirstTableViewCell normalTableViewCellWithTableView:tableView];
         cell.imageNameArray = self.sellerImageArray;
@@ -246,8 +230,6 @@
             vc.sellerRedBagModel = self.sellerRedBagArray[row];
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
-
-            
         }];
         typeof(cell) weakcell = cell;
         [cell.layout setCollectionViewHeightBlock:^(CGFloat cellHeight){
@@ -257,18 +239,14 @@
             [self.tableView reloadData];
         }];
         return cell;
-
     }else{
-        
         AllRedPacketTableViewCell *cell = (AllRedPacketTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"cell"];
         if (cell == nil) {
             cell= (AllRedPacketTableViewCell *)[[[NSBundle  mainBundle]  loadNibNamed:@"AllRedPacketTableViewCell" owner:self options:nil]  lastObject];
         }
         AllManRedPacketListModel *model = self.allManRedBagArray[indexPath.row];
-
         cell.model = model;
         [cell setIconImageViewBlock:^{
-           
             OtherPersonInfoViewController *vc = [[OtherPersonInfoViewController alloc] init];
             vc.hidesBottomBarWhenPushed = YES;
             vc.uid = model.uid;
@@ -283,7 +261,6 @@
             vc.allManmodel = self.allManRedBagArray[indexPath.row];
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
-
         }];
         return cell;
     }
@@ -306,22 +283,17 @@
     }];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 1) {
         AllManRedPacketDetailViewController *vc = [[AllManRedPacketDetailViewController alloc] init];
         vc.allManmodel = self.allManRedBagArray[indexPath.row];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
-        
     }
-    
 }
 
-
 //HeaderInSection  &&  FooterInSection
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UIView *backView = [[UIView alloc]init];
     backView.backgroundColor = [UIColor clearColor];
     return backView;
@@ -352,7 +324,6 @@
 
 #pragma mark - SDCycleScrollViewDelegate
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
-    NSLog(@"%ld", index);
     DBCycleModel *model = self.cycleModelArray[index];
     if ([model.act intValue] == 1) {
         DBWebViewViewController *vc = [[DBWebViewViewController alloc] init];
@@ -370,14 +341,10 @@
 }
 
 #pragma mark - segue传值
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"todetail"]) {
         MerchantDetailViewController *vc = [segue destinationViewController];
         vc.redPacketID = sender;
     }
-    
 }
-
-
 @end

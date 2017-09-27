@@ -90,11 +90,8 @@
 - (void)shareButtonClicked{
     [self.resultImageView removeFromSuperview];
     [self.shareButton removeFromSuperview];
-    
-    
-    [self shareView];
 
-    
+    [self shareView];
 }
 
 - (UIImageView *)iconImageView{
@@ -102,7 +99,7 @@
         
         
         UIImageView *imageView = [[UIImageView alloc] init];
-        CGFloat y = 68;
+        CGFloat y = 80;
         
         if ([[DBGtInfo iphoneType] isEqualToString:@"iPhone 7 Plus"] || [[DBGtInfo iphoneType] isEqualToString:@"iPhone 6 Plus"] || [[DBGtInfo iphoneType] isEqualToString:@"iPhone 6s Plus"]) {
             y = 80;
@@ -118,7 +115,7 @@
             [[DBGtInfo iphoneType] isEqualToString:@"iPhone 5c"] ||
             [[DBGtInfo iphoneType] isEqualToString:@"iPhone 5s"] ||
             [[DBGtInfo iphoneType] isEqualToString:@"iPhone SE"]) {
-            y = 22;
+            y = 50;
         }
         
         imageView.frame = CGRectMake(self.resultImageView.frame.size.width/2 - 30, y, 60, 60);
@@ -131,7 +128,6 @@
 }
 - (void)blackViwClicked{
     [self removeFromSuperview];
-    
     [self.resultImageView removeFromSuperview];
     [self.shareButton removeFromSuperview];
     [self.shareView removeFromSuperview];
@@ -141,16 +137,36 @@
     [self removeFromSuperview];
     [self.resultImageView removeFromSuperview];
     [self.shareButton removeFromSuperview];
-
     [self.shareView removeFromSuperview];
-
 }
 
 - (UILabel *)resultFirstLabel{
     if (_resultFirstLabel == nil) {
         UILabel *label = [[UILabel alloc] init];
         label.text = @"成功领取现金";
-        label.frame = CGRectMake(0, 200, self.resultImageView.frame.size.width, 40);
+        
+        CGFloat y = 230;
+        
+        if ([[DBGtInfo iphoneType] isEqualToString:@"iPhone 7 Plus"] || [[DBGtInfo iphoneType] isEqualToString:@"iPhone 6 Plus"] || [[DBGtInfo iphoneType] isEqualToString:@"iPhone 6s Plus"]) {
+            y = 230;
+        }
+        
+        if ([[DBGtInfo iphoneType] isEqualToString:@"iPhone 6"] ||
+            [[DBGtInfo iphoneType] isEqualToString:@"iPhone 6s"] ||
+            [[DBGtInfo iphoneType] isEqualToString:@"iPhone 7"] ) {
+            y = 200;
+        }
+        
+        if ([[DBGtInfo iphoneType] isEqualToString:@"iPhone 5"] ||
+            [[DBGtInfo iphoneType] isEqualToString:@"iPhone 5c"] ||
+            [[DBGtInfo iphoneType] isEqualToString:@"iPhone 5s"] ||
+            [[DBGtInfo iphoneType] isEqualToString:@"iPhone SE"]) {
+            y = 150;
+        }
+        
+        label.frame = CGRectMake(0, y, self.resultImageView.frame.size.width, 40);
+
+//        label.frame = CGRectMake(0, 200, self.resultImageView.frame.size.width, 40);
         label.textColor = [UIColor whiteColor];
         label.textAlignment = NSTextAlignmentCenter;
         label.adjustsFontSizeToFitWidth = YES;
@@ -163,7 +179,29 @@
 - (UILabel *)resultSecondLabel{
     if (_resultSecondLabel == nil) {
         UILabel *label = [[UILabel alloc] init];
-        label.frame = CGRectMake(0, CGRectGetMaxY(self.resultFirstLabel.frame) + 10, self.resultImageView.frame.size.width, 50);
+        
+        
+        CGFloat y = 300;
+        
+        if ([[DBGtInfo iphoneType] isEqualToString:@"iPhone 7 Plus"] || [[DBGtInfo iphoneType] isEqualToString:@"iPhone 6 Plus"] || [[DBGtInfo iphoneType] isEqualToString:@"iPhone 6s Plus"]) {
+            y = 300;
+        }
+        
+        if ([[DBGtInfo iphoneType] isEqualToString:@"iPhone 6"] ||
+            [[DBGtInfo iphoneType] isEqualToString:@"iPhone 6s"] ||
+            [[DBGtInfo iphoneType] isEqualToString:@"iPhone 7"] ) {
+            y = 260;
+        }
+        
+        if ([[DBGtInfo iphoneType] isEqualToString:@"iPhone 5"] ||
+            [[DBGtInfo iphoneType] isEqualToString:@"iPhone 5c"] ||
+            [[DBGtInfo iphoneType] isEqualToString:@"iPhone 5s"] ||
+            [[DBGtInfo iphoneType] isEqualToString:@"iPhone SE"]) {
+            y = 200;
+        }
+        label.frame = CGRectMake(0, y, self.resultImageView.frame.size.width, 50);
+
+//        label.frame = CGRectMake(0, CGRectGetMaxY(self.resultFirstLabel.frame) + 10, self.resultImageView.frame.size.width, 50);
         label.adjustsFontSizeToFitWidth = YES;
         label.textAlignment = NSTextAlignmentCenter;
         label.textColor = [UIColor whiteColor];
@@ -176,8 +214,28 @@
 - (UILabel *)resultthirdLabel{
     if (_resultthirdLabel == nil) {
         UILabel *label = [[UILabel alloc] init];
-        label.frame =CGRectMake(0, CGRectGetMaxY(self.resultImageView.frame) - 180, self.resultImageView.frame.size.width, 50);
         
+        CGFloat y = 370;
+        
+        if ([[DBGtInfo iphoneType] isEqualToString:@"iPhone 7 Plus"] || [[DBGtInfo iphoneType] isEqualToString:@"iPhone 6 Plus"] || [[DBGtInfo iphoneType] isEqualToString:@"iPhone 6s Plus"]) {
+            y = 370;
+        }
+        
+        if ([[DBGtInfo iphoneType] isEqualToString:@"iPhone 6"] ||
+            [[DBGtInfo iphoneType] isEqualToString:@"iPhone 6s"] ||
+            [[DBGtInfo iphoneType] isEqualToString:@"iPhone 7"] ) {
+            y = 330;
+        }
+        
+        if ([[DBGtInfo iphoneType] isEqualToString:@"iPhone 5"] ||
+            [[DBGtInfo iphoneType] isEqualToString:@"iPhone 5c"] ||
+            [[DBGtInfo iphoneType] isEqualToString:@"iPhone 5s"] ||
+            [[DBGtInfo iphoneType] isEqualToString:@"iPhone SE"]) {
+            y = 250;
+        }
+        label.frame =CGRectMake(0, y, self.resultImageView.frame.size.width, 50);
+
+//        label.frame =CGRectMake(0, CGRectGetMaxY(self.resultImageView.frame) - 180, self.resultImageView.frame.size.width, 50);
         label.textColor = [UIColor whiteColor];
         label.textAlignment = NSTextAlignmentCenter;
         label.adjustsFontSizeToFitWidth = YES;

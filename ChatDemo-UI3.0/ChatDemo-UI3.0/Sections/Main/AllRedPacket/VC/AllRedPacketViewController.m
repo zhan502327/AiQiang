@@ -120,7 +120,6 @@
 }
 
 - (void)loadData{
-
     //获取轮播图片数据
     [[NetworkManager new] getWithURL:MainImageURL success:^(id obj) {
         [self.imageArray removeAllObjects];
@@ -133,7 +132,6 @@
                 [array addObject:model];
                 [self.imageArray addObject:[NSString stringWithFormat:@"%@%@", www, dic[@"homeimg"]]];
             }
-            
             [self.cycleModelArray addObjectsFromArray:array];
             self.cycleView.imageURLStringsGroup = self.imageArray;
         } else {
@@ -161,7 +159,6 @@
         [self setTableViewHeader];
     } errorBlock:^(NSError *error) {
         [self endRefresh];
-
         [self showHint:@"网络错误"];
     }];
 
@@ -189,7 +186,7 @@
     header.frame = CGRectMake(0, SCREEN_WIDTH * 7 / 16, SCREEN_WIDTH, 170);
     header.modelArray = self.maxDataSource;
     [header setDidClick:^(NSInteger tag) {
-        NSLog(@"%ld", tag);
+        NSLog(@"%ld", (long)tag);
         AllManRedPacketDetailViewController *vc = [[AllManRedPacketDetailViewController alloc] init];
         vc.allManmodel = self.maxDataSource[tag - 5000];
         vc.hidesBottomBarWhenPushed = YES;
@@ -273,7 +270,7 @@
 
 #pragma mark - SDCycleScrollViewDelegate
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
-    NSLog(@"%ld", index);
+    NSLog(@"%ld", (long)index);
     
     
     DBCycleModel *model = self.cycleModelArray[index];

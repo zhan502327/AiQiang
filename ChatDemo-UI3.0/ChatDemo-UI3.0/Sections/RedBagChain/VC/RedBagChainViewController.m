@@ -53,7 +53,6 @@
         EMError *error = nil;
         EMCursorResult *result = [[EMClient sharedClient].groupManager getPublicGroupsFromServerWithCursor:nil pageSize:-1 error:&error];
         NSArray *publickGrouprray = result.list;
-        
         EMGroup *oneGroup;
         EMGroup *twoGroup;
         EMGroup *threeGroup;
@@ -182,8 +181,8 @@
     self.title = @"红包接龙";
     self.view.backgroundColor = [UIColor whiteColor];
     
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"tips"] style:UIBarButtonItemStylePlain target:self action:@selector(barButtonItemClicked)];
-    self.navigationItem.rightBarButtonItem = item;
+//    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"tips"] style:UIBarButtonItemStylePlain target:self action:@selector(barButtonItemClicked)];
+//    self.navigationItem.rightBarButtonItem = item;
 }
 
 - (void)barButtonItemClicked{
@@ -233,7 +232,7 @@
         self.tag = tap.view.tag;
         
         NSString *moneyStr = @"";
-        
+
         if (tap.view.tag == 100) {
             moneyStr = @"0.5";
         }else if (tap.view.tag == 101){
@@ -244,7 +243,9 @@
             moneyStr = @"5.0";
         }
         
-        NSString *messageStr = [NSString stringWithFormat:@"进入本群需要支付¥%@元押金，押金将在退出群组时返回到您的余额。",moneyStr];
+//        NSString *messageStr = [NSString stringWithFormat:@"进入本群需要支付¥%@元押金，押金将在退出群组时返回到您的余额。",moneyStr];
+        NSString *messageStr = @"进入本群需要支付押金，押金将在退出群组时返回到您的余额。";
+
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:messageStr delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         [alertView show];
 

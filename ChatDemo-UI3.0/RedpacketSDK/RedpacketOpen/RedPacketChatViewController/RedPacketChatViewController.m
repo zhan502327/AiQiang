@@ -130,8 +130,8 @@
     }
     
     if ([self.conversation.conversationId isEqualToString:OneGroupId] || [self.conversation.conversationId isEqualToString:TwoGroupId] || [self.conversation.conversationId isEqualToString:ThreeGroupId] || [self.conversation.conversationId isEqualToString:FourGroupId]) {
-        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"tips"] style:UIBarButtonItemStylePlain target:self action:@selector(barButtonItemClicked)];
-        self.navigationItem.rightBarButtonItem = item;
+//        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"tips"] style:UIBarButtonItemStylePlain target:self action:@selector(barButtonItemClicked)];
+//        self.navigationItem.rightBarButtonItem = item;
     }
     
 }

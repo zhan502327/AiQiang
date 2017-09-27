@@ -66,7 +66,7 @@
         label.frame = CGRectMake(0, 15, 180, 40);
         label.font = DBMaxFont;
         
-        label.backgroundColor = [UIColor redColor];
+        label.backgroundColor = [UIColor whiteColor];
         label.textColor = DBBlackColor;
         label.textAlignment = NSTextAlignmentLeft;
         [self.view addSubview:label];

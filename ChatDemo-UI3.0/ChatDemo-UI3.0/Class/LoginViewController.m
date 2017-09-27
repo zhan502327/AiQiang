@@ -75,7 +75,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self getLocation];
+//    [self getLocation];
 
 }
 
@@ -233,14 +233,12 @@
             __weak typeof(self) weakself = self;
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 EMError *error = [[EMClient sharedClient] loginWithUsername:self.uid password:self.uid];
-                
+
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [weakself hideHud];
                     if (!error) {
-                        
                         //保存最近一次登录用户名
                         [weakself saveLastLoginUsername];
-                        
                         //设置是否自动登录
                         [[EMClient sharedClient].options setIsAutoLogin:YES];
                         BOOL loginSuccess = [EMClient sharedClient].isLoggedIn;
@@ -259,7 +257,6 @@
                                 //发送自动登陆状态通知
                                 
                                 [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@([[EMClient sharedClient] isLoggedIn])];
-                                
                             });
                         });
                     } else {//  不走次方法
@@ -287,11 +284,8 @@
                     }
                 });
             });
-
-            
         }else{
             [self hideHud];
-
             [self showHint:obj[@"msg"]];
         }
     } fail:^(NSError *error) {
@@ -299,7 +293,6 @@
         [self showHint:@"网络错误"];
         NSLog(@"-----服务器登录失败");
     }];
-
 }
 
 #pragma mark - UIAlertViewDelegate

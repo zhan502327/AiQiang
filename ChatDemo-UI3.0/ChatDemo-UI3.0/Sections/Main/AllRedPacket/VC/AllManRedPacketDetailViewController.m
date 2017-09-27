@@ -80,11 +80,11 @@
     [self webView];
     
     
-    self.time = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(less) userInfo:nil repeats:YES];
-    self.redPacketButton.backgroundColor = [UIColor grayColor];
-    self.redPacketButton.userInteractionEnabled = NO;
-    //发送成功,倒计时开始
-    second = 10;
+//    self.time = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(less) userInfo:nil repeats:YES];
+//    self.redPacketButton.backgroundColor = [UIColor grayColor];
+//    self.redPacketButton.userInteractionEnabled = NO;
+//    //发送成功,倒计时开始
+//    second = 10;
 }
 
 - (void)less {
@@ -489,7 +489,7 @@
     ID = sellerID;
     self.fromWhere = FromSellerRedBag;
 }
-- (void) loadData{
+- (void)loadData{
     
     NSString *redbagType;
     NSDictionary *dic;
@@ -572,7 +572,6 @@
     }
 }
 
-
 - (void)rightBarButtonItemClick{
     
     NSString *uid = @"";
@@ -590,7 +589,9 @@
     if (_redPacketButton == nil) {
         UIButton *button = [[UIButton alloc] init];
 //        button.frame = CGRectMake(100, 10, SCREEN_WIDTH - 200, 40);
-        [button setTitle:@"倒计时：10 s" forState:UIControlStateNormal];
+//        [button setTitle:@"倒计时：10 s" forState:UIControlStateNormal];
+        [button setTitle:@"开始抢红包" forState:UIControlStateNormal];
+
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         button.backgroundColor = [UIColor redColor];
         button.layer.masksToBounds = YES;
@@ -630,7 +631,6 @@
 }
 
 - (void)stealSellerRedBagWith:(NSDictionary *)param{
-    
     [SellerRedBagTool stealSellerRedBagWirthParam:param successBlock:^(StealRedBagResult *result) {
         
         switch ([result.status intValue]) {
