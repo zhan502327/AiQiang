@@ -11,14 +11,24 @@
 #import "DBCycleModel.h"
 #import "DBStoreBottomVIew.h"
 #import "DBStoreHeaderCollectionReusableView.h"
+#import "DBExchangeListViewController.h"
+#import "DBStoreListModel.h"
+#import "DBStoreTool.h"
+
+#define collectionHeaderHeight 180
 
 @interface DBStoreViewController ()<UICollectionViewDelegate, UICollectionViewDataSource,SDCycleScrollViewDelegate>
+
+{
+    int page;
+}
 @property (nonatomic, weak) UICollectionView *collcetionView;
 @property (nonatomic, strong) NSMutableArray *dataSource;
 @property (nonatomic, strong) SDCycleScrollView *cycleView;
 @property (nonatomic, strong) DBStoreBottomVIew *bottomView;
 @property (nonatomic, strong) NSMutableArray *imageArray;
 @property (nonatomic, strong) NSMutableArray *cycleModelArray;
+
 @end
 
 @implementation DBStoreViewController
@@ -27,7 +37,6 @@
     [super viewDidLoad];
     [self configUI];
     [self loadData];
-    
     
     // 注册collectionViewcell:WWCollectionViewCell是我自定义的cell的类型
 //    [self.collcetionView registerClass:[WWCollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
@@ -39,10 +48,45 @@
 
 - (DBStoreBottomVIew *)bottomView{
     if (_bottomView == nil) {
-        DBStoreBottomVIew *view = [DBStoreBottomVIew viewWithFrame:CGRectMake(0, CGRectGetMaxY(self.cycleView.frame), SCREEN_WIDTH, 50)];
+        DBStoreBottomVIew *view = [DBStoreBottomVIew viewWithFrame:CGRectMake(0, CGRectGetMaxY(self.cycleView.frame), SCREEN_WIDTH, collectionHeaderHeight)];
+        
+        [view setStoreBottomViewBlock:^(NSInteger tag){
+     
+            if (tag == 100) {
+                
+            };
+            
+            if (tag == 101) {
+                DBExchangeListViewController *vc = [[DBExchangeListViewController alloc] init];
+                vc.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:vc animated:YES];
+            };
+            
+            if (tag == 200) {
+                
+            };
+            if (tag == 201) {
+                
+            };
+            if (tag == 202) {
+                
+            };
+            if (tag == 203) {
+                
+            };
+            
+        }];
         _bottomView = view;
     }
     return _bottomView;
+}
+
+- (NSMutableArray *)dataSource{
+    if (_dataSource == nil) {
+        NSMutableArray *dataSouce = [NSMutableArray arrayWithCapacity:0];
+        _dataSource = dataSouce;
+    }
+    return _dataSource;
 }
 
 - (NSMutableArray *)cycleModelArray{
@@ -76,12 +120,39 @@
     } fail:^(NSError *error) {
         [self showHint:@"网络错误"];
     }];
+    
+    
+    //获取商品列表
+    NSDictionary *param = @{@"page":[NSString stringWithFormat:@"%d",page], @"type":@"0", @"uid":User_ID};
+    
+    [DBStoreTool storeListWithParam:param successBlock:^(NSArray *modelArray, NSString *msg, NSNumber *status) {
+        
+        [self endRefresh];
+        if (self->page == 1) {
+            [self.dataSource removeAllObjects];
+        }
+        
+        
+        [self.dataSource addObjectsFromArray:modelArray];
+        [self.collcetionView reloadData];
+        
+        
+    } errorBlcok:^(NSError *error) {
+        [self endRefresh];
+        [self showHint:@"网络错误"];
+
+    }];
 }
+
+- (void)endRefresh{
+    [self.collcetionView.mj_header endRefreshing];
+    [self.collcetionView.mj_footer endRefreshing];
+}
+
 
 - (void)configUI{
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"积分商城";
-    
 }
 
 - (SDCycleScrollView *)cycleView {
@@ -107,6 +178,16 @@
         UICollectionViewFlowLayout *layOut = [[UICollectionViewFlowLayout alloc] init];
         layOut.scrollDirection = UICollectionViewScrollDirectionVertical;
         UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64) collectionViewLayout:layOut];
+        collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            self->page = 1;
+            [self loadData];
+        }];
+        
+        collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+            self->page ++;
+            [self loadData];
+        }];
+
         collectionView.delegate = self;
         collectionView.dataSource = self;
         collectionView.scrollEnabled  = YES;
@@ -131,7 +212,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 22;
+    return self.dataSource.count;
 }
 //告知每个块item应该有多大
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -145,6 +226,8 @@
 {
     
     DBStoreCollectionViewCell *cell = [DBStoreCollectionViewCell normalCollectionCellWithCollectionView:collectionView atIndexPath:indexPath];
+    
+    cell.model = self.dataSource[indexPath.row];
     return cell;
 }
 
@@ -179,7 +262,7 @@
 
 /** 头部的尺寸*/
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
-    return CGSizeMake(SCREEN_WIDTH, (SCREEN_WIDTH + 12) * 7/16 + 50);
+    return CGSizeMake(SCREEN_WIDTH, (SCREEN_WIDTH + 12) * 7/16 + collectionHeaderHeight);
 }
 
 @end

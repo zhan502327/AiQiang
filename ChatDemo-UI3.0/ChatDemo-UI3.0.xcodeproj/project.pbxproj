@@ -111,6 +111,10 @@
 		4D0DB6721EE7E770000EBF06 /* DBSellerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D0DB6711EE7E770000EBF06 /* DBSellerListViewController.m */; };
 		4D0DB6761EE7E887000EBF06 /* AC_WaterCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D0DB6751EE7E887000EBF06 /* AC_WaterCollectionViewLayout.m */; };
 		4D0DB6A21EE8F3AD000EBF06 /* DBAddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D0DB6A11EE8F3AD000EBF06 /* DBAddFriendViewController.m */; };
+		4D15838C1F7B9E4800270702 /* DBExchangeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D15838B1F7B9E4800270702 /* DBExchangeListViewController.m */; };
+		4D15838F1F7B9FB800270702 /* DBExchangeListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D15838E1F7B9FB800270702 /* DBExchangeListTableViewCell.m */; };
+		4D1583921F7E379E00270702 /* DBStoreListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1583911F7E379E00270702 /* DBStoreListModel.m */; };
+		4D1583951F7E386200270702 /* DBStoreTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1583941F7E386200270702 /* DBStoreTool.m */; };
 		4D1684E31EC04E0400900DA9 /* FriendsListTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1684E21EC04E0400900DA9 /* FriendsListTool.m */; };
 		4D1684E61EC0503B00900DA9 /* FriendsListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1684E51EC0503B00900DA9 /* FriendsListModel.m */; };
 		4D1684E91EC16BE900900DA9 /* PublishRedBagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1684E81EC16BE900900DA9 /* PublishRedBagViewController.m */; };
@@ -826,6 +830,14 @@
 		4D0DB6751EE7E887000EBF06 /* AC_WaterCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AC_WaterCollectionViewLayout.m; sourceTree = "<group>"; };
 		4D0DB6A01EE8F3AD000EBF06 /* DBAddFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBAddFriendViewController.h; sourceTree = "<group>"; };
 		4D0DB6A11EE8F3AD000EBF06 /* DBAddFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBAddFriendViewController.m; sourceTree = "<group>"; };
+		4D15838A1F7B9E4800270702 /* DBExchangeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBExchangeListViewController.h; sourceTree = "<group>"; };
+		4D15838B1F7B9E4800270702 /* DBExchangeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBExchangeListViewController.m; sourceTree = "<group>"; };
+		4D15838D1F7B9FB800270702 /* DBExchangeListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBExchangeListTableViewCell.h; sourceTree = "<group>"; };
+		4D15838E1F7B9FB800270702 /* DBExchangeListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBExchangeListTableViewCell.m; sourceTree = "<group>"; };
+		4D1583901F7E379E00270702 /* DBStoreListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBStoreListModel.h; sourceTree = "<group>"; };
+		4D1583911F7E379E00270702 /* DBStoreListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBStoreListModel.m; sourceTree = "<group>"; };
+		4D1583931F7E386200270702 /* DBStoreTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBStoreTool.h; sourceTree = "<group>"; };
+		4D1583941F7E386200270702 /* DBStoreTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBStoreTool.m; sourceTree = "<group>"; };
 		4D1684E11EC04E0400900DA9 /* FriendsListTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsListTool.h; sourceTree = "<group>"; };
 		4D1684E21EC04E0400900DA9 /* FriendsListTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsListTool.m; sourceTree = "<group>"; };
 		4D1684E41EC0503B00900DA9 /* FriendsListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsListModel.h; sourceTree = "<group>"; };
@@ -2434,6 +2446,8 @@
 		4DB4B0C01F4BD062006F0D75 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4D1583901F7E379E00270702 /* DBStoreListModel.h */,
+				4D1583911F7E379E00270702 /* DBStoreListModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2441,6 +2455,8 @@
 		4DB4B0C11F4BD062006F0D75 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				4D1583931F7E386200270702 /* DBStoreTool.h */,
+				4D1583941F7E386200270702 /* DBStoreTool.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -2450,6 +2466,8 @@
 			children = (
 				4DB4B0C41F4BD085006F0D75 /* DBStoreViewController.h */,
 				4DB4B0C51F4BD085006F0D75 /* DBStoreViewController.m */,
+				4D15838A1F7B9E4800270702 /* DBExchangeListViewController.h */,
+				4D15838B1F7B9E4800270702 /* DBExchangeListViewController.m */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -2465,6 +2483,8 @@
 				4DB4B0CE1F4C155B006F0D75 /* DBStoreCollectionViewCell.m */,
 				4DB4B0D01F4C1EEE006F0D75 /* DBStoreHeaderCollectionReusableView.h */,
 				4DB4B0D11F4C1EEE006F0D75 /* DBStoreHeaderCollectionReusableView.m */,
+				4D15838D1F7B9FB800270702 /* DBExchangeListTableViewCell.h */,
+				4D15838E1F7B9FB800270702 /* DBExchangeListTableViewCell.m */,
 			);
 			path = VIew;
 			sourceTree = "<group>";
@@ -5468,6 +5488,7 @@
 				4DCF01CA1EEF76BC00C91C6C /* Order.m in Sources */,
 				4D0DB66C1EE544B5000EBF06 /* OtherPersonInfoViewController.m in Sources */,
 				9003D9141939D8D000DC38A4 /* AddFriendViewController.m in Sources */,
+				4D1583951F7E386200270702 /* DBStoreTool.m in Sources */,
 				4DE5A8C41EF3C88A00D6657B /* TixianListModel.m in Sources */,
 				4D773F791EC99F4300FE64C1 /* MainViewController.m in Sources */,
 				4DB5A0581EB321AD00BE3969 /* MJPhotoToolbar.m in Sources */,
@@ -5549,8 +5570,10 @@
 				D2C9DE711E14E07F00323A7D /* MJRefreshBackFooter.m in Sources */,
 				BEE4DD9C1E7BC8ED004A7115 /* PersonalInformationViewController.m in Sources */,
 				4D837A501F146026000B4E63 /* MyRecommendListModel.m in Sources */,
+				4D1583921F7E379E00270702 /* DBStoreListModel.m in Sources */,
 				4DBAF9901ED96C310029DA47 /* SellerRedBagDetailModel.m in Sources */,
 				BEB6067A1E86518000865465 /* MerchantCommentModel.m in Sources */,
+				4D15838C1F7B9E4800270702 /* DBExchangeListViewController.m in Sources */,
 				9091112F192EEC0F008A48AA /* SettingsViewController.m in Sources */,
 				D2C9DEC31E14E07F00323A7D /* EaseCustomMessageCell.m in Sources */,
 				4D0A03FB1ECC2434002A9324 /* MineSecondTableViewCell.m in Sources */,
@@ -5605,6 +5628,7 @@
 				D2C9DEA51E14E07F00323A7D /* PSTGridLayoutInfo.m in Sources */,
 				3C13D94B1A12095D00903622 /* GroupBansViewController.m in Sources */,
 				D2C9DEA41E14E07F00323A7D /* PSTCollectionViewUpdateItem.m in Sources */,
+				4D15838F1F7B9FB800270702 /* DBExchangeListTableViewCell.m in Sources */,
 				D2C9DEBA1E14E07F00323A7D /* FixFopen.c in Sources */,
 				4D043ABB1EB889EC003BC71C /* LabelHeight.m in Sources */,
 				4DE5A8C11EF3C52F00D6657B /* TiXianListTableViewCell.m in Sources */,
@@ -5869,6 +5893,7 @@
 					"-ObjC",
 					"-Objc",
 					"-all_load",
+					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.flycatiphone.aiqiang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5950,6 +5975,7 @@
 					"-ObjC",
 					"-Objc",
 					"-all_load",
+					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.flycatiphone.aiqiang;
 				PRODUCT_NAME = "$(TARGET_NAME)";

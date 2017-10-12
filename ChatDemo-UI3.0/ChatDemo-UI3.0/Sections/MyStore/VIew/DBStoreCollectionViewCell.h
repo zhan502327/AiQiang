@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DBStoreListModel.h"
 
 @interface DBStoreCollectionViewCell : UICollectionViewCell
 
-//@property (nonatomic, strong) <#ModelClass#> *model;
+@property (nonatomic, strong) DBStoreListModel *model;
 
 @property (nonatomic, weak) UIImageView *iconimageView;
 @property (nonatomic, weak) UILabel *nameLabel;

@@ -69,7 +69,6 @@
     type = 0;
     self.isYourTurnToSendRedBag = NO;
     
-    
     /** RedPacketUserConfig 持有当前聊天窗口 */
     [RedPacketUserConfig sharedConfig].chatVC = self;
     /** 红包功能的控制器， 产生用户单击红包后的各种动作 */
@@ -133,7 +132,6 @@
 //        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"tips"] style:UIBarButtonItemStylePlain target:self action:@selector(barButtonItemClicked)];
 //        self.navigationItem.rightBarButtonItem = item;
     }
-    
 }
 
 - (void)barButtonItemClicked{

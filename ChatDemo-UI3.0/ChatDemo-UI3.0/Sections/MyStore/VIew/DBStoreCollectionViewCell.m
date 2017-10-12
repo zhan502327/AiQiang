@@ -151,14 +151,15 @@
 }
 
 #pragma mark -数据处理
-//- (void)setModel:(<#ModelClass#> *)model
-//{
-//    _model = model;
-//    
-//    [_imgView ideago_setImageWithURL:model.img placeholderImage:[UIImage imageNamed:@"placeholder1"]];
-//    _titleLabel.text = model.title;
-//    
-//}
+- (void)setModel:(DBStoreListModel *)model
+{
+    _model = model;
+    
+    [self.iconimageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",www,model.img]]];
+    self.nameLabel.text = model.name;
+    self.moneyLabel.text = model.amount;
+    
+}
 
 
 @end

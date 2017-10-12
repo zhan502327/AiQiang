@@ -11,7 +11,7 @@
 @interface DBStoreBottomVIew : UIView
 
 
-
+@property (nonatomic, copy) void(^storeBottomViewBlock)(NSInteger tag);
 
 + (DBStoreBottomVIew *)viewWithFrame:(CGRect)frame;
 

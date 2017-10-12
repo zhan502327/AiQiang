@@ -84,7 +84,6 @@
 //#define www @"http://192.168.1.88/aiqiang/"
 
 //服务器地址
-//#define www @"http://47.93.114.245/aiqiang/"
 #define www @"http://www.iiqiang.com/"
 
 //设置字体和颜色
@@ -327,5 +326,19 @@
 #define CheckoutRedBagMaxID  [NSString stringWithFormat:@"%@api.php/GroupRedBag/queryRedbag", www]
 //退回红包接龙押金
 #define ReturnDepositURL  [NSString stringWithFormat:@"%@api.php/GroupRedBag/returnDeposit", www]
+
+
+//  ===========积分商城===========
+//商城首页商品列表
+//http://192.168.1.88/aiqiang/api.php/Goods/getGoodsList?uid=52
+#define StoreMainListURL [NSString stringWithFormat:@"%@api.php/Goods/getGoodsList", www]
+//商城首页信息
+//http://192.168.1.88/aiqiang/api.php/Goods/getShop?uid=50
+#define StoreMainInfoURL [NSString stringWithFormat:@"%@api.php/Goods/getShop", www]
+
+
+
+
+
 
 #endif
