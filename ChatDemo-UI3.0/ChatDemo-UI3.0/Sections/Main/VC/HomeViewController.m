@@ -24,6 +24,7 @@
 #import "SellerListViewController.h"
 #import "DBCycleModel.h"
 #import "DBWebViewViewController.h"
+#import "TwoButtonView.h"
 
 @interface HomeViewController ()< SDCycleScrollViewDelegate,UITableViewDelegate,UITableViewDataSource> {
     CGFloat _cellHeight;
@@ -34,9 +35,10 @@
 @property (nonatomic, strong) NSMutableArray *allManRedBagArray;
 @property (nonatomic, strong) NSMutableArray *sellerRedBagArray;
 @property (strong, nonatomic) SDCycleScrollView *cycleView;
-@property (strong, nonatomic) ThreeButtonView *threeView;
+//@property (strong, nonatomic) ThreeButtonView *threeView;
 @property (nonatomic, strong) NSMutableArray *sellerImageArray;
 @property (nonatomic, weak) StealRedBagView *stealView;
+@property (nonatomic, strong) TwoButtonView *threeView;
 @end
 
 @implementation HomeViewController
@@ -101,31 +103,52 @@
     return _cycleView;
 }
 
-- (ThreeButtonView *)threeView {
-    if (!_threeView) {
-        __weak __typeof(self) weakSelf = self;
-        self.threeView = [[[NSBundle mainBundle] loadNibNamed:@"ThreeButtonView" owner:nil options:nil] objectAtIndex:0];
-        [_threeView setDidClickButton:^(NSInteger tag) {
-            if (tag == 1) {
-                NSLog(@"商家红包");
-                SellerListViewController *vc = [[SellerListViewController alloc] init];
-                vc.hidesBottomBarWhenPushed = YES;
-                [weakSelf.navigationController pushViewController:vc animated:YES];
-            } else if (tag == 2) {
+- (TwoButtonView *)threeView{
+    __weak __typeof(self) weakSelf = self;
+
+    if (_threeView == nil) {
+        _threeView = [TwoButtonView customViewWithFrame:CGRectMake(0, (SCREEN_WIDTH +12)* 7/16, SCREEN_WIDTH, 80)];
+        [_threeView setButtonBlock:^(NSInteger tag){
+            if (tag == 100) {
                 NSLog(@"红包接龙");
                 RedBagChainViewController *vc = [[RedBagChainViewController alloc] init];
                 vc.hidesBottomBarWhenPushed = YES;
                 [weakSelf.navigationController pushViewController:vc animated:YES];
-
-            } else if (tag == 3) {
-                NSLog(@"全民红包");
+            }
+            
+            if (tag == 101) {
                 [weakSelf performSegueWithIdentifier:@"all" sender:nil];
             }
         }];
-        _threeView.frame = CGRectMake(0, (SCREEN_WIDTH +12)* 7/16, SCREEN_WIDTH, 80);
     }
     return _threeView;
 }
+
+//- (ThreeButtonView *)threeView {
+//    if (!_threeView) {
+//        __weak __typeof(self) weakSelf = self;
+//        self.threeView = [[[NSBundle mainBundle] loadNibNamed:@"ThreeButtonView" owner:nil options:nil] objectAtIndex:0];
+//        [_threeView setDidClickButton:^(NSInteger tag) {
+//            if (tag == 1) {
+//                NSLog(@"商家红包");
+//                SellerListViewController *vc = [[SellerListViewController alloc] init];
+//                vc.hidesBottomBarWhenPushed = YES;
+//                [weakSelf.navigationController pushViewController:vc animated:YES];
+//            } else if (tag == 2) {
+//                NSLog(@"红包接龙");
+//                RedBagChainViewController *vc = [[RedBagChainViewController alloc] init];
+//                vc.hidesBottomBarWhenPushed = YES;
+//                [weakSelf.navigationController pushViewController:vc animated:YES];
+//
+//            } else if (tag == 3) {
+//                NSLog(@"全民红包");
+//                [weakSelf performSegueWithIdentifier:@"all" sender:nil];
+//            }
+//        }];
+//        _threeView.frame = CGRectMake(0, (SCREEN_WIDTH +12)* 7/16, SCREEN_WIDTH, 80);
+//    }
+//    return _threeView;
+//}
 
 - (UITableView *)tableView
 {

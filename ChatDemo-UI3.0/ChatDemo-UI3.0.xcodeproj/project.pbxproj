@@ -191,6 +191,7 @@
 		4DA7A4CF1F0232E6009DB805 /* CHTCollectionViewWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA7A4CA1F0232E6009DB805 /* CHTCollectionViewWaterfallLayout.m */; };
 		4DA7A4D01F0232E6009DB805 /* ItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA7A4CC1F0232E6009DB805 /* ItemModel.m */; };
 		4DA7A4D41F0242D0009DB805 /* LaunchIntroductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA7A4D31F0242D0009DB805 /* LaunchIntroductionView.m */; };
+		4DAABDDB1F8F3D9B002DC6D9 /* TwoButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DAABDDA1F8F3D9B002DC6D9 /* TwoButtonView.m */; };
 		4DAB2F7B1F1C671900A8E1A0 /* DrawCircleProgressButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DAB2F7A1F1C671900A8E1A0 /* DrawCircleProgressButton.m */; };
 		4DAD1AE01ECC400900D7CD81 /* DBBillViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DAD1ADF1ECC400900D7CD81 /* DBBillViewController.m */; };
 		4DAD1AE31ECC428200D7CD81 /* DBBillTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DAD1AE21ECC428200D7CD81 /* DBBillTableViewCell.m */; };
@@ -965,6 +966,8 @@
 		4DA7A4CC1F0232E6009DB805 /* ItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemModel.m; path = CHTLayout/ItemModel.m; sourceTree = "<group>"; };
 		4DA7A4D21F0242D0009DB805 /* LaunchIntroductionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchIntroductionView.h; sourceTree = "<group>"; };
 		4DA7A4D31F0242D0009DB805 /* LaunchIntroductionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchIntroductionView.m; sourceTree = "<group>"; };
+		4DAABDD91F8F3D9B002DC6D9 /* TwoButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoButtonView.h; sourceTree = "<group>"; };
+		4DAABDDA1F8F3D9B002DC6D9 /* TwoButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoButtonView.m; sourceTree = "<group>"; };
 		4DAB2F791F1C671900A8E1A0 /* DrawCircleProgressButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawCircleProgressButton.h; sourceTree = "<group>"; };
 		4DAB2F7A1F1C671900A8E1A0 /* DrawCircleProgressButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawCircleProgressButton.m; sourceTree = "<group>"; };
 		4DAD1ADE1ECC400900D7CD81 /* DBBillViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBBillViewController.h; sourceTree = "<group>"; };
@@ -3804,6 +3807,8 @@
 				4DEF31F11ECD258F0030ECBD /* HomeFirstTableViewCell.m */,
 				4DEF31F61ECD2AB80030ECBD /* DBhomeCollectionViewCell.h */,
 				4DEF31F71ECD2AB80030ECBD /* DBhomeCollectionViewCell.m */,
+				4DAABDD91F8F3D9B002DC6D9 /* TwoButtonView.h */,
+				4DAABDDA1F8F3D9B002DC6D9 /* TwoButtonView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5455,6 +5460,7 @@
 				D2C9DE851E14E07F00323A7D /* MWGridViewController.m in Sources */,
 				3C117122197D243B00E2DBEC /* PushNotificationViewController.m in Sources */,
 				D2C9DEC51E14E07F00323A7D /* EaseMessageTimeCell.m in Sources */,
+				4DAABDDB1F8F3D9B002DC6D9 /* TwoButtonView.m in Sources */,
 				D2CB225C1B60CB08001BC741 /* UserProfileViewController.m in Sources */,
 				4D4366B61EADDDAD006CA029 /* DiscoverDetailTableViewCell.m in Sources */,
 				90985E481A8A08D400976DD6 /* InvitationManager.m in Sources */,
